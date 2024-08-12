@@ -1,0 +1,29 @@
+<header>
+    <div class="container" [ngClass]="{'scrolled': isScrolled}">
+        <a href="#" routerLink="/" class="logo" *ngIf="!isScrolled">DevScore</a>
+        <nav>
+            <ul>
+                <li>
+                    <a href="#" routerLink="/">Home</a>
+                </li>
+                <li>
+                    <a href="#" routerLink="/posts">Posts</a>
+                </li>
+                <li>
+                    <a href="#" routerLink="">Rang List</a>
+                </li>
+                <li>
+                    <a href="#" routerLink="/about">About us</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="left-header-div" *ngIf="!isScrolled">
+            <a href="#" routerLink="" class="create">
+                <mat-icon>add</mat-icon>
+            </a>
+            <a href="#" routerLink="" class="profile">
+                <mat-icon>person</mat-icon>
+            </a>
+        </div>
+    </div>
+</header>

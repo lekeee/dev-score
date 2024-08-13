@@ -2,7 +2,7 @@
     <div class="container">
         <a href="#" routerLink="/" class="logo" [ngClass]="{'slide-left': isScrolled}">DevScore</a>
         <nav>
-            <ul>
+            <ul [ngClass]="{'scrolled': isScrolled}">
                 <li>
                     <a href="#" routerLink="/">Home</a>
                 </li>

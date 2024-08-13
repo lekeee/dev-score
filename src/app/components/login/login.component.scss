@@ -1,0 +1,15 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-div{
+    padding: 3em;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

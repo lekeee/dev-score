@@ -1,19 +1,26 @@
 header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     padding: 0.5em;
 }
 
-.container{
+.container {
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    align-items: center; 
+    align-items: center;
     position: relative;
+    min-height: 60px; 
 }
 
 a.logo{
     padding: 1em;
     font-weight: bold;
     color: white;
+    visibility: visible;
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
 }
 
 nav {
@@ -30,19 +37,22 @@ nav ul{
     display: flex;
     padding: 0 0.5em 0 0.5em;
     gap: 1em;
+    align-items: center;
 }
 
 nav ul li a{
+    display: flex;
     padding: 1em;
-    display: inline-block;
     font-size: 14px;
     line-height: 20px;
     color: var(--gray-color);
 }
 
-.left-header-div{
+.right-header-div {
     display: flex;
     gap: 0.5em;
+    visibility: visible; 
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
 }
 
 .profile{
@@ -63,7 +73,16 @@ nav ul li a{
     align-items: center;
 }
 
-.container.scrolled .logo, 
-.container.scrolled .left-header-div {
-  display: none;
+.slide-left{
+    opacity: 0;
+    transform: translateX(-20px);
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.slide-right{
+    opacity: 0;
+    transform: translateX(20px);
+    visibility: hidden;
+    pointer-events: none;
 }

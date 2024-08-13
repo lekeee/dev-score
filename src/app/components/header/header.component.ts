@@ -11,7 +11,6 @@ export class HeaderComponent {
   @HostListener('window:scroll', [])
   onScroll(){
     const scrollPosition = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
-
-    this.isScrolled = scrollPosition > 50;
+    this.isScrolled = scrollPosition > 60;
   }
 }

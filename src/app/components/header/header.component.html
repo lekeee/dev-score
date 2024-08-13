@@ -1,6 +1,6 @@
 <header>
-    <div class="container" [ngClass]="{'scrolled': isScrolled}">
-        <a href="#" routerLink="/" class="logo" *ngIf="!isScrolled">DevScore</a>
+    <div class="container">
+        <a href="#" routerLink="/" class="logo" [ngClass]="{'slide-left': isScrolled}">DevScore</a>
         <nav>
             <ul>
                 <li>
@@ -15,9 +15,15 @@
                 <li>
                     <a href="#" routerLink="/about">About us</a>
                 </li>
+                <li *ngIf="isScrolled">
+                    <a href="#" routerLink=""><mat-icon>add</mat-icon></a>
+                </li>
+                <li *ngIf="isScrolled">
+                    <a href="#" routerLink=""><mat-icon>person</mat-icon></a>
+                </li>
             </ul>
         </nav>
-        <div class="left-header-div" *ngIf="!isScrolled">
+        <div class="right-header-div" [ngClass]="{'slide-right': isScrolled}">
             <a href="#" routerLink="" class="create">
                 <mat-icon>add</mat-icon>
             </a>

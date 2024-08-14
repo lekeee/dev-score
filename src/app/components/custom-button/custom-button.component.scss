@@ -1,4 +1,11 @@
+.container{
+    
+}
+
 button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     border-radius: 4px;
     font-size: 20px;
@@ -9,6 +16,7 @@ button{
     background-color: transparent;
     color: var(--main-color-gold);
     cursor: pointer;
+    gap: 5px;
 }
 
 button:hover {

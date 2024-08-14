@@ -9,6 +9,7 @@ export class TextInputComponent {
   @Input() placeholder: string = '';
   @Input() type: string = '';
   @Input() icon: string = '';
+  @Input() text: string = '';
 
   password = '';
   isPasswordVisible = false;

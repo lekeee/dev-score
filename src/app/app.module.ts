@@ -14,6 +14,10 @@ import { AnimatedTextComponent } from './components/animated-text/animated-text.
 import { CustomButtonComponent } from './components/custom-button/custom-button.component';
 import { RegisterComponent } from './components/register/register.component';
 import { BackgroundImageComponent } from './components/background-image/background-image.component';
+import { UserComponent } from './components/user/user.component';
+import { UploadImageComponent } from './components/upload-image/upload-image.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { MyPostsComponent } from './components/my-posts/my-posts.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,11 @@ import { BackgroundImageComponent } from './components/background-image/backgrou
     AnimatedTextComponent,
     CustomButtonComponent,
     RegisterComponent,
-    BackgroundImageComponent
+    BackgroundImageComponent,
+    UserComponent,
+    UploadImageComponent,
+    DashboardComponent,
+    MyPostsComponent
   ],
   imports: [
     BrowserModule,

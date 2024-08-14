@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="left-div">
+        <ul>
+            <li (click)="showDashboard();" [ngStyle]="onDashboard ? {'background-color' : '#0F141E'} : {}">Dashboard</li>
+            <li (click)="showPosts()" [ngStyle]="onPosts ? {'background-color' : '#0F141E'} : {}">My Posts</li>
+        </ul>
+        <div style="padding-right: 10px;">
+            <app-custom-button text="Logout" icon="logout"></app-custom-button>
+        </div>
+    </div>
+    <div class="right-div">
+        <app-dashboard *ngIf="onDashboard"></app-dashboard>
+        <app-my-posts *ngIf="onPosts"></app-my-posts>
+    </div>
+</div>

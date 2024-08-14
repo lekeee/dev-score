@@ -12,6 +12,8 @@ import { LoginComponent } from './components/login/login.component';
 import { TextInputComponent } from './components/text-input/text-input.component';
 import { AnimatedTextComponent } from './components/animated-text/animated-text.component';
 import { CustomButtonComponent } from './components/custom-button/custom-button.component';
+import { RegisterComponent } from './components/register/register.component';
+import { BackgroundImageComponent } from './components/background-image/background-image.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { CustomButtonComponent } from './components/custom-button/custom-button.
     LoginComponent,
     TextInputComponent,
     AnimatedTextComponent,
-    CustomButtonComponent
+    CustomButtonComponent,
+    RegisterComponent,
+    BackgroundImageComponent
   ],
   imports: [
     BrowserModule,

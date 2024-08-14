@@ -1,6 +1,9 @@
 <header>
     <div class="container">
-        <a href="#" routerLink="/" class="logo" [ngClass]="{'slide-left': isScrolled}">DevScore</a>
+        <div class="logo-div" [ngClass]="{'slide-left': isScrolled}">
+            <img src="logo.svg" routerLink="/" alt="Logo" class="logo-image" >
+            <a href="#" routerLink="/" class="logo-text" >DevScore</a>
+        </div>
         <nav>
             <ul [ngClass]="{'scrolled': isScrolled}">
                 <li>
@@ -15,11 +18,11 @@
                 <li>
                     <a href="#" routerLink="/about">About us</a>
                 </li>
-                <li *ngIf="isScrolled || isMobile" id="add-li">
+                <li id="add-li" [ngStyle]="isScrolled ? {'display' : 'block'} : {}">
                     <a href="#" routerLink=""><mat-icon>add</mat-icon></a>
                 </li>
-                <li *ngIf="isScrolled || isMobile" id="person-li">
-                    <a href="#" routerLink=""><mat-icon>person</mat-icon></a>
+                <li id="person-li" [ngStyle]="isScrolled ? {'display' : 'block'} : {}">
+                    <a href="#" routerLink="/login"><mat-icon>person</mat-icon></a>
                 </li>
             </ul>
         </nav>
@@ -27,7 +30,7 @@
             <a href="#" routerLink="" class="create">
                 <mat-icon>add</mat-icon>
             </a>
-            <a href="#" routerLink="" class="profile">
+            <a href="#" routerLink="/login" class="profile">
                 <mat-icon>person</mat-icon>
             </a>
         </div>

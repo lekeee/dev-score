@@ -17,12 +17,22 @@ header{
     min-height: 60px; 
 }
 
-a.logo{
-    padding: 1em;
+.logo-div{
+    display: flex;
+    align-items: center;
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
+}
+
+.logo-image{
+    width:2em;
+    height: 2em;
+}
+
+a.logo-text{
+    padding: 1em 0.5em;
     font-weight: bold;
     color: white;
     visibility: visible;
-    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
 }
 
 nav {
@@ -97,6 +107,10 @@ nav ul li a{
     pointer-events: none;
 }
 
+#add-li, #person-li{
+    display: none;
+}
+
 @media (max-width: 768px) {
     .container{
         justify-content: center;
@@ -106,7 +120,7 @@ nav ul li a{
         display: none;
     }
 
-    a.logo {
+    a.logo-text, .logo-image {
         display: none;
     }
 

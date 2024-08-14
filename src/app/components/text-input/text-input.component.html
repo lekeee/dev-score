@@ -1,4 +1,4 @@
 <div class="container">
     <input [(ngModel)]="password" type="text" [placeholder]="placeholder" [type]="isPasswordVisible ? 'text' : type">
-    <mat-icon (click)="showPassword()">{{ password.length > 0 ? (isPasswordVisible ? 'visibility_off' : 'visibility') : icon}}</mat-icon>
+    <mat-icon (click)="showPassword()">{{ password.length > 0 && type === 'password' ? (isPasswordVisible ? 'visibility_off' : 'visibility') : icon}}</mat-icon>
 </div>

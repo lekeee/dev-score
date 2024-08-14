@@ -1,0 +1,17 @@
+button{
+    width: 100%;
+    border-radius: 4px;
+    font-size: 20px;
+    padding: 10px 0;
+    transition: 0.4s;
+    font-weight: 600;
+    border: 1px solid var(--main-color-gold);
+    background-color: transparent;
+    color: var(--main-color-gold);
+    cursor: pointer;
+}
+
+button:hover {
+    color: white;
+    background-color: var(--main-color-gold);
+}

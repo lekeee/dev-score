@@ -1,0 +1,47 @@
+
+.container{
+    display: flex;
+}
+
+.lang-text-div{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    
+    span {
+      display: inline-block;
+      overflow: hidden;
+      width: 0; 
+      font-size: 65px;
+      opacity: 0.5;
+      border-right: 3px solid;
+      animation: typing 3s steps(22, end) forwards, blink-caret 0.75s step-end 3s forwards; 
+      padding: 10px;
+    }
+  }
+  
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+  @keyframes blink-caret {
+    from, to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: white;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .lang-text-div span{
+      font-size: 45px;
+      margin: 0;
+    }
+  }

@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { TextInputComponent } from './components/text-input/text-input.component';
+import { AnimatedTextComponent } from './components/animated-text/animated-text.component';
+import { CustomButtonComponent } from './components/custom-button/custom-button.component';
 
 @NgModule({
   declarations: [
@@ -17,13 +19,15 @@ import { TextInputComponent } from './components/text-input/text-input.component
     HeaderComponent,
     HomeComponent,
     LoginComponent,
-    TextInputComponent
+    TextInputComponent,
+    AnimatedTextComponent,
+    CustomButtonComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     provideClientHydration()

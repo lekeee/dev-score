@@ -29,7 +29,7 @@ nav {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    border: 1px solid rgba(226, 232, 255, .1);
+    border: 2px solid rgba(226, 232, 255, .1);
     border-radius: 999px;
 }
 
@@ -55,6 +55,7 @@ nav ul li a{
     font-size: 14px;
     line-height: 20px;
     color: var(--gray-color);
+    white-space: nowrap;
 }
 
 .right-header-div {
@@ -94,4 +95,30 @@ nav ul li a{
     transform: translateX(20px);
     visibility: hidden;
     pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .container{
+        justify-content: center;
+    }
+
+    .right-header-div{
+        display: none;
+    }
+
+    a.logo {
+        display: none;
+    }
+
+    nav ul{
+        gap: 0;
+    }
+
+    nav ul li a{
+        padding: 0.5em;
+    }
+
+    #add-li, #person-li{
+        display: block;
+    }
 }

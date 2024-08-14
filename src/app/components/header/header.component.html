@@ -15,10 +15,10 @@
                 <li>
                     <a href="#" routerLink="/about">About us</a>
                 </li>
-                <li *ngIf="isScrolled">
+                <li *ngIf="isScrolled || isMobile" id="add-li">
                     <a href="#" routerLink=""><mat-icon>add</mat-icon></a>
                 </li>
-                <li *ngIf="isScrolled">
+                <li *ngIf="isScrolled || isMobile" id="person-li">
                     <a href="#" routerLink=""><mat-icon>person</mat-icon></a>
                 </li>
             </ul>

@@ -1,10 +1,16 @@
 <div class="container">
     <div class="left-div">
         <ul>
-            <li (click)="showDashboard();" [ngStyle]="onDashboard ? {'background-color' : '#0F141E'} : {}">Dashboard</li>
-            <li (click)="showPosts()" [ngStyle]="onPosts ? {'background-color' : '#0F141E'} : {}">My Posts</li>
+            <li (click)="showDashboard();" [ngStyle]="onDashboard ? {'color' : 'var(--main-color-gold)'} : {}">
+                <mat-icon class="icon">dashboard</mat-icon>
+                <span class="text">Dashboard</span>
+            </li>
+            <li (click)="showPosts()" [ngStyle]="onPosts ? {'color' : 'var(--main-color-gold)'} : {}">
+                <mat-icon class="icon">list_alt</mat-icon>
+                <span class="text">My Posts</span>
+            </li>
         </ul>
-        <div style="padding-right: 10px;">
+        <div>
             <app-custom-button text="Logout" icon="logout"></app-custom-button>
         </div>
     </div>

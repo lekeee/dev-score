@@ -1,6 +1,7 @@
 <div class="container">
-    <button [type]="type">
-        <mat-icon>{{icon}}</mat-icon>
-        {{text}}
+    <button #button [type]="type">
+      <mat-icon>{{ icon }}</mat-icon>
+      <span *ngIf="!isSmall">{{ text }}</span>
     </button>
-</div>
+  </div>
+  

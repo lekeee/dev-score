@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="user-info-div">
+    <span>My profile data</span>
+    <div class="data-div">
+      <div class="row-div">
+        <app-upload-image></app-upload-image>
+        <div style="display: flex; flex-direction: column; gap: 1em">
+          <app-text-input text="Full name"></app-text-input>
+          <app-text-input text="Username"></app-text-input>
+        </div>
+      </div>
+      <app-text-input text="Email" [enabled]="false"></app-text-input>
+      <app-text-input text="Password"></app-text-input>
+      <app-custom-button
+        class="turq-fill"
+        text="Save"
+        icon="save"
+      ></app-custom-button>
+    </div>
+  </div>
+  <div class="likes-marks-div">
+    <div class="likes-div">
+      <span>Likes</span>
+    </div>
+    <div class="marks-div">Reactions</div>
+  </div>
+</div>

@@ -1,25 +1,49 @@
-.container{
-    
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-radius: 4px;
+  font-size: 20px;
+  padding: 10px 0;
+  transition: 0.4s;
+  font-weight: 600;
+  border: 1px solid;
+  cursor: pointer;
+  gap: 5px;
+  background-color: transparent;
 }
 
-button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    border-radius: 4px;
-    font-size: 20px;
-    padding: 10px 0;
-    transition: 0.4s;
-    font-weight: 600;
-    border: 1px solid var(--main-color-gold);
-    background-color: transparent;
-    color: var(--main-color-gold);
-    cursor: pointer;
-    gap: 5px;
+.gold-hover {
+  background-color: transparent;
+  border: 1px solid var(--main-color-gold);
+  color: var(--main-color-gold);
 }
 
-button:hover {
-    color: white;
-    background-color: var(--main-color-gold);
+.gold-fill {
+  background-color: var(--main-color-gold);
+  color: white;
+  border: none;
+}
+
+.gold-hover:hover {
+  color: white;
+  background-color: var(--main-color-gold);
+}
+
+.turq-hover {
+  background-color: transparent;
+  border: 1px solid var(--main-color-turq);
+  color: var(--main-color-turq);
+}
+
+.turq-fill {
+  background-color: var(--main-color-turq);
+  color: white;
+  border: none;
+}
+
+.turq-hover:hover {
+  color: white;
+  background-color: var(--main-color-turq);
 }

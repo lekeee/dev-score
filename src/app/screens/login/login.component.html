@@ -1,0 +1,28 @@
+<div class="container">
+  <app-background-image url="background.svg"></app-background-image>
+  <div class="form-div">
+    <h2>Log in</h2>
+    <form action="">
+      <app-text-input
+        placeholder="Email"
+        type="email"
+        icon="mail"
+      ></app-text-input>
+      <app-text-input
+        placeholder="Password"
+        type="password"
+        icon="lock"
+      ></app-text-input>
+      <app-custom-button
+        text="Login"
+        type="submit"
+        icon="login"
+        style="margin-top: 1em"
+      ></app-custom-button>
+    </form>
+    <span
+      >Don't have an account?
+      <a href="#" routerLink="/register">Register</a></span
+    >
+  </div>
+</div>

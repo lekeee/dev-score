@@ -1,0 +1,98 @@
+.container {
+  width: 100%;
+  padding: 3em;
+}
+
+.cards-div {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+.card {
+  min-width: 300px;
+  width: 30%;
+  max-width: 30%;
+  padding: 2em;
+  background-color: var(--dark-background-color);
+  border-radius: 28px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.card h3 {
+  position: relative;
+  z-index: 2;
+}
+
+.item-bg {
+  height: 128px;
+  width: 128px;
+  background-color: #f9b234;
+
+  z-index: 1;
+  position: absolute;
+  top: -75px;
+  right: -75px;
+
+  border-radius: 50%;
+
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.lang-div {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  z-index: 2;
+  position: relative;
+}
+
+.lang-div span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.card:hover .item-bg {
+  -webkit-transform: scale(10);
+  -ms-transform: scale(10);
+  transform: scale(10);
+}
+
+.card:nth-child(1n) .item-bg,
+.card:nth-child(1n) .lang-div span {
+  background-color: #f9b234;
+}
+
+.card:nth-child(2n) .item-bg,
+.card:nth-child(2n) .lang-div span {
+  background-color: #3ecd5e;
+}
+
+.card:nth-child(3n) .item-bg,
+.card:nth-child(3n) .lang-div span {
+  background-color: #e44002;
+}
+
+.card:nth-child(4n) .item-bg,
+.card:nth-child(4n) .lang-div span {
+  background-color: #952aff;
+}
+
+.card:nth-child(5n) .item-bg,
+.card:nth-child(5n) .lang-div span {
+  background-color: #cd3e94;
+}
+
+.card:nth-child(6n) .item-bg,
+.card:nth-child(6n) .lang-div span {
+  background-color: #4c49ea;
+}

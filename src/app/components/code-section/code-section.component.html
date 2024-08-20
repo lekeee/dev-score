@@ -1,0 +1,93 @@
+<div class="container">
+  <div class="text-div">
+    <span>
+      Clean code always looks like it was written by someone who cares.
+    </span>
+    <p>Robert C. Martin</p>
+  </div>
+  <div class="code-div">
+    <div class="langs-div">
+      <span
+        (click)="selectLanguage('kotlin')"
+        [ngStyle]="
+          selectedLanguage === 'kotlin'
+            ? { color: 'var(--main-color-turq)' }
+            : {}
+        "
+      >
+        <img src="Kotlin.svg" alt="ts-logo" />
+        Kotlin</span
+      >
+      <span
+        (click)="selectLanguage('c++')"
+        [ngStyle]="
+          selectedLanguage === 'c++' ? { color: 'var(--main-color-turq)' } : {}
+        "
+        ><img src="CPlusPlus.svg" alt="cpp-logo" />C++</span
+      >
+      <span
+        (click)="selectLanguage('ruby')"
+        [ngStyle]="
+          selectedLanguage === 'ruby' ? { color: 'var(--main-color-turq)' } : {}
+        "
+        ><img src="Ruby.svg" alt="ruby-logo" />Ruby</span
+      >
+    </div>
+    <app-highlight-code
+      *ngIf="selectedLanguage === 'kotlin'"
+      code="
+    fun selectionSort(arr: IntArray) {
+        for (i in arr.indices) {
+            var minIndex = i
+            for (j in i + 1 until arr.size) {
+                if (arr[j] < arr[minIndex]) {
+                    minIndex = j
+                }
+            }
+            if (minIndex != i) {
+                arr.swap(i, minIndex)
+            }
+        }
+    }    
+        "
+      language="kotlin"
+    ></app-highlight-code>
+    <app-highlight-code
+      *ngIf="selectedLanguage === 'c++'"
+      code="
+    #include <stdio.h>
+
+    int findMax(int arr[], int size) {
+        int max = arr[0];
+    
+        for (int i = 1; i < size; i++) {
+            if (arr[i] > max) {
+                max = arr[i]; 
+            }
+        }
+    
+        return max;
+    }
+        "
+      language="c++"
+    ></app-highlight-code>
+    <app-highlight-code
+      *ngIf="selectedLanguage === 'ruby'"
+      code="
+    def binary_search(arr, target)
+    low, high = 0, arr.size - 1
+    while low <= high
+        mid = (low + high) / 2
+        return mid if arr[mid] == target
+        arr[mid] < target ? low = mid + 1 : high = mid - 1
+    end
+    -1
+    end
+    
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    puts binary_search(arr, 5)
+        "
+      language="ruby"
+    ></app-highlight-code>
+  </div>
+</div>

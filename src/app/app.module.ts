@@ -7,9 +7,11 @@ import {
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-
+import { provideHighlightOptions } from 'ngx-highlightjs';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import { HighlightModule } from 'ngx-highlightjs';
+
 import { HomeComponent } from './screens/home/home.component';
 import { LoginComponent } from './screens/login/login.component';
 import { TextInputComponent } from './components/text-input/text-input.component';
@@ -24,6 +26,8 @@ import { MyPostsComponent } from './components/my-posts/my-posts.component';
 import { TrendingComponent } from './components/trending/trending.component';
 import { MeshGradientComponent } from './components/mesh-gradient/mesh-gradient.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { HighlightCodeComponent } from './components/highlight-code/highlight-code.component';
+import { CodeSectionComponent } from './components/code-section/code-section.component';
 
 @NgModule({
   declarations: [
@@ -43,9 +47,22 @@ import { FooterComponent } from './components/footer/footer.component';
     TrendingComponent,
     MeshGradientComponent,
     FooterComponent,
+    HighlightCodeComponent,
+    CodeSectionComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, MatIconModule, FormsModule],
-  providers: [provideClientHydration()],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MatIconModule,
+    FormsModule,
+    HighlightModule,
+  ],
+  providers: [
+    provideClientHydration(),
+    provideHighlightOptions({
+      fullLibraryLoader: () => import('highlight.js'),
+    }),
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

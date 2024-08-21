@@ -30,18 +30,21 @@
 }
 
 .gradient2 {
-  background: radial-gradient(circle at 50% 50%, #ff6b6b, #d45d5d); /* Korala */
+  // background: radial-gradient(circle at 50% 50%, #ff6b6b, #d45d5d); /* Korala */
+  background: radial-gradient(circle at 50% 50%, #3ec1d3, #2b9eb3); /* Mint */
   top: 30%;
   left: 10%;
   animation-delay: 2s;
 }
 
 .gradient3 {
-  background: radial-gradient(
-    circle at 50% 50%,
-    #5c4bff,
-    #3a2c77
-  ); /* Ljubičasta */
+  // background: radial-gradient(
+  //   circle at 50% 50%,
+  //   #5c4bff,
+  //   #3a2c77
+  // ); /* Ljubičasta */
+  // background: radial-gradient(circle at 50% 50%, #00b5ad, #008c95);
+  background: radial-gradient(circle at 50% 50%, #ffd700, #ffc107); /* Zlatna */
   top: 0%;
   left: 25%;
   animation-delay: 4s;
@@ -49,6 +52,7 @@
 
 .gradient4 {
   background: radial-gradient(circle at 50% 50%, #ffd700, #ffc107); /* Zlatna */
+  // background: radial-gradient(circle at 50% 50%, #3ec1d3, #2b9eb3); /* Mint */
   top: 70%;
   left: 60%;
   animation-delay: 6s;

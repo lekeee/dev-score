@@ -28,6 +28,7 @@ import { MeshGradientComponent } from './components/mesh-gradient/mesh-gradient.
 import { FooterComponent } from './components/footer/footer.component';
 import { HighlightCodeComponent } from './components/highlight-code/highlight-code.component';
 import { CodeSectionComponent } from './components/code-section/code-section.component';
+import { PostsComponent } from './screens/posts/posts.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { CodeSectionComponent } from './components/code-section/code-section.com
     FooterComponent,
     HighlightCodeComponent,
     CodeSectionComponent,
+    PostsComponent,
   ],
   imports: [
     BrowserModule,

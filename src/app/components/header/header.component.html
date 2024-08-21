@@ -1,38 +1,38 @@
 <header>
-    <div class="container">
-        <div class="logo-div" [ngClass]="{'slide-left': isScrolled}">
-            <img src="logo.svg" routerLink="/" alt="Logo" class="logo-image" >
-            <a href="#" routerLink="/" class="logo-text" >DevScore</a>
-        </div>
-        <nav>
-            <ul [ngClass]="{'scrolled': isScrolled}">
-                <li>
-                    <a href="#" routerLink="/">Home</a>
-                </li>
-                <li>
-                    <a href="#" routerLink="/posts">Posts</a>
-                </li>
-                <li>
-                    <a href="#" routerLink="">Rang List</a>
-                </li>
-                <li>
-                    <a href="#" routerLink="/about">About us</a>
-                </li>
-                <li id="add-li" [ngStyle]="isScrolled ? {'display' : 'block'} : {}">
-                    <a href="#" routerLink=""><mat-icon>add</mat-icon></a>
-                </li>
-                <li id="person-li" [ngStyle]="isScrolled ? {'display' : 'block'} : {}">
-                    <a href="#" routerLink="/login"><mat-icon>person</mat-icon></a>
-                </li>
-            </ul>
-        </nav>
-        <div class="right-header-div" [ngClass]="{'slide-right': isScrolled}">
-            <a href="#" routerLink="" class="create">
-                <mat-icon>add</mat-icon>
-            </a>
-            <a href="#" routerLink="/login" class="profile">
-                <mat-icon>person</mat-icon>
-            </a>
-        </div>
+  <div class="container">
+    <div class="logo-div" [ngClass]="{ 'slide-left': isScrolled }">
+      <img src="icons/logo.svg" routerLink="/" alt="Logo" class="logo-image" />
+      <a href="#" routerLink="/" class="logo-text">DevScore</a>
     </div>
+    <nav>
+      <ul [ngClass]="{ scrolled: isScrolled }">
+        <li>
+          <a href="#" routerLink="/">Home</a>
+        </li>
+        <li>
+          <a href="#" routerLink="/posts">Posts</a>
+        </li>
+        <li>
+          <a href="#" routerLink="">Rang List</a>
+        </li>
+        <li>
+          <a href="#" routerLink="/about">About us</a>
+        </li>
+        <li id="add-li" [ngStyle]="isScrolled ? { display: 'block' } : {}">
+          <a href="#" routerLink=""><mat-icon>add</mat-icon></a>
+        </li>
+        <li id="person-li" [ngStyle]="isScrolled ? { display: 'block' } : {}">
+          <a href="#" routerLink="/login"><mat-icon>person</mat-icon></a>
+        </li>
+      </ul>
+    </nav>
+    <div class="right-header-div" [ngClass]="{ 'slide-right': isScrolled }">
+      <a href="#" routerLink="" class="create">
+        <mat-icon>add</mat-icon>
+      </a>
+      <a href="#" routerLink="/login" class="profile">
+        <mat-icon>person</mat-icon>
+      </a>
+    </div>
+  </div>
 </header>

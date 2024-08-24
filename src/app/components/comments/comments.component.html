@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="show-div" (click)="showReactions()">
+    <span>View all {{ reactionsCount }} reactions</span>
+    <mat-icon [ngClass]="{ rotate: isShowed }">keyboard_arrow_down</mat-icon>
+  </div>
+  <div class="reactions-div" *ngIf="isShowed"></div>
+  <div class="add-reaction-div">
+    <input type="text" placeholder="Add a reaction..." />
+  </div>
+</div>

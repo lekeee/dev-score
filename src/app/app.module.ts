@@ -29,6 +29,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HighlightCodeComponent } from './components/highlight-code/highlight-code.component';
 import { CodeSectionComponent } from './components/code-section/code-section.component';
 import { PostsComponent } from './screens/posts/posts.component';
+import { PostComponent } from './components/post/post.component';
+import { CommentsComponent } from './components/comments/comments.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { PostsComponent } from './screens/posts/posts.component';
     HighlightCodeComponent,
     CodeSectionComponent,
     PostsComponent,
+    PostComponent,
+    CommentsComponent,
   ],
   imports: [
     BrowserModule,

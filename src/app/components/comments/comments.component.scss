@@ -1,0 +1,39 @@
+.container {
+  width: 100%;
+  margin-top: 0.4em;
+}
+
+.show-div {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.4s;
+  padding: 0.5em;
+  border-radius: 10px;
+}
+
+.reactions-div {
+  width: 100%;
+  height: 200px;
+}
+
+.show-div mat-icon {
+  transition: all 0.4s;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+.add-reaction-div {
+  display: flex;
+}
+
+.container input {
+  background-color: transparent;
+  border: none;
+  color: white;
+  width: 80%;
+  outline: none;
+}

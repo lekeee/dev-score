@@ -1,0 +1,108 @@
+.container {
+  width: min(600px, 100vw);
+  padding: 1em;
+  font-size: 14px;
+}
+
+.user-div {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  justify-content: space-between;
+  padding: 0.5em;
+}
+
+.img-user-div {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.img-user-div mat-icon {
+  width: 27px;
+  height: 27px;
+  font-size: 27px;
+
+  display: grid;
+  place-items: center;
+  color: var(--gray-color);
+}
+
+.img-div {
+  border-radius: 50%;
+  border: 1px solid var(--gray-color);
+  padding: 5px;
+}
+
+.indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: var(--main-color-turq);
+  border-radius: 50%;
+}
+
+.language-div {
+  display: flex;
+  background-color: var(--dark-background-color);
+  padding: 0.3em 0.8em;
+  border-radius: 10px;
+  gap: 0.5em;
+  align-items: center;
+}
+
+.language-div span {
+  font-weight: bold;
+}
+
+.code-div {
+  display: flex;
+  font-size: 16px;
+  padding: 0 1em;
+  background-color: var(--dark-background-color);
+  height: 400px;
+  overflow: auto;
+  scrollbar-color: #4a5c73 #2a354b;
+  scrollbar-width: thin;
+}
+
+.lr-div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0.5em 0;
+}
+
+.likes-div,
+.reactions-div {
+  font-weight: lighter;
+}
+
+.likes-div span,
+.reactions-div span {
+  font-weight: bold;
+}
+
+.like-div mat-icon {
+  font-family: "Material Icons Outlined", sans-serif;
+  cursor: pointer;
+}
+
+.username {
+  font-weight: bold;
+  margin-right: 0.5em;
+}
+
+.text {
+  color: var(--gray-color);
+}
+
+.show-more {
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+}

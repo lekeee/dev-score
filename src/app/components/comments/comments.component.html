@@ -3,8 +3,21 @@
     <span>View all {{ reactionsCount }} reactions</span>
     <mat-icon [ngClass]="{ rotate: isShowed }">keyboard_arrow_down</mat-icon>
   </div>
-  <div class="reactions-div" *ngIf="isShowed"></div>
-  <div class="add-reaction-div">
-    <input type="text" placeholder="Add a reaction..." />
+  <div class="reactions-div" *ngIf="isShowed">
+    <app-comment></app-comment>
+  </div>
+  <div class="pre-add-div" (click)="showAddReactions()" *ngIf="!isAddShowed">
+    <mat-icon>add</mat-icon> <span>Add a reaction</span>
+  </div>
+  <div class="add-reaction-div" *ngIf="isAddShowed">
+    <div class="reaction-icons-div">
+      <span>Type (positive/negative)</span>
+      <mat-icon style="color: var(--positive-reaction)">check</mat-icon>
+      <mat-icon style="color: var(--negative-reaction)">close</mat-icon>
+    </div>
+    <div style="display: flex; justify-content: space-between">
+      <input type="text" placeholder="Add a reaction..." />
+      <span class="post-reaction">Post</span>
+    </div>
   </div>
 </div>

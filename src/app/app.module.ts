@@ -31,6 +31,7 @@ import { CodeSectionComponent } from './components/code-section/code-section.com
 import { PostsComponent } from './screens/posts/posts.component';
 import { PostComponent } from './components/post/post.component';
 import { CommentsComponent } from './components/comments/comments.component';
+import { CommentComponent } from './components/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { CommentsComponent } from './components/comments/comments.component';
     PostsComponent,
     PostComponent,
     CommentsComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,8 +8,13 @@ import { Component } from '@angular/core';
 export class CommentsComponent {
   reactionsCount: number = 123;
   isShowed: boolean = false;
+  isAddShowed: boolean = false;
 
   showReactions(): void {
     this.isShowed = !this.isShowed;
+  }
+
+  showAddReactions(): void {
+    this.isAddShowed = true;
   }
 }

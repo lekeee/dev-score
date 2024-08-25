@@ -15,7 +15,7 @@
 
 .reactions-div {
   width: 100%;
-  height: 200px;
+  padding: 1em;
 }
 
 .show-div mat-icon {
@@ -26,14 +26,54 @@
   transform: rotate(180deg);
 }
 
-.add-reaction-div {
+.pre-add-div {
   display: flex;
+  align-items: center;
+  width: 100%;
+  color: var(--gray-color);
+  gap: 0.5em;
+  cursor: pointer;
+  font-weight: lighter;
+}
+
+.add-reaction-div {
+  border: max(1px, 0.0625rem) solid #2a354b;
+  border-radius: 10px;
+  padding: 1em;
+}
+
+.reaction-icons-div {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  margin-bottom: 5px;
+}
+
+.reaction-icons-div mat-icon {
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.reaction-icons-div mat-icon:hover {
+  background-color: #2a354b;
 }
 
 .container input {
   background-color: transparent;
   border: none;
   color: white;
-  width: 80%;
+  width: 90%;
   outline: none;
+  font-size: 14px;
+}
+
+.post-reaction {
+  color: var(--main-color-turq);
+  cursor: pointer;
+}
+
+@media (max-width: 425px) {
+  .add-reaction-div {
+    gap: 2em;
+  }
 }

@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  gap: 0.5em;
+}
+
+.container img {
+  width: 2em;
+  height: 2em;
+}
+
+.container .user-name {
+  font-weight: bold;
+  margin-right: 0.5em;
+}
+
+.bottom-div {
+  display: flex;
+  gap: 1em;
+}
+
+.bottom-div span {
+  font-weight: lighter;
+  font-size: 12px;
+  color: var(--gary-color);
+}
+
+.reply {
+  cursor: pointer;
+}

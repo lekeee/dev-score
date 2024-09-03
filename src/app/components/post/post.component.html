@@ -6,6 +6,7 @@
     </div>
     <div style="display: flex; gap: 0.5em; align-items: center">
       <div class="like-div">
+        <div class="likes-div"><span>86 </span> Likes</div>
         <mat-icon>favorite_outlined</mat-icon>
       </div>
       <div class="language-div">
@@ -54,13 +55,9 @@ MPI_Finalize();
     "
     ></app-highlight-code>
   </div>
-  <div class="lr-div">
-    <div class="likes-div"><span>86 </span> Likes</div>
-    <div class="reactions-div"><span>1200 </span> Reactions</div>
-  </div>
   <div class="description-div">
     <div class="text-div">
-      <span class="username">lekeee</span>
+      <span class="title">MPI - Point to point operatins</span>
       <span class="text">{{ cutDescription }}</span>
       <span (click)="openDescription()" class="show-more">
         {{ isTruncated === true ? "" : "more" }}</span

@@ -9,6 +9,7 @@ export class CommentsComponent {
   reactionsCount: number = 123;
   isShowed: boolean = false;
   isAddShowed: boolean = false;
+  type: string = 'reaction';
 
   showReactions(): void {
     this.isShowed = !this.isShowed;

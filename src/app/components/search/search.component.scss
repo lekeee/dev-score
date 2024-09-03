@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  position: relative;
+  gap: 1em;
+  width: min(600px, 100vw);
+  padding: 1em;
+}
+
+.search-div {
+  position: relative;
+  flex: 4;
+}
+
+.container input {
+  width: 100%;
+  font-size: 20px;
+  outline: none;
+  background-color: var(--input-color);
+  border: none;
+  padding-right: 30px;
+  border-radius: 5px;
+  padding: 0.5em 1em;
+  color: white;
+}
+
+.container mat-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.select-div {
+  flex: 2;
+}
+
+@media (max-width: 768px) {
+  .container input {
+    font-size: 16px;
+  }
+}

@@ -2,6 +2,7 @@
   width: min(600px, 100vw);
   padding: 1em;
   font-size: 14px;
+  border-bottom: max(1px, 0.0625rem) solid #2a354b;
 }
 
 .user-div {
@@ -9,7 +10,7 @@
   align-items: center;
   gap: 0.5em;
   justify-content: space-between;
-  padding: 0.5em;
+  padding: 0.5em 0;
 }
 
 .img-user-div {
@@ -66,21 +67,22 @@
   scrollbar-width: thin;
 }
 
-.lr-div {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  padding: 0.5em 0;
+.description-div {
+  margin-top: 10px;
 }
 
-.likes-div,
-.reactions-div {
+.likes-div {
   font-weight: lighter;
 }
 
-.likes-div span,
-.reactions-div span {
+.likes-div span {
   font-weight: bold;
+}
+
+.like-div {
+  display: flex;
+  align-items: center;
+  gap: 1em;
 }
 
 .like-div mat-icon {
@@ -88,7 +90,8 @@
   cursor: pointer;
 }
 
-.username {
+.title {
+  display: block;
   font-weight: bold;
   margin-right: 0.5em;
 }

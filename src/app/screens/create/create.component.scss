@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  padding: 0 3em;
+  gap: 1em;
+  flex-wrap: wrap;
+}
+
+.code-div {
+  flex: 3;
+}
+
+.lang-div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.data-div {
+  flex: 2;
+  border-radius: 15px;
+  border: 1px solid var(--main-color-turq);
+  padding: 2em 2em 0 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.code-div textarea {
+  width: 100%;
+  resize: none;
+  background-color: var(--input-color);
+  font-size: 16px;
+  height: 400px;
+  color: white;
+  border-radius: 15px;
+  padding: 1em;
+}
+
+#description {
+  width: 100%;
+  resize: none;
+  background-color: var(--input-color);
+  font-size: 16px;
+  color: white;
+  border-radius: 15px;
+  padding: 1em;
+  margin-bottom: 0.5em;
+  outline: none;
+}

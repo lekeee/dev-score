@@ -1,5 +1,6 @@
 {
   "languages": [
+    "TypeScript",
     "JavaScript",
     "Python",
     "Java",
@@ -10,7 +11,6 @@
     "PHP",
     "Swift",
     "Kotlin",
-    "TypeScript",
     "Go",
     "Rust",
     "Scala",

@@ -34,6 +34,7 @@ import { CommentsComponent } from './components/comments/comments.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { SearchComponent } from './components/search/search.component';
 import { SelectLanguageComponent } from './components/select-language/select-language.component';
+import { CreateComponent } from './screens/create/create.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { SelectLanguageComponent } from './components/select-language/select-lan
     CommentComponent,
     SearchComponent,
     SelectLanguageComponent,
+    CreateComponent,
   ],
   imports: [
     BrowserModule,

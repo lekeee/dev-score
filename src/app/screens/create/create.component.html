@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="code-div">
+    <div class="lang-div">
+      <h3>Enter the code</h3>
+      <app-select-language></app-select-language>
+    </div>
+    <textarea name="" id="" placeholder="Post your logic here..."></textarea>
+  </div>
+  <div class="data-div">
+    <label for="">Title</label>
+    <app-text-input
+      placeholder="Title"
+      type="text"
+      icon="title"
+    ></app-text-input>
+    <label for="">Description</label>
+    <textarea
+      name=""
+      id="description"
+      rows="10"
+      placeholder="Tell others a little more about your code..."
+    ></textarea>
+    <app-custom-button
+      class="gold-fill"
+      text="Create a post"
+      icon="post_add"
+    ></app-custom-button>
+  </div>
+</div>

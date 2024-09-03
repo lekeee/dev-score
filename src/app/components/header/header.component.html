@@ -19,7 +19,7 @@
           <a href="#" routerLink="/about">About us</a>
         </li>
         <li id="add-li" [ngStyle]="isScrolled ? { display: 'block' } : {}">
-          <a href="#" routerLink=""><mat-icon>add</mat-icon></a>
+          <a href="#" routerLink="/create"><mat-icon>add</mat-icon></a>
         </li>
         <li id="person-li" [ngStyle]="isScrolled ? { display: 'block' } : {}">
           <a href="#" routerLink="/login"><mat-icon>person</mat-icon></a>
@@ -27,7 +27,7 @@
       </ul>
     </nav>
     <div class="right-header-div" [ngClass]="{ 'slide-right': isScrolled }">
-      <a href="#" routerLink="" class="create">
+      <a href="#" routerLink="/create" class="create">
         <mat-icon>add</mat-icon>
       </a>
       <a href="#" routerLink="/login" class="profile">

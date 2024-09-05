@@ -28,3 +28,9 @@ mat-icon {
 span {
   margin-left: 5px;
 }
+
+@media (max-width: 768px) {
+  input {
+    font-size: 16px;
+  }
+}

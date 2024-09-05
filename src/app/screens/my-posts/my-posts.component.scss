@@ -1,0 +1,62 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  padding-left: 1em;
+}
+
+.post-div {
+  font-size: 14px;
+  min-width: 48%;
+  display: flex;
+  justify-content: space-between;
+  border: max(1px, 0.0625rem) solid #2a354b;
+  padding: 1em;
+  border-radius: 10px;
+}
+
+.left-div {
+  cursor: pointer;
+}
+
+.left-div h3 {
+  margin: 0.5em 0;
+}
+
+.right-div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  background-color: var(--main-color-turq);
+  border-radius: 50%;
+}
+
+.language-div {
+  display: flex;
+  background-color: var(--input-color);
+  padding: 0.3em 0.8em;
+  border-radius: 10px;
+  gap: 0.5em;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  font-weight: bold;
+}
+
+.right-div button {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+#delete {
+  color: var(--negative-reaction);
+}

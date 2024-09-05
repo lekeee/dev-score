@@ -22,7 +22,7 @@ import { BackgroundImageComponent } from './components/background-image/backgrou
 import { UserComponent } from './screens/user/user.component';
 import { UploadImageComponent } from './components/upload-image/upload-image.component';
 import { DashboardComponent } from './screens/dashboard/dashboard.component';
-import { MyPostsComponent } from './components/my-posts/my-posts.component';
+import { MyPostsComponent } from './screens/my-posts/my-posts.component';
 import { TrendingComponent } from './components/trending/trending.component';
 import { MeshGradientComponent } from './components/mesh-gradient/mesh-gradient.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -36,6 +36,8 @@ import { SearchComponent } from './components/search/search.component';
 import { SelectLanguageComponent } from './components/select-language/select-language.component';
 import { CreateComponent } from './screens/create/create.component';
 import { PostViewComponent } from './screens/post-view/post-view.component';
+import { PostActivityComponent } from './components/post-activity/post-activity.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +67,8 @@ import { PostViewComponent } from './screens/post-view/post-view.component';
     SelectLanguageComponent,
     CreateComponent,
     PostViewComponent,
+    PostActivityComponent,
+    NotificationsComponent,
   ],
   imports: [
     BrowserModule,

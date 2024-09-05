@@ -3,18 +3,18 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrl: './user.component.scss'
+  styleUrl: './user.component.scss',
 })
 export class UserComponent {
-  onDashboard : boolean = true;
-  onPosts : boolean = false;
+  onDashboard: boolean = true;
+  onPosts: boolean = false;
 
-  showDashboard(){
+  showDashboard() {
     this.onDashboard = true;
     this.onPosts = false;
   }
 
-  showPosts(){
+  showPosts() {
     this.onDashboard = false;
     this.onPosts = true;
   }

@@ -12,8 +12,18 @@
         <li>
           <a href="#" routerLink="/posts">Posts</a>
         </li>
-        <li>
-          <a href="#" routerLink="">Rang List</a>
+        <li (click)="toogleNoitifications()">
+          <span
+            style="
+              padding: 1em;
+              font-size: 14px;
+              line-height: 20px;
+              color: var(--gray-color);
+              cursor: pointer;
+            "
+          >
+            Notifications
+          </span>
         </li>
         <li>
           <a href="#" routerLink="/about">About us</a>
@@ -36,3 +46,5 @@
     </div>
   </div>
 </header>
+
+<app-notifications *ngIf="isNotificationsOpen"></app-notifications>

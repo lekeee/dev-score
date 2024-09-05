@@ -1,60 +1,44 @@
-.container{
-    display: flex;
-    gap: 1em;
+.container {
+  display: flex;
+  gap: 1em;
 }
 
-.user-info-div{
-    flex: 1;
-    background-color: var(--background-color);
-    width: 50%;
-    border-radius: 20px;
-    padding: 1em;
-    display: grid;
-    place-items: center;
-    gap: 1em;
-    // box-shadow: 0px 0px 1px var(--main-color-turq);
+.user-info-div {
+  // background-color: var(--background-color);
+  width: 50%;
+  border-radius: 20px;
+  padding: 1em;
+  display: grid;
+  place-items: center;
+  gap: 1em;
+  // box-shadow: 0px 0px 1px var(--main-color-turq);
 }
 
-.likes-marks-div{
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    width: 100%;
+.data-div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
 }
 
-.likes-div, .marks-div{
-    background-color: var(--background-color);
-    width: 100%;
-    height: 50%;
-    border-radius: 20px;
-    // box-shadow: 0px 0px 1px var(--main-color-turq);
-}
-
-.data-div{
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-}
-
-.row-div{
-    display: grid; 
-    gap: 1em; 
-    grid-template-columns: 1fr 1fr;
-    place-items: center;
+.row-div {
+  display: grid;
+  gap: 1em;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
 }
 
 @media (max-width: 768px) {
-    .user-info-div, .likes-div, .marks-div{
-        width: 100%;
-        height: auto;
-    }
+  .user-info-div {
+    width: 100%;
+    height: auto;
+  }
 
-    .container{
-        flex-direction: column;
-        width: 100%;
-    }
-    .row-div{
-        grid-template-columns: 1fr;
-    }
+  .container {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .row-div {
+    grid-template-columns: 1fr;
+  }
 }

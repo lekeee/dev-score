@@ -35,6 +35,7 @@ import { CommentComponent } from './components/comment/comment.component';
 import { SearchComponent } from './components/search/search.component';
 import { SelectLanguageComponent } from './components/select-language/select-language.component';
 import { CreateComponent } from './screens/create/create.component';
+import { PostViewComponent } from './screens/post-view/post-view.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { CreateComponent } from './screens/create/create.component';
     SearchComponent,
     SelectLanguageComponent,
     CreateComponent,
+    PostViewComponent,
   ],
   imports: [
     BrowserModule,

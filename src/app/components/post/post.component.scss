@@ -5,6 +5,14 @@
   border-bottom: max(1px, 0.0625rem) solid #2a354b;
 }
 
+.flex-view {
+  display: flex;
+  width: 100%;
+  gap: 1em;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+
 .user-div {
   display: flex;
   align-items: center;
@@ -104,8 +112,30 @@
   cursor: pointer;
 }
 
+.first-div,
+.second-div {
+  flex: 1;
+}
+
 @media (max-width: 768px) {
   .container {
+    padding: 10px;
+  }
+
+  .flex-view {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .first-div {
+    padding: 10px;
+    width: 100vw;
+  }
+
+  .second-div {
+    flex: auto;
+    width: 100vw;
     padding: 10px;
   }
 }

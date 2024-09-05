@@ -6,6 +6,7 @@ import { RegisterComponent } from './screens/register/register.component';
 import { UserComponent } from './screens/user/user.component';
 import { PostsComponent } from './screens/posts/posts.component';
 import { CreateComponent } from './screens/create/create.component';
+import { PostViewComponent } from './screens/post-view/post-view.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'user', component: UserComponent },
   { path: 'posts', component: PostsComponent },
   { path: 'create', component: CreateComponent },
+  { path: 'post', component: PostViewComponent },
 ];
 
 @NgModule({

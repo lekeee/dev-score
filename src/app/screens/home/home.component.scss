@@ -54,3 +54,15 @@
   height: 100vh;
   padding: 2em;
 }
+
+.get-started a {
+  color: var(--main-color-gold);
+  padding: 0.5em 1em;
+  border: 1px solid var(--main-color-gold);
+  transition: all 0.4s ease;
+}
+
+.get-started a:hover {
+  background-color: var(--main-color-gold);
+  color: white;
+}

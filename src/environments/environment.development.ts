@@ -1,3 +1,4 @@
 export const environment = {
-  apiUrl: 'http://localhost:3000',
+  API_URL: 'http://localhost:3000',
+  JWT_NAME: 'token',
 };

@@ -8,8 +8,8 @@
         type="text"
         icon="badge"
         [control]="loginForm.controls.username"
+        style="margin-bottom: 14px"
       ></app-text-input>
-      <app-error></app-error>
       <app-text-input
         placeholder="Password"
         type="password"
@@ -22,6 +22,7 @@
         icon="login"
         style="margin-top: 1em"
       ></app-custom-button>
+      <app-error *ngIf="error" [errorMessage]="error"></app-error>
     </form>
     <span
       >Don't have an account?

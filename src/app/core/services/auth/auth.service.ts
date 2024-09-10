@@ -1,15 +1,42 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { AuthLogin } from '../../models/auth-login';
 import { environment } from '../../../../environments/environment.development';
+import { jwtDecode } from 'jwt-decode';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  private platformId: Object;
+
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) platformId: Object
+  ) {
+    this.platformId = platformId;
+  }
 
   login(authLogin: AuthLogin) {
-    return this.http.post<any>(environment.apiUrl + '/auth/login', authLogin);
+    return this.http.post<any>(environment.API_URL + '/auth/login', authLogin);
+  }
+
+  logout() {
+    if (!isPlatformBrowser(this.platformId)) return;
+    localStorage.removeItem(environment.JWT_NAME);
+  }
+
+  isAuth() {
+    if (!isPlatformBrowser(this.platformId)) return;
+    const token = localStorage.getItem(environment.JWT_NAME);
+    let decodedToken = null;
+    if (token != null) {
+      decodedToken = jwtDecode(token);
+    }
+
+    return decodedToken && decodedToken.exp
+      ? decodedToken.exp > Date.now() / 1000
+      : false;
   }
 }

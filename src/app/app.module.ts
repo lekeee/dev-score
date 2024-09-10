@@ -40,6 +40,7 @@ import { PostActivityComponent } from './components/post-activity/post-activity.
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { ErrorComponent } from './components/error/error.component';
 import { HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { InputErrorComponent } from './components/input-error/input-error.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { HttpClientModule, provideHttpClient } from '@angular/common/http';
     PostActivityComponent,
     NotificationsComponent,
     ErrorComponent,
+    InputErrorComponent,
   ],
   imports: [
     BrowserModule,

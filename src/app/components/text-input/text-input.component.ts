@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-text-input',
@@ -10,13 +11,12 @@ export class TextInputComponent {
   @Input() type: string = '';
   @Input() icon: string = '';
   @Input() text: string = '';
-  @Input() enabled: boolean = true;
+  @Input() control = new FormControl();
 
-  password = '';
-  isPasswordVisible = false;
+  isPasswordVisible: boolean = false;
 
   showPassword() {
-    if (this.password.length > 0) {
+    if (this.type === 'password' && this.control.value.length > 0) {
       this.isPasswordVisible = !this.isPasswordVisible;
     }
   }

@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { provideHighlightOptions } from 'ngx-highlightjs';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HighlightModule } from 'ngx-highlightjs';
 
 import { HomeComponent } from './screens/home/home.component';
@@ -38,6 +38,8 @@ import { CreateComponent } from './screens/create/create.component';
 import { PostViewComponent } from './screens/post-view/post-view.component';
 import { PostActivityComponent } from './components/post-activity/post-activity.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
+import { ErrorComponent } from './components/error/error.component';
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -69,12 +71,14 @@ import { NotificationsComponent } from './components/notifications/notifications
     PostViewComponent,
     PostActivityComponent,
     NotificationsComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatIconModule,
     FormsModule,
+    ReactiveFormsModule,
     HighlightModule,
   ],
   providers: [
@@ -82,6 +86,7 @@ import { NotificationsComponent } from './components/notifications/notifications
     provideHighlightOptions({
       fullLibraryLoader: () => import('highlight.js'),
     }),
+    provideHttpClient(),
   ],
   bootstrap: [AppComponent],
 })

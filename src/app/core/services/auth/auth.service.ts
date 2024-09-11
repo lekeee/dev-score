@@ -1,9 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { AuthLogin } from '../../models/auth-login';
 import { environment } from '../../../../environments/environment.development';
 import { jwtDecode } from 'jwt-decode';
 import { isPlatformBrowser } from '@angular/common';
+import { AuthRegister } from '../../models/auth-register';
+import { catchError, throwError } from 'rxjs';
+import { error } from 'console';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +22,23 @@ export class AuthService {
   }
 
   login(authLogin: AuthLogin) {
-    return this.http.post<any>(environment.API_URL + '/auth/login', authLogin);
+    return this.http
+      .post<any>(environment.API_URL + '/auth/login', authLogin)
+      .pipe(
+        catchError((error: HttpErrorResponse) =>
+          throwError(() => new Error(error.error.message))
+        )
+      );
+  }
+
+  register(authRegister: AuthRegister) {
+    return this.http
+      .post<AuthRegister>(environment.API_URL + '/auth/register', authRegister)
+      .pipe(
+        catchError((error: HttpErrorResponse) =>
+          throwError(() => new Error(error.error.message))
+        )
+      );
   }
 
   logout() {

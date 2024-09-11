@@ -1,8 +1,9 @@
 import {
   Component,
   ElementRef,
+  EventEmitter,
   Input,
-  Renderer2,
+  Output,
   ViewChild,
 } from '@angular/core';
 
@@ -17,11 +18,17 @@ export class CustomButtonComponent {
   @Input() icon: string = '';
   @Input() class: string = 'gold-hover';
 
+  @Output() buttonClick = new EventEmitter();
+
   @ViewChild('button', { static: true })
   button!: ElementRef<HTMLButtonElement>;
   isSmall = false;
 
-  constructor(private renderer: Renderer2) {}
+  constructor() {}
+
+  onClick() {
+    this.buttonClick.emit();
+  }
 
   ngAfterViewInit() {
     if (typeof window !== 'undefined') {

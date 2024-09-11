@@ -1,21 +1,31 @@
 <div class="container">
-    <div class="left-div">
-        <ul>
-            <li (click)="showDashboard();" [ngStyle]="onDashboard ? {'color' : 'var(--main-color-gold)'} : {}">
-                <mat-icon class="icon">dashboard</mat-icon>
-                <span class="text">Dashboard</span>
-            </li>
-            <li (click)="showPosts()" [ngStyle]="onPosts ? {'color' : 'var(--main-color-gold)'} : {}">
-                <mat-icon class="icon">list_alt</mat-icon>
-                <span class="text">My Posts</span>
-            </li>
-        </ul>
-        <div>
-            <app-custom-button text="Logout" icon="logout"></app-custom-button>
-        </div>
+  <div class="left-div">
+    <ul>
+      <li
+        (click)="showDashboard()"
+        [ngStyle]="onDashboard ? { color: 'var(--main-color-gold)' } : {}"
+      >
+        <mat-icon class="icon">dashboard</mat-icon>
+        <span class="text">Dashboard</span>
+      </li>
+      <li
+        (click)="showPosts()"
+        [ngStyle]="onPosts ? { color: 'var(--main-color-gold)' } : {}"
+      >
+        <mat-icon class="icon">list_alt</mat-icon>
+        <span class="text">My Posts</span>
+      </li>
+    </ul>
+    <div>
+      <app-custom-button
+        text="Logout"
+        icon="logout"
+        (buttonClick)="logutUser()"
+      ></app-custom-button>
     </div>
-    <div class="right-div">
-        <app-dashboard *ngIf="onDashboard"></app-dashboard>
-        <app-my-posts *ngIf="onPosts"></app-my-posts>
-    </div>
+  </div>
+  <div class="right-div">
+    <app-dashboard *ngIf="onDashboard"></app-dashboard>
+    <app-my-posts *ngIf="onPosts"></app-my-posts>
+  </div>
 </div>

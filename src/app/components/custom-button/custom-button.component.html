@@ -1,5 +1,5 @@
 <div class="container">
-  <button #button [type]="type" [ngClass]="class">
+  <button #button [type]="type" [ngClass]="class" (click)="onClick()">
     <mat-icon *ngIf="icon">{{ icon }}</mat-icon>
     <span *ngIf="!isSmall">{{ text }}</span>
   </button>

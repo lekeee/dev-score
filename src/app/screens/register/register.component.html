@@ -3,33 +3,41 @@
   <div class="form-div">
     <h2 style="margin-bottom: 10px">Create new account</h2>
     <span>Already a memeber? <a href="#" routerLink="/login">Log in</a></span>
-    <form action="">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="grid-div">
         <app-text-input
           placeholder="Full name"
           type="text"
           icon="badge"
+          [control]="registerForm.controls.fullname"
         ></app-text-input>
         <app-text-input
           placeholder="Username"
           type="text"
           icon="person"
+          [control]="registerForm.controls.username"
         ></app-text-input>
       </div>
+
       <app-text-input
         placeholder="Email"
         type="email"
         icon="mail"
+        [control]="registerForm.controls.email"
+        style="margin-bottom: 14px"
       ></app-text-input>
       <app-text-input
         placeholder="Password"
         type="password"
         icon="lock"
+        [control]="registerForm.controls.password"
+        style="margin-bottom: 14px"
       ></app-text-input>
       <app-text-input
         placeholder="Confirm password"
         type="password"
         icon="lock"
+        [control]="registerForm.controls.confirmPassword"
       ></app-text-input>
       <app-custom-button
         text="Register"
@@ -37,6 +45,7 @@
         icon="app_registration"
         style="margin-top: 1em"
       ></app-custom-button>
+      <app-error *ngIf="error" [errorMessage]="error"></app-error>
     </form>
   </div>
 </div>

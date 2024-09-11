@@ -27,18 +27,13 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm.invalid) return;
 
-    this.authService
-      .login(this.loginForm.value as AuthLogin)
-      .pipe(
-        catchError((err) => {
-          this.error = err.error.message;
-          throw err;
-        })
-      )
-      .subscribe((res) => {
+    this.authService.login(this.loginForm.value as AuthLogin).subscribe({
+      next: (res) => {
         console.log(res);
         localStorage.setItem(environment.JWT_NAME, res.access_token);
-        this.router.navigate(['/posts']);
-      });
+        this.router.navigate(['']);
+      },
+      error: (err) => (this.error = err.message),
+    });
   }
 }

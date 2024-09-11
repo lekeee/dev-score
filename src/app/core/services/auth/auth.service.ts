@@ -6,7 +6,6 @@ import { jwtDecode } from 'jwt-decode';
 import { isPlatformBrowser } from '@angular/common';
 import { AuthRegister } from '../../models/auth-register';
 import { catchError, throwError } from 'rxjs';
-import { error } from 'console';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +22,7 @@ export class AuthService {
 
   login(authLogin: AuthLogin) {
     return this.http
-      .post<any>(environment.API_URL + '/auth/login', authLogin)
+      .post<any>('/auth/login', authLogin)
       .pipe(
         catchError((error: HttpErrorResponse) =>
           throwError(() => new Error(error.error.message))
@@ -33,7 +32,7 @@ export class AuthService {
 
   register(authRegister: AuthRegister) {
     return this.http
-      .post<AuthRegister>(environment.API_URL + '/auth/register', authRegister)
+      .post<AuthRegister>('/auth/register', authRegister)
       .pipe(
         catchError((error: HttpErrorResponse) =>
           throwError(() => new Error(error.error.message))
@@ -57,5 +56,10 @@ export class AuthService {
     return decodedToken && decodedToken.exp
       ? decodedToken.exp > Date.now() / 1000
       : false;
+  }
+
+  getAuthToken() {
+    if (!isPlatformBrowser(this.platformId)) return;
+    return localStorage.getItem(environment.JWT_NAME);
   }
 }

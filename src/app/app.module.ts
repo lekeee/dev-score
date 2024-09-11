@@ -39,8 +39,14 @@ import { PostViewComponent } from './screens/post-view/post-view.component';
 import { PostActivityComponent } from './components/post-activity/post-activity.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { ErrorComponent } from './components/error/error.component';
-import { HttpClientModule, provideHttpClient } from '@angular/common/http';
+import {
+  HttpClientModule,
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
 import { InputErrorComponent } from './components/input-error/input-error.component';
+import { httpInterceptor } from './core/interceptors/http.interceptor';
+import { jwtInterceptor } from './core/interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -88,7 +94,7 @@ import { InputErrorComponent } from './components/input-error/input-error.compon
     provideHighlightOptions({
       fullLibraryLoader: () => import('highlight.js'),
     }),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([httpInterceptor, jwtInterceptor])),
   ],
   bootstrap: [AppComponent],
 })

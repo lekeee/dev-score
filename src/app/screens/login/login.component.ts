@@ -4,7 +4,6 @@ import { AuthService } from '../../core/services/auth/auth.service';
 import { AuthLogin } from '../../core/models/auth-login';
 import { environment } from '../../../environments/environment.development';
 import { Router } from '@angular/router';
-import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-login',

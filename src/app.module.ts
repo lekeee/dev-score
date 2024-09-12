@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { UsersModule } from './users/users.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { PostsModule } from './posts/posts.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
       rootPath: join(__dirname, '..', 'uploads'),
       serveRoot: '/uploads',
     }),
+    PostsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

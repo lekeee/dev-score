@@ -45,10 +45,6 @@ export class UsersService {
     return await this.userRepository.save(user);
   }
 
-  async delete(id: number) {
-    return await this.userRepository.delete(id);
-  }
-
   async update(id: number, userDto: Partial<UserDto>) {
     if (
       userDto.username &&
@@ -60,6 +56,10 @@ export class UsersService {
     if (userDto.password)
       userDto.password = await this.hashPassword(userDto.password);
     return this.userRepository.update(id, userDto);
+  }
+
+  async delete(id: number) {
+    return await this.userRepository.delete(id);
   }
 
   async findOne(username: string) {

@@ -11,3 +11,9 @@
 .success {
   color: var(--positive-reaction);
 }
+
+@media (max-width: 768px) {
+  .container {
+    width: 200px;
+  }
+}

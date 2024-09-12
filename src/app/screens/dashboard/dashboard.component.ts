@@ -50,47 +50,45 @@ export class DashboardComponent implements OnInit {
   }
 
   onSubmit() {
-    const fullname = this.dashboardForm.get('fullname')?.value ?? '';
-    const usernameControl = this.dashboardForm.get('username') as FormControl;
-    const passwordControl = this.dashboardForm.get('password') as FormControl;
-    const confirmPasswordControl = this.dashboardForm.get(
+    const fullname = this.dashboardForm.get('fullname') as FormControl;
+    const username = this.dashboardForm.get('username') as FormControl;
+    const password = this.dashboardForm.get('password') as FormControl;
+    const confirmPassword = this.dashboardForm.get(
       'confirmPassword'
     ) as FormControl;
 
-    const updatePayload: Partial<User> = {
-      fullname,
-    };
+    const updatePayload: Partial<User> = {};
 
-    if (this.dashboardForm.invalid || this.dashboardForm.pristine) return;
-
-    if (usernameControl.dirty) {
-      updatePayload.username = usernameControl.value;
-    }
-
-    if (passwordControl.dirty || confirmPasswordControl.dirty) {
-      if (!passwordControl.value && !confirmPasswordControl.value) {
-        return;
-      }
-
-      if (passwordControl.value === confirmPasswordControl.value) {
-        updatePayload.password = passwordControl.value;
-      } else {
+    if (fullname.dirty) updatePayload.fullname = fullname.value;
+    if (username.dirty) updatePayload.username = username.value;
+    if (password.dirty) {
+      if (
+        password.value &&
+        confirmPassword.value &&
+        password.value == confirmPassword.value
+      )
+        updatePayload.password = password.value;
+      else {
+        password.setValue('');
+        confirmPassword.setValue('');
         this.message.text = 'Passwords do not match';
         this.message.type = 'error';
-        return;
       }
     }
 
-    this.userService.updateUser(updatePayload).subscribe({
-      next: (res) => {
-        this.dashboardForm.markAsPristine();
-        this.message.text = 'Your data has been successfully updated.';
-        this.message.type = 'success';
-      },
-      error: (err) => {
-        this.message.text = err.error.message;
-        this.message.type = 'error';
-      },
-    });
+    if (Object.keys(updatePayload).length != 0)
+      this.userService.updateUser(updatePayload).subscribe({
+        next: (res) => {
+          password.setValue('');
+          confirmPassword.setValue('');
+          this.dashboardForm.markAsPristine();
+          this.message.text = 'Your data has been successfully updated.';
+          this.message.type = 'success';
+        },
+        error: (err) => {
+          this.message.text = err.error.message;
+          this.message.type = 'error';
+        },
+      });
   }
 }

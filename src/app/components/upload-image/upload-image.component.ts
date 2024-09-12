@@ -28,7 +28,7 @@ export class UploadImageComponent {
     if (this.selectedImage) {
       const formData = new FormData();
       formData.append('image', this.selectedImage);
-      this.userService.uploadImage(formData);
+      this.userService.uploadImage(formData).subscribe();
     }
   }
 }

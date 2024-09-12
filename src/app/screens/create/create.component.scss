@@ -21,8 +21,8 @@
   width: 100%;
   flex: 2;
   border-radius: 15px;
-  border: 1px solid var(--main-color-turq);
-  padding: 2em;
+  border: max(1px, 0.0625rem) solid #2a354b;
+  padding: 1em;
   display: flex;
   flex-direction: column;
   gap: 0.5em;

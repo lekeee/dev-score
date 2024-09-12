@@ -2,8 +2,14 @@
   <div [ngClass]="{ 'first-div': isFlex }">
     <div class="user-div" *ngIf="!isFlex">
       <div class="img-user-div">
-        <div class="img-div"><mat-icon>person_outlined</mat-icon></div>
-        <span style="font-weight: bold">lekeee</span>
+        <div class="img-div">
+          <img
+            src="http://localhost:3000/uploads/{{ post.user?.image }}"
+            alt="user-image"
+          />
+          <mat-icon *ngIf="!post.user?.image">person_outlined</mat-icon>
+        </div>
+        <span style="font-weight: bold">{{ post.user?.username }}</span>
       </div>
       <div style="display: flex; gap: 0.5em; align-items: center">
         <div class="like-div">
@@ -12,48 +18,14 @@
         </div>
         <div class="language-div">
           <span class="indicator"></span>
-          <span>PHP</span>
+          <span>{{ post.language }}</span>
         </div>
       </div>
     </div>
     <div class="code-div">
       <app-highlight-code
-        language="c++"
-        code="
-  #include <stdio.h>
-  #include <mpi.h>
-  int main(int argc,char *argv[])
-  {
-      int MyRank, Numprocs;
-      int value, sum = 0;
-      int Root = 0;
-      MPI_Status status;
-      MPI_Init(&argc,&argv);
-      MPI_Comm_size(MPI_COMM_WORLD,&Numprocs);
-      MPI_Comm_rank(MPI_COMM_WORLD,&MyRank);
-      if (MyRank == Root) {
-          value=1;
-      MPI_Send(&value, 1, MPI_INT, MyRank + 1, 0,
-      MPI_COMM_WORLD);
-  }
-  else{
-      if(MyRank<Numprocs-1){
-          MPI_Recv(&value, 1, MPI_INT, MyRank-1, 0,
-          MPI_COMM_WORLD, &status);
-          sum = MyRank +1+ value;
-          MPI_Send(&sum, 1, MPI_INT, MyRank+1, 0,
-          MPI_COMM_WORLD);
-      }
-      else{
-          MPI_Recv(&value, 1, MPI_INT, MyRank-1, 0,
-          MPI_COMM_WORLD, &status);
-          sum = MyRank +1+ value;
-          printf('MyRank %d Final SUM %d\n', MyRank, sum);
-      }
-  }
-  MPI_Finalize();
-  }
-      "
+        [language]="post.language"
+        [code]="post.code"
       ></app-highlight-code>
     </div>
   </div>
@@ -76,10 +48,14 @@
     </div>
     <div class="description-div">
       <div class="text-div">
-        <span class="title">MPI - Point to point operatins</span>
+        <span class="title">{{ post.title }}</span>
         <span class="text">{{ cutDescription }}</span>
         <span (click)="openDescription()" class="show-more">
-          {{ isTruncated === true ? "" : "more" }}</span
+          {{
+            isTruncated === true || post.description.length < maxLength
+              ? ""
+              : "more"
+          }}</span
         >
       </div>
     </div>

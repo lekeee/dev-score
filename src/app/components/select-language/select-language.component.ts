@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import * as languageData from '../../../../public/json/languages.json';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-select-language',
@@ -7,5 +8,6 @@ import * as languageData from '../../../../public/json/languages.json';
   styleUrl: './select-language.component.scss',
 })
 export class SelectLanguageComponent {
+  @Input() control = new FormControl();
   languages: string[] = languageData.languages;
 }

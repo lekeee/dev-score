@@ -1,3 +1,9 @@
-<div class="container">
-  {{ errorMessage }}
+<div
+  class="container"
+  [ngClass]="{
+    error: message.type == 'error',
+    success: message.type == 'success'
+  }"
+>
+  {{ message.text }}
 </div>

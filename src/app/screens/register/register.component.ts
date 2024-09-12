@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { AuthRegister } from '../../core/models/auth-register';
+import { ResponseMessage } from '../../core/types/response-message';
 
 @Component({
   selector: 'app-register',
@@ -24,7 +25,7 @@ export class RegisterComponent {
     ]),
   });
 
-  error: string | null = null;
+  message: ResponseMessage = { type: '', text: '' };
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -34,7 +35,8 @@ export class RegisterComponent {
     const confirmPassword = this.registerForm.get('confirmPassword')?.value;
 
     if (password !== confirmPassword) {
-      this.error = 'Password do not match';
+      this.message.text = 'Password do not match';
+      this.message.type = 'error';
       return;
     }
     this.authService
@@ -44,7 +46,9 @@ export class RegisterComponent {
           console.log(res);
           this.router.navigate(['login']);
         },
-        error: (err) => (this.error = err.message),
+        error: (err) => (
+          (this.message.text = err.message), (this.message.type = 'error')
+        ),
       });
   }
 }

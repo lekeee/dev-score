@@ -22,7 +22,7 @@
         icon="login"
         style="margin-top: 1em"
       ></app-custom-button>
-      <app-error *ngIf="error" [errorMessage]="error"></app-error>
+      <app-error *ngIf="message.text" [message]="message"></app-error>
     </form>
     <span
       >Don't have an account?

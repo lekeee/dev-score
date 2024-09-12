@@ -1,6 +1,13 @@
 .container {
-  color: var(--negative-reaction);
   font-size: 12px;
   padding: 0.5em;
   width: 100%;
+}
+
+.error {
+  color: var(--negative-reaction);
+}
+
+.success {
+  color: var(--positive-reaction);
 }

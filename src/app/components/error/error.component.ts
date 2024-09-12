@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ResponseMessage } from '../../core/types/response-message';
 
 @Component({
   selector: 'app-error',
@@ -6,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './error.component.scss',
 })
 export class ErrorComponent {
-  @Input() errorMessage: string = '';
+  @Input() message: ResponseMessage = { type: '', text: '' };
 }

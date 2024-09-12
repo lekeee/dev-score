@@ -1,4 +1,5 @@
 <div class="file-upload">
-    <input type="file" accept="image/*" />
-    <mat-icon>arrow_upward</mat-icon>
+  <input type="file" accept="image/*" (change)="onChange($event)" />
+  <mat-icon *ngIf="!url.value">arrow_upward</mat-icon>
+  <img *ngIf="url.value" [src]="url.value" />
 </div>

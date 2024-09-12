@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -24,7 +25,7 @@ export class CustomButtonComponent {
   button!: ElementRef<HTMLButtonElement>;
   isSmall = false;
 
-  constructor() {}
+  constructor(private cdr: ChangeDetectorRef) {}
 
   onClick() {
     this.buttonClick.emit();
@@ -42,6 +43,11 @@ export class CustomButtonComponent {
 
   checkButtonSize() {
     const buttonWidth = this.button.nativeElement.offsetWidth;
-    this.isSmall = buttonWidth < 120;
+    const isSmall = buttonWidth < 120;
+
+    setTimeout(() => {
+      this.isSmall = isSmall;
+      this.cdr.detectChanges();
+    });
   }
 }

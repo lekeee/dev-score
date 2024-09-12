@@ -4,6 +4,7 @@ import { AuthService } from '../../core/services/auth/auth.service';
 import { AuthLogin } from '../../core/models/auth-login';
 import { environment } from '../../../environments/environment.development';
 import { Router } from '@angular/router';
+import { ResponseMessage } from '../../core/types/response-message';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent {
     ]),
   });
 
-  error: string | null = null;
+  message: ResponseMessage = { type: '', text: '' };
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -32,7 +33,9 @@ export class LoginComponent {
         localStorage.setItem(environment.JWT_NAME, res.access_token);
         this.router.navigate(['']);
       },
-      error: (err) => (this.error = err.message),
+      error: (err) => (
+        (this.message.text = err.message), (this.message.type = 'error')
+      ),
     });
   }
 }

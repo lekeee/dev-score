@@ -1,11 +1,12 @@
 .container {
   display: flex;
+  justify-content: center;
   gap: 1em;
 }
 
 .user-info-div {
   // background-color: var(--background-color);
-  width: 50%;
+  width: 450px;
   border-radius: 20px;
   padding: 1em;
   display: grid;

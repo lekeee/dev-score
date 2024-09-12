@@ -12,7 +12,6 @@ import { catchError, throwError } from 'rxjs';
 })
 export class AuthService {
   private platformId: Object;
-
   constructor(
     private http: HttpClient,
     @Inject(PLATFORM_ID) platformId: Object
@@ -47,7 +46,8 @@ export class AuthService {
 
   isAuth() {
     if (!isPlatformBrowser(this.platformId)) return;
-    const token = localStorage.getItem(environment.JWT_NAME);
+    const token = this.getAuthToken();
+
     let decodedToken = null;
     if (token != null) {
       decodedToken = jwtDecode(token);
@@ -61,5 +61,10 @@ export class AuthService {
   getAuthToken() {
     if (!isPlatformBrowser(this.platformId)) return;
     return localStorage.getItem(environment.JWT_NAME);
+  }
+
+  getAuthId(): number {
+    const token = this.getAuthToken();
+    return Number(jwtDecode(token!).sub);
   }
 }

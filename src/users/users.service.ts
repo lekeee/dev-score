@@ -12,12 +12,17 @@ export class UsersService {
     @InjectRepository(User) private userRepository: Repository<User>,
   ) {}
 
-  findAll() {
-    return this.userRepository.find();
+  async findAll() {
+    return await this.userRepository.find();
   }
 
-  findById(id: number) {
-    return this.userRepository.findOne({ where: { id: id } });
+  async findById(id: number) {
+    const user = await this.userRepository.findOne({ where: { id: id } });
+    if (user) {
+      const { password, ...userWithoutPassword } = user;
+      return userWithoutPassword;
+    }
+    return null;
   }
 
   async create(userDto: UserDto | AuthRegisterDto) {
@@ -45,7 +50,7 @@ export class UsersService {
     return await this.userRepository.delete(id);
   }
 
-  async update(id: number, userDto: UserDto) {
+  async update(id: number, userDto: Partial<UserDto>) {
     return this.userRepository.update(id, userDto);
   }
 

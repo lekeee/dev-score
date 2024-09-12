@@ -56,7 +56,6 @@ export class UsersController {
 
     if (user.image) {
       const imagePath = `./uploads/${user.image}`;
-
       if (fs.existsSync(imagePath)) fs.unlinkSync(imagePath);
     }
 
@@ -65,7 +64,7 @@ export class UsersController {
     });
   }
 
-  @Put(':id')
+  @Put()
   @UseGuards(JwtGuard)
   public updateUser(@Req() req, @Body() userDto: UserDto) {
     return this.userService.update(req.user.userId, userDto);

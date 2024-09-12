@@ -39,8 +39,7 @@ export class UsersService {
     )
       throw new ConflictException('Username already taken');
 
-    const hashedPassword = await bcrypt.hash(userDto.password, 6);
-    userDto.password = hashedPassword;
+    userDto.password = await this.hashPassword(userDto.password);
 
     const user = this.userRepository.create(userDto);
     return await this.userRepository.save(user);
@@ -51,10 +50,23 @@ export class UsersService {
   }
 
   async update(id: number, userDto: Partial<UserDto>) {
+    if (
+      userDto.username &&
+      (await this.userRepository.findOne({
+        where: { username: userDto.username },
+      })) != null
+    )
+      throw new ConflictException('Username already taken');
+    if (userDto.password)
+      userDto.password = await this.hashPassword(userDto.password);
     return this.userRepository.update(id, userDto);
   }
 
   async findOne(username: string) {
     return this.userRepository.findOne({ where: { username: username } });
+  }
+
+  async hashPassword(password: string) {
+    return await bcrypt.hash(password, 6);
   }
 }

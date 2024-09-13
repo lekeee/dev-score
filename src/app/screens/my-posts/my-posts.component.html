@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="post-div" *ngFor="let post of myPosts">
+  <div class="post-div" *ngFor="let post of myPost$ | async">
     <div class="left-div">
       <span class="language-div">
         <span class="indicator"></span>

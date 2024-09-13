@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../core/services/post/post.service';
 import { Post } from '../../core/models/post';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-posts',
@@ -8,18 +9,11 @@ import { Post } from '../../core/models/post';
   styleUrl: './posts.component.scss',
 })
 export class PostsComponent implements OnInit {
-  posts: Post[] = [];
+  post$: Observable<Post[]> = of([]);
 
   constructor(private postService: PostService) {}
 
   ngOnInit(): void {
-    this.loadPosts();
-  }
-
-  loadPosts(): void {
-    this.postService.getPosts().subscribe({
-      next: (posts) => (this.posts = posts),
-      error: (err) => console.error('Error fetching posts:', err),
-    });
+    this.post$ = this.postService.getPosts();
   }
 }

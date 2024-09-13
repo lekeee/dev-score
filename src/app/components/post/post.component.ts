@@ -14,6 +14,7 @@ export class PostComponent {
     language: '',
     code: '',
     user: undefined,
+    createdAt: new Date(),
   };
   maxLength = 145;
 

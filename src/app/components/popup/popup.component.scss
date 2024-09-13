@@ -1,0 +1,35 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 998;
+}
+
+.container {
+  padding: 2em;
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.buttons {
+  display: flex;
+  gap: 0.5em;
+}
+
+button {
+  padding: 0.5em 1em;
+  border: 1px solid var(--main-color-turq);
+  color: white;
+  background-color: transparent;
+  border-radius: 10px;
+  cursor: pointer;
+}

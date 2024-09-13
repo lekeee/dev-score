@@ -23,8 +23,12 @@ export class PostService {
     return this.http.get<Post>('/posts/' + id);
   }
 
+  getPostsByUser() {
+    return this.http.get<Post[]>('/posts/user');
+  }
+
   createPost(post: Post) {
-    return this.http.post('/posts', post);
+    return this.http.post<Post>('/posts', post);
   }
 
   updatePost(id: number, post: Partial<Post>) {

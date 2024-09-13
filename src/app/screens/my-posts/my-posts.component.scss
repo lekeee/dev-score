@@ -2,13 +2,12 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
-  padding-left: 1em;
-  justify-content: center;
 }
 
 .post-div {
   font-size: 14px;
-  min-width: 48%;
+  width: 48%;
+  min-width: 240px;
   display: flex;
   justify-content: space-between;
   border: max(1px, 0.0625rem) solid #2a354b;
@@ -32,6 +31,7 @@
 }
 
 .indicator {
+  display: inline-block;
   width: 10px;
   height: 10px;
   background-color: var(--main-color-turq);
@@ -39,15 +39,12 @@
 }
 
 .language-div {
-  display: flex;
+  display: inline-flex;
   background-color: var(--input-color);
   padding: 0.3em 0.8em;
   border-radius: 10px;
   gap: 0.5em;
   align-items: center;
-  justify-content: center;
-  width: 70px;
-  font-weight: bold;
 }
 
 .right-div button {
@@ -61,4 +58,14 @@
 
 #delete {
   color: var(--negative-reaction);
+}
+
+@media (max-width: 768px) {
+  .container {
+    justify-content: center;
+  }
+
+  .post-div {
+    width: 100%;
+  }
 }

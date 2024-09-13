@@ -1,4 +1,4 @@
-<form class="container" [formGroup]="createForm">
+<form class="container" [formGroup]="createForm" (ngSubmit)="onSubmit()">
   <div class="code-div">
     <div class="lang-div">
       <h3>Enter the code</h3>
@@ -11,6 +11,10 @@
       id=""
       placeholder="Post your logic here..."
       formControlName="code"
+      [ngClass]="{
+        error:
+          createForm.controls.code.invalid && createForm.controls.code.touched
+      }"
     ></textarea>
   </div>
   <div class="data-div">
@@ -28,7 +32,13 @@
       rows="10"
       placeholder="Tell others a little more about your code..."
       formControlName="description"
+      [ngClass]="{
+        error:
+          createForm.controls.description.invalid &&
+          createForm.controls.description.touched
+      }"
     ></textarea>
+    <app-error [message]="message"></app-error>
     <app-custom-button
       class="gold-fill"
       text="Create a post"

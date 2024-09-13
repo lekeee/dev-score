@@ -1,53 +1,24 @@
 <div class="container">
-  <div class="post-div">
+  <div class="post-div" *ngFor="let post of myPosts">
     <div class="left-div">
-      <div class="language-div">
+      <span class="language-div">
         <span class="indicator"></span>
-        <span>PHP</span>
-      </div>
-      <h3>OpenMP parallel program</h3>
+        <span>{{ post.language }}</span>
+      </span>
+      <h3 (click)="showPost(post.id)">{{ post.title }}</h3>
     </div>
     <div class="right-div">
       <button id="edit">
         <mat-icon>edit</mat-icon>
       </button>
-      <button id="delete">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </div>
-  </div>
-  <div class="post-div">
-    <div class="left-div">
-      <div class="language-div">
-        <span class="indicator"></span>
-        <span>PHP</span>
-      </div>
-      <h3>OpenMP parallel program</h3>
-    </div>
-    <div class="right-div">
-      <button id="edit">
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button id="delete">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </div>
-  </div>
-  <div class="post-div">
-    <div class="left-div">
-      <div class="language-div">
-        <span class="indicator"></span>
-        <span>PHP</span>
-      </div>
-      <h3>OpenMP parallel program</h3>
-    </div>
-    <div class="right-div">
-      <button id="edit">
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button id="delete">
+      <button id="delete" (click)="openPopup(post.id!)">
         <mat-icon>delete</mat-icon>
       </button>
     </div>
   </div>
 </div>
+<app-popup
+  *ngIf="isPopupOpened"
+  (clickedNo)="closePopup()"
+  (clickedYes)="deletePost()"
+></app-popup>

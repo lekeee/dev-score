@@ -1,5 +1,10 @@
-<select>
-  <option value="" disabled selected>Language</option>
+<select
+  [formControl]="control"
+  [ngClass]="{
+    error: control.invalid && control.touched
+  }"
+>
+  <option value="" selected>Language</option>
   <option [value]="language.toLowerCase()" *ngFor="let language of languages">
     {{ language }}
   </option>

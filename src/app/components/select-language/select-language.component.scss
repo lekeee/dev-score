@@ -11,6 +11,10 @@ select {
   overflow: auto;
 }
 
+.error {
+  border: 1px solid var(--negative-reaction);
+}
+
 select::-webkit-scrollbar {
   width: 0px;
 }

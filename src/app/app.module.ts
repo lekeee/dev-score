@@ -47,6 +47,7 @@ import {
 import { InputErrorComponent } from './components/input-error/input-error.component';
 import { httpInterceptor } from './core/interceptors/http.interceptor';
 import { jwtInterceptor } from './core/interceptors/jwt.interceptor';
+import { PopupComponent } from './components/popup/popup.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { jwtInterceptor } from './core/interceptors/jwt.interceptor';
     NotificationsComponent,
     ErrorComponent,
     InputErrorComponent,
+    PopupComponent,
   ],
   imports: [
     BrowserModule,

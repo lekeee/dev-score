@@ -5,7 +5,6 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { Observable } from 'rxjs';
 import { Post } from 'src/posts/models/post.entity';
 import { PostsService } from 'src/posts/posts.service';
 

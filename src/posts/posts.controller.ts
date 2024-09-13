@@ -13,7 +13,7 @@ import {
 import { PostsService } from './posts.service';
 import { JwtGuard } from 'src/auth/guards/jwt.guard';
 import { PostDto } from './models/post.dto';
-import { PostOwnerGuard } from 'src/auth/guards/post-owner.guard';
+import { PostOwnerGuard } from './guards/post-owner.guard';
 
 @Controller('posts')
 export class PostsController {

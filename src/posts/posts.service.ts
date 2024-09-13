@@ -13,7 +13,7 @@ export class PostsService {
   ) {}
 
   async findAll() {
-    return await this.postRepository.find();
+    return await this.postRepository.find({ order: { createdAt: 'DESC' } });
   }
 
   async findById(id: number) {

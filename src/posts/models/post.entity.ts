@@ -1,5 +1,11 @@
 import { User } from 'src/users/models/user.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Post {
@@ -20,4 +26,7 @@ export class Post {
 
   @ManyToOne(() => User, (user) => user.Posts, { eager: true })
   user: User;
+
+  @CreateDateColumn()
+  createdAt: Date;
 }

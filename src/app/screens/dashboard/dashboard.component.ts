@@ -59,6 +59,8 @@ export class DashboardComponent implements OnInit {
 
     const updatePayload: Partial<User> = {};
 
+    if (this.dashboardForm.invalid || this.dashboardForm.pristine) return;
+
     if (fullname.dirty) updatePayload.fullname = fullname.value;
     if (username.dirty) updatePayload.username = username.value;
     if (password.dirty) {

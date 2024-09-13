@@ -27,8 +27,6 @@ export class CreateComponent {
 
     this.postService.createPost(this.createForm.value as Post).subscribe({
       next: (res) => {
-        console.log(res);
-
         this.message.text = 'Your post has been successfully created.';
         this.message.type = 'success';
         setTimeout(() => {

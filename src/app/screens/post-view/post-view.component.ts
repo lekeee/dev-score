@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../core/services/post/post.service';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from '../../core/models/post';
 
 @Component({
@@ -26,8 +26,8 @@ export class PostViewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((param: ParamMap) => {
-      this.id = Number(param.get('id'));
+    this.route.params.subscribe((params) => {
+      this.id = params['id'];
     });
 
     this.postService.getPost(this.id).subscribe({

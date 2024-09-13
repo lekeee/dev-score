@@ -10,6 +10,7 @@ import { PostViewComponent } from './screens/post-view/post-view.component';
 import { authGuard } from './core/guards/auth.guard';
 import { userGuard } from './core/guards/user.guard';
 import { EditComponent } from './screens/edit/edit.component';
+import { postOwnerGuard } from './core/guards/post-owner.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,7 +20,11 @@ const routes: Routes = [
   { path: 'posts', component: PostsComponent },
   { path: 'create', component: CreateComponent, canActivate: [authGuard] },
   { path: 'post/:id', component: PostViewComponent },
-  { path: 'edit/:id', component: EditComponent },
+  {
+    path: 'edit/:id',
+    component: EditComponent,
+    canActivate: [authGuard, postOwnerGuard],
+  },
 ];
 
 @NgModule({

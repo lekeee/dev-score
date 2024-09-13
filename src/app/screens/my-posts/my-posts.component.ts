@@ -48,4 +48,8 @@ export class MyPostsComponent implements OnInit {
     this.isPopupOpened = false;
     this.idToDelete = -1;
   }
+
+  openEditView(id: number) {
+    this.router.navigate([`edit/${id}`]);
+  }
 }

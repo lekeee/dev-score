@@ -10,7 +10,7 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   getUser(id: number) {
-    return this.http.get<User>(`/users/${id}`).pipe(map((user: User) => user));
+    return this.http.get<User>(`/users/${id}`);
   }
 
   updateUser(user: Partial<User>) {

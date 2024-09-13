@@ -13,6 +13,7 @@ import {
 import { PostsService } from './posts.service';
 import { JwtGuard } from 'src/auth/guards/jwt.guard';
 import { PostDto } from './models/post.dto';
+import { PostOwnerGuard } from 'src/auth/guards/post-owner.guard';
 
 @Controller('posts')
 export class PostsController {
@@ -40,7 +41,7 @@ export class PostsController {
     return this.postService.create(req.user.userId, postDto);
   }
 
-  @UseGuards(JwtGuard)
+  @UseGuards(JwtGuard, PostOwnerGuard)
   @Put(':id')
   updatePost(@Param('id', ParseIntPipe) id: number, @Body() postDto: PostDto) {
     return this.postService.update(id, postDto);

@@ -4,5 +4,6 @@ import { User } from 'src/users/models/user.entity';
 export class ReactionDto {
   type: number; //0 for positive 1 for negative
   text: string;
+  commentsNumber: number;
   postId: number;
 }

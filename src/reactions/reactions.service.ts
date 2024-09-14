@@ -49,6 +49,11 @@ export class ReactionsService {
     return this.reactionRepository.update(id, reactionData);
   }
 
+  async incrementCommentsNumber(reaction: Reaction) {
+    reaction.commentsNumber++;
+    await this.reactionRepository.save(reaction);
+  }
+
   async delete(id: number) {
     return this.reactionRepository.delete(id);
   }

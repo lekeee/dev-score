@@ -21,6 +21,9 @@ export class Reaction {
   @Column()
   text: string;
 
+  @Column({ default: 0 })
+  commentsNumber: number;
+
   @ManyToOne(() => User, (user) => user.reactions, { eager: true })
   user: User;
 

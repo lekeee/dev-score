@@ -22,6 +22,6 @@ export class Comment {
   @ManyToOne(() => Reaction, (reaction) => reaction.comments, { eager: true })
   reaction: Reaction;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: 'timestamptz' })
   createdAt: Date;
 }

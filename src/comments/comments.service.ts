@@ -30,6 +30,8 @@ export class CommentsService {
     if (!user) throw new NotFoundException('User not found');
     if (!reaction) throw new NotFoundException('Reaction not found');
 
+    this.reactionService.incrementCommentsNumber(reaction);
+
     const { reactionId, ...commentData } = commentDto;
 
     const comment = this.commentRepository.create({

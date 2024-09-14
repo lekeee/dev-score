@@ -8,6 +8,7 @@ import { UserService } from '../../core/services/user/user.service';
   styleUrl: './upload-image.component.scss',
 })
 export class UploadImageComponent {
+  @Input() userId: number = -1;
   @Input() url = new FormControl();
   selectedImage: File | null = null;
 
@@ -26,6 +27,7 @@ export class UploadImageComponent {
 
   onUpload() {
     if (this.selectedImage) {
+      const extension = this.selectedImage.name.split('.').pop();
       const formData = new FormData();
       formData.append('image', this.selectedImage);
       this.userService.uploadImage(formData).subscribe();

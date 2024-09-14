@@ -29,8 +29,6 @@ export class LoginComponent {
 
     this.authService.login(this.loginForm.value as AuthLogin).subscribe({
       next: (res) => {
-        console.log(res);
-        localStorage.setItem(environment.JWT_NAME, res.access_token);
         this.router.navigate(['']);
       },
       error: (err) => (

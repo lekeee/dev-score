@@ -5,8 +5,9 @@
         <div class="row-div">
           <app-upload-image
             [url]="dashboardForm.controls.image"
+            [userId]="id"
           ></app-upload-image>
-          <div style="display: flex; flex-direction: column; gap: 0.5em">
+          <div style="display: flex; flex-direction: column">
             <app-text-input
               text="Full name"
               [control]="dashboardForm.controls.fullname"

@@ -13,17 +13,7 @@
           <a href="#" routerLink="/posts">Posts</a>
         </li>
         <li (click)="toogleNoitifications()">
-          <span
-            style="
-              padding: 1em;
-              font-size: 14px;
-              line-height: 20px;
-              color: var(--gray-color);
-              cursor: pointer;
-            "
-          >
-            Notifications
-          </span>
+          <span class="notifications-span"> Notifications </span>
         </li>
         <li>
           <a href="#" routerLink="/about">About us</a>
@@ -32,7 +22,19 @@
           <a href="#" routerLink="/create"><mat-icon>add</mat-icon></a>
         </li>
         <li id="person-li" [ngStyle]="isScrolled ? { display: 'block' } : {}">
-          <a href="#" routerLink="/user"><mat-icon>person</mat-icon></a>
+          <a
+            href="#"
+            routerLink="/user"
+            [ngStyle]="image ? { padding: ' 0 0.5em 0 0' } : {}"
+          >
+            <img
+              *ngIf="image"
+              src="http://localhost:3000/uploads/{{ image }}"
+              alt="user-image"
+              class="user-image"
+            />
+            <mat-icon *ngIf="!image">person</mat-icon></a
+          >
         </li>
       </ul>
     </nav>
@@ -41,7 +43,13 @@
         <mat-icon>add</mat-icon>
       </a>
       <a href="#" routerLink="/user" class="profile">
-        <mat-icon>person</mat-icon>
+        <img
+          *ngIf="image"
+          src="http://localhost:3000/uploads/{{ image }}"
+          alt="user-image"
+          class="user-image"
+        />
+        <mat-icon *ngIf="!image">person</mat-icon>
       </a>
     </div>
   </div>

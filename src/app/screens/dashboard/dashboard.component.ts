@@ -13,6 +13,7 @@ import { ResponseMessage } from '../../core/types/response-message';
 })
 export class DashboardComponent implements OnInit {
   message: ResponseMessage = { type: '', text: '' };
+  id: number = -1;
 
   constructor(
     private userService: UserService,
@@ -32,9 +33,8 @@ export class DashboardComponent implements OnInit {
   });
 
   ngOnInit() {
-    const id = this.authService.getAuthId();
-
-    this.userService.getUser(id).subscribe({
+    this.id = this.authService.getAuthId();
+    this.userService.getUser(this.id).subscribe({
       next: (user: User) => {
         this.dashboardForm.patchValue({
           fullname: user.fullname,

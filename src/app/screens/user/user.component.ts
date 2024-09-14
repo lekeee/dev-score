@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
   styleUrl: './user.component.scss',
 })
 export class UserComponent {
-  onDashboard: boolean = false;
-  onPosts: boolean = true;
+  onDashboard: boolean = true;
+  onPosts: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 

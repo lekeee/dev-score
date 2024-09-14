@@ -1,14 +1,23 @@
 <div class="container">
   <div style="text-align: center">
-    <img src="/test-avatar.png" alt="user-avatar" />
+    <img
+      src="/test-avatar.png"
+      alt="user-avatar"
+      *ngIf="!comment.user?.image"
+    />
+    <img
+      src="http://localhost:3000/uploads/{{ comment.user?.image }}"
+      alt="user-avatar"
+      *ngIf="comment.user?.image"
+    />
   </div>
   <div style="display: grid; gap: 0.5em">
     <span class="text"
-      ><span class="user-name">architectanddesign</span>Lorem ipsum dolor sit
-      amet, consectetur adipiscing elit.</span
+      ><span class="user-name">{{ comment.user?.username }}</span
+      >{{ comment.text }}</span
     >
     <div class="bottom-div">
-      <span>2 minutes ago</span>
+      <span>{{ postedTime }}</span>
       <span class="reply">Reply</span>
     </div>
   </div>

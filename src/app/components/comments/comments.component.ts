@@ -29,11 +29,12 @@ export class CommentsComponent {
 
   loadReactions() {
     this.reaction$ = this.reactionService.getReactionsOfPost(this.postId);
+    //this.reaction$.subscribe((res) => console.log(res));
   }
 
   showReactions(): void {
     this.isShowed = !this.isShowed;
-    this.loadReactions();
+    if (this.isShowed == true) this.loadReactions();
   }
 
   showAddReactions(): void {

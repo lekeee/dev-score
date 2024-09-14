@@ -1,12 +1,15 @@
 .container {
   display: flex;
   gap: 0.5em;
-  padding-left: 4em;
+  margin-bottom: 0.5em;
 }
 
 .container img {
   width: 2em;
   height: 2em;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
 }
 
 .container .user-name {

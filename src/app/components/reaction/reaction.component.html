@@ -1,36 +1,54 @@
 <div class="container">
-  <div style="text-align: center">
-    <img
-      src="/test-avatar.png"
-      alt="user-avatar"
-      *ngIf="!reaction.post?.user?.image"
-    />
-    <img
-      src="http://localhost:3000/uploads/{{ reaction.post?.user?.image }}"
-      alt="user-avatar"
-      *ngIf="reaction.post?.user?.image"
-    />
-    <mat-icon
-      [ngStyle]="
-        reaction.type == 0
-          ? { color: 'var(--positive-reaction)' }
-          : { color: 'var(--negative-reaction)' }
-      "
-      >{{ reaction.type == 0 ? "checked" : "close" }}</mat-icon
-    >
-  </div>
-  <div style="display: grid; gap: 0.5em">
-    <span class="text"
-      ><span class="user-name">{{ reaction.user?.username }}</span>
-      {{ reaction.text }}</span
-    >
-    <div class="bottom-div">
-      <span>{{ postedTime }}</span>
-      <span class="reply" (click)="onReplyClick()">Reply</span>
+  <div class="reaction-div">
+    <div style="text-align: center">
+      <img
+        src="/test-avatar.png"
+        alt="user-avatar"
+        *ngIf="!reaction.post?.user?.image"
+      />
+      <img
+        src="http://localhost:3000/uploads/{{ reaction.post?.user?.image }}"
+        alt="user-avatar"
+        *ngIf="reaction.post?.user?.image"
+      />
+      <mat-icon
+        [ngStyle]="
+          reaction.type == 0
+            ? { color: 'var(--positive-reaction)' }
+            : { color: 'var(--negative-reaction)' }
+        "
+        >{{ reaction.type == 0 ? "checked" : "close" }}</mat-icon
+      >
+    </div>
+    <div style="display: grid; gap: 0.5em">
+      <span class="text"
+        ><span class="user-name">{{ reaction.user?.username }}</span>
+        {{ reaction.text }}</span
+      >
+      <div class="bottom-div">
+        <span>{{ postedTime }}</span>
+        <span class="reply" (click)="onReplyClick()">Reply</span>
+      </div>
     </div>
   </div>
-</div>
-<div class="post-comm-div" *ngIf="replayClicked">
-  <input type="text" placeholder="Add a comment..." />
-  <span class="post-comment">Post</span>
+  <span
+    class="view-comments"
+    (click)="showComments()"
+    *ngIf="!isCommentsShowed && reaction.commentsNumber != 0"
+    >View {{ reaction.commentsNumber }} comments</span
+  >
+  <div class="comments-div" *ngIf="isCommentsShowed">
+    <app-comment
+      *ngFor="let comment of comment$ | async"
+      [comment]="comment"
+    ></app-comment>
+  </div>
+  <div class="post-comm-div" *ngIf="replayClicked">
+    <input
+      type="text"
+      placeholder="Add a comment..."
+      [(ngModel)]="comment.text"
+    />
+    <span class="post-comment" (click)="postComment()">Post</span>
+  </div>
 </div>

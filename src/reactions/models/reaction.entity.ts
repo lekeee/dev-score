@@ -30,6 +30,6 @@ export class Reaction {
   @OneToMany(() => Comment, (comment) => comment.reaction)
   comments: Comment[];
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: 'timestamptz' })
   createdAt: Date;
 }

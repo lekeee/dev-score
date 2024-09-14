@@ -1,4 +1,5 @@
 import { Post } from 'src/posts/models/post.entity';
+import { Reaction } from 'src/reactions/models/reaction.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -22,5 +23,8 @@ export class User {
   image: string;
 
   @OneToMany(() => Post, (post) => post.user)
-  Posts: Post[];
+  posts: Post[];
+
+  @OneToMany(() => Reaction, (reaction) => reaction.user)
+  reactions: Reaction[];
 }

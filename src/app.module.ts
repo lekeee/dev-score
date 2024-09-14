@@ -8,6 +8,8 @@ import { join } from 'path';
 import { UsersModule } from './users/users.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { PostsModule } from './posts/posts.module';
+import { ReactionsModule } from './reactions/reactions.module';
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [
@@ -34,6 +36,8 @@ import { PostsModule } from './posts/posts.module';
       serveRoot: '/uploads',
     }),
     PostsModule,
+    ReactionsModule,
+    CommentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

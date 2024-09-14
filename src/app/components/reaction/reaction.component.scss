@@ -1,12 +1,14 @@
 .container {
   display: flex;
   gap: 0.5em;
-  padding-left: 4em;
 }
 
 .container img {
   width: 2em;
   height: 2em;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
 }
 
 .container .user-name {
@@ -26,5 +28,23 @@
 }
 
 .reply {
+  cursor: pointer;
+}
+
+.post-comm-div {
+  margin-left: 2em;
+}
+
+input {
+  background-color: transparent;
+  border: none;
+  color: white;
+  width: 90%;
+  outline: none;
+  font-size: 14px;
+}
+
+.post-comment {
+  color: var(--main-color-turq);
   cursor: pointer;
 }

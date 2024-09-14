@@ -3,9 +3,15 @@
     <span>View all {{ reactionsCount }} reactions</span>
     <mat-icon [ngClass]="{ rotate: isShowed }">keyboard_arrow_down</mat-icon>
   </div>
-  <div class="reactions-div" *ngIf="isShowed">
-    <app-comment></app-comment>
-    <app-comment [nested]="true"></app-comment>
+  <div
+    class="reactions-div"
+    [ngClass]="{ 'reactions-div-flex': isFlex }"
+    *ngIf="isShowed"
+  >
+    <app-reaction
+      *ngFor="let reaction of reaction$ | async"
+      [reaction]="reaction"
+    ></app-reaction>
   </div>
   <div class="pre-add-div" (click)="showAddReactions()" *ngIf="!isAddShowed">
     <mat-icon>add</mat-icon> <span>Add a reaction</span>
@@ -13,12 +19,26 @@
   <div class="add-reaction-div" *ngIf="isAddShowed">
     <div class="reaction-icons-div" *ngIf="type === 'reaction'">
       <span>Type (positive/negative)</span>
-      <mat-icon style="color: var(--positive-reaction)">check</mat-icon>
-      <mat-icon style="color: var(--negative-reaction)">close</mat-icon>
+      <mat-icon
+        style="color: var(--positive-reaction)"
+        (click)="setPositive()"
+        [ngClass]="{ 'selected-reaction': reactionDto.type == 0 }"
+        >check</mat-icon
+      >
+      <mat-icon
+        style="color: var(--negative-reaction)"
+        (click)="setNegative()"
+        [ngClass]="{ 'selected-reaction': reactionDto.type == 1 }"
+        >close</mat-icon
+      >
     </div>
     <div style="display: flex; justify-content: space-between">
-      <input type="text" placeholder="Add a reaction..." />
-      <span class="post-reaction">Post</span>
+      <input
+        type="text"
+        placeholder="Add a reaction..."
+        [(ngModel)]="reactionDto.text"
+      />
+      <span class="post-reaction" (click)="postReaction()">Post</span>
     </div>
   </div>
 </div>

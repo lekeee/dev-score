@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../core/services/auth/auth.service';
-import { AuthLogin } from '../../core/models/auth-login';
+import { AuthLogin } from '../../core/dtos/auth-login';
 import { environment } from '../../../environments/environment.development';
 import { Router } from '@angular/router';
 import { ResponseMessage } from '../../core/types/response-message';

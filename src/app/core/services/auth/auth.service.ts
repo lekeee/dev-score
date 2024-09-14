@@ -1,10 +1,10 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { AuthLogin } from '../../models/auth-login';
+import { AuthLogin } from '../../dtos/auth-login';
 import { environment } from '../../../../environments/environment.development';
 import { jwtDecode } from 'jwt-decode';
 import { isPlatformBrowser } from '@angular/common';
-import { AuthRegister } from '../../models/auth-register';
+import { AuthRegister } from '../../dtos/auth-register';
 import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 
 @Injectable({

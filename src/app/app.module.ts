@@ -49,6 +49,7 @@ import { httpInterceptor } from './core/interceptors/http.interceptor';
 import { jwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { PopupComponent } from './components/popup/popup.component';
 import { EditComponent } from './screens/edit/edit.component';
+import { ReactionComponent } from './components/reaction/reaction.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { EditComponent } from './screens/edit/edit.component';
     InputErrorComponent,
     PopupComponent,
     EditComponent,
+    ReactionComponent,
   ],
   imports: [
     BrowserModule,

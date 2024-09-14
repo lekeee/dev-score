@@ -18,6 +18,21 @@
   display: flex;
   flex-direction: column;
   gap: 1em;
+  overflow: auto;
+  margin-bottom: 1em;
+}
+
+.reactions-div-flex {
+  max-height: 230px;
+  margin-bottom: 0;
+}
+
+.contareactions-diviner {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.reactions-div::-webkit-scrollbar {
+  display: none;
 }
 
 .show-div mat-icon {
@@ -41,8 +56,8 @@
 .add-reaction-div {
   border: max(1px, 0.0625rem) solid #2a354b;
   border-radius: 10px;
-  padding: 1em;
-  margin-top: 2em;
+  padding: 0.6em 1em;
+  margin-top: 0em;
 }
 
 .reaction-icons-div {
@@ -58,7 +73,11 @@
 }
 
 .reaction-icons-div mat-icon:hover {
-  background-color: #2a354b;
+  background-color: #3b455a;
+}
+
+.selected-reaction {
+  background-color: #3b455a;
 }
 
 .container input {

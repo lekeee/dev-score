@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { Router } from '@angular/router';
-import { AuthRegister } from '../../core/models/auth-register';
+import { AuthRegister } from '../../core/dtos/auth-register';
 import { ResponseMessage } from '../../core/types/response-message';
 
 @Component({

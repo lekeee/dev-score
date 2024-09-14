@@ -1,3 +1,4 @@
+import { Comment } from 'src/comments/models/comment.entity';
 import { Post } from 'src/posts/models/post.entity';
 import { Reaction } from 'src/reactions/models/reaction.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
@@ -27,4 +28,7 @@ export class User {
 
   @OneToMany(() => Reaction, (reaction) => reaction.user)
   reactions: Reaction[];
+
+  @OneToMany(() => Comment, (comment) => comment.user)
+  comments: Comment[];
 }

@@ -30,8 +30,10 @@ export class ReactionsService {
     if (!user) throw new NotFoundException('User not found');
     if (!post) throw new NotFoundException('Post not found');
 
+    const { postId, ...reactionData } = reactionDto;
+
     const reaction = this.reactionRepository.create({
-      ...reactionDto,
+      ...reactionData,
       user,
       post,
     });
@@ -41,7 +43,10 @@ export class ReactionsService {
   async update(id: number, reactionDto: ReactionDto) {
     const reaction = this.reactionRepository.findOne({ where: { id: id } });
     if (!reaction) throw new NotFoundException('Reaction not found');
-    return this.reactionRepository.update(id, reactionDto);
+
+    const { postId, ...reactionData } = reactionDto;
+
+    return this.reactionRepository.update(id, reactionData);
   }
 
   async delete(id: number) {

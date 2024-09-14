@@ -1,3 +1,4 @@
+import { Comment } from 'src/comments/models/comment.entity';
 import { Post } from 'src/posts/models/post.entity';
 import { User } from 'src/users/models/user.entity';
 import {
@@ -5,6 +6,7 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -24,6 +26,9 @@ export class Reaction {
 
   @ManyToOne(() => Post, (post) => post.reactions, { eager: true })
   post: Post;
+
+  @OneToMany(() => Comment, (comment) => comment.reaction)
+  comments: Comment[];
 
   @CreateDateColumn()
   createdAt: Date;

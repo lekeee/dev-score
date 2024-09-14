@@ -41,7 +41,7 @@ export class ReactionsController {
 
   @UseGuards(JwtGuard)
   @Put(':id')
-  updatePost(
+  updateReaction(
     @Param('id', ParseIntPipe) id: number,
     @Body() reactionDto: ReactionDto,
   ) {
@@ -50,7 +50,7 @@ export class ReactionsController {
 
   @UseGuards(JwtGuard)
   @Delete(':id')
-  deletePost(@Param('id', ParseIntPipe) id: number) {
+  deleteReaction(@Param('id', ParseIntPipe) id: number) {
     return this.reactionService.delete(id);
   }
 }

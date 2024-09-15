@@ -1,4 +1,5 @@
 import { Comment } from 'src/comments/models/comment.entity';
+import { Like } from 'src/likes/models/like.entity';
 import { Post } from 'src/posts/models/post.entity';
 import { Reaction } from 'src/reactions/models/reaction.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
@@ -31,4 +32,7 @@ export class User {
 
   @OneToMany(() => Comment, (comment) => comment.user)
   comments: Comment[];
+
+  @OneToMany(() => Like, (like) => like.user)
+  likes: Like[];
 }

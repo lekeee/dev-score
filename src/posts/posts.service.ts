@@ -40,6 +40,11 @@ export class PostsService {
     await this.postRepository.save(post);
   }
 
+  async incrementLikesNumber(post: PostDto) {
+    post.likesNumber++;
+    await this.postRepository.save(post);
+  }
+
   async delete(id: number) {
     return this.postRepository.delete(id);
   }

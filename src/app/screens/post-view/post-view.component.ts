@@ -16,6 +16,7 @@ export class PostViewComponent implements OnInit {
     language: '',
     code: '',
     reactionsNumber: 0,
+    likesNumber: 0,
     user: undefined,
     createdAt: new Date(),
   };
@@ -35,6 +36,7 @@ export class PostViewComponent implements OnInit {
       next: (res) => {
         if (res === null) this.router.navigate(['']);
         this.post = res;
+        // console.log(this.post);
       },
       error: (err) => console.log(err),
     });

@@ -17,6 +17,12 @@ import { LikeDto } from './models/like.dto';
 export class LikesController {
   constructor(private readonly likeService: LikesService) {}
 
+  @UseGuards(JwtGuard)
+  @Get('post/:id')
+  isPostLikedByUser(@Param('id', ParseIntPipe) postId: number, @Req() req) {
+    return this.likeService.isPostLikedByUser(req.user.userId, postId);
+  }
+
   @Get()
   getLikes() {
     return this.likeService.findAll();
@@ -30,7 +36,7 @@ export class LikesController {
 
   @UseGuards(JwtGuard)
   @Delete(':id')
-  deleteLike(@Param('id', ParseIntPipe) id: number) {
-    return this.likeService.delete(id);
+  deleteLike(@Param('id', ParseIntPipe) postId: number, @Req() req) {
+    return this.likeService.delete(req.user.userId, postId);
   }
 }

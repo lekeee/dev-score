@@ -32,7 +32,7 @@ export class PostsService {
   async update(id: number, postDto: PostDto) {
     const post = this.postRepository.findOne({ where: { id: id } });
     if (!post) throw new NotFoundException('Post not found');
-    return this.postRepository.update(id, postDto);
+    return await this.postRepository.update(id, postDto);
   }
 
   async incrementReactionsNumber(post: PostDto) {
@@ -42,6 +42,11 @@ export class PostsService {
 
   async incrementLikesNumber(post: PostDto) {
     post.likesNumber++;
+    await this.postRepository.save(post);
+  }
+
+  async decrementLikesNumber(post: PostDto) {
+    post.likesNumber--;
     await this.postRepository.save(post);
   }
 

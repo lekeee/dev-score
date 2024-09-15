@@ -4,11 +4,12 @@ import { Like } from './models/like.entity';
 import { PostsService } from 'src/posts/posts.service';
 import { UsersService } from 'src/users/users.service';
 import { LikeDto } from './models/like.dto';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class LikesService {
   constructor(
-    @InjectRepository(Like) private likeRepository,
+    @InjectRepository(Like) private likeRepository: Repository<Like>,
     private userService: UsersService,
     private postService: PostsService,
   ) {}
@@ -19,6 +20,17 @@ export class LikesService {
 
   async findById(id: number) {
     return await this.likeRepository.findOne({ where: { id: id } });
+  }
+
+  async isPostLikedByUser(userId: number, postId: number) {
+    const like = await this.likeRepository.findOne({
+      where: {
+        user: { id: userId },
+        post: { id: postId },
+      },
+    });
+
+    return !!like;
   }
 
   async create(userId: number, likeDto: LikeDto) {
@@ -37,7 +49,22 @@ export class LikesService {
     return await this.likeRepository.save(like);
   }
 
-  async delete(id: number) {
-    return this.likeRepository.delete(id);
+  async delete(userId: number, postId: number) {
+    const user = await this.userService.findById(userId);
+    if (!user) throw new NotFoundException('User not found');
+
+    const post = await this.postService.findById(postId);
+    if (!post) throw new NotFoundException('Post not found');
+
+    const like = await this.likeRepository.findOne({
+      where: {
+        user: { id: userId },
+        post: { id: postId },
+      },
+    });
+    if (!like) throw new NotFoundException('Like not found');
+
+    await this.postService.decrementLikesNumber(post);
+    return await this.likeRepository.delete(like.id);
   }
 }

@@ -48,11 +48,11 @@ export class CommentsService {
 
     const { reactionId, ...commentData } = commentDto;
 
-    return this.commentRepository.update(id, commentData);
+    return await this.commentRepository.update(id, commentData);
   }
 
   async delete(id: number) {
-    return this.commentRepository.delete(id);
+    return await this.commentRepository.delete(id);
   }
 
   async getCommentsOfReaction(reactionId: number) {

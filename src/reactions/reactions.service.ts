@@ -48,7 +48,7 @@ export class ReactionsService {
 
     const { postId, ...reactionData } = reactionDto;
 
-    return this.reactionRepository.update(id, reactionData);
+    return await this.reactionRepository.update(id, reactionData);
   }
 
   async incrementCommentsNumber(reaction: Reaction) {
@@ -57,10 +57,12 @@ export class ReactionsService {
   }
 
   async delete(id: number) {
-    return this.reactionRepository.delete(id);
+    return await this.reactionRepository.delete(id);
   }
 
   async getReactionsOfPost(postId: number) {
-    return this.reactionRepository.find({ where: { post: { id: postId } } });
+    return await this.reactionRepository.find({
+      where: { post: { id: postId } },
+    });
   }
 }

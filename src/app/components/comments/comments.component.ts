@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ReactionService } from '../../core/services/reaction/reaction.service';
 import { Reaction } from '../../core/models/reaction';
@@ -12,6 +12,7 @@ import { ReactionDto } from '../../core/dtos/reaction';
 export class CommentsComponent {
   @Input() isFlex: boolean = false;
   @Input() postId: number = -1;
+  @Input() reactionsCount: number = 0;
   reaction$: Observable<Reaction[]> = of([]);
   reactionDto: ReactionDto = {
     type: -1,
@@ -20,7 +21,6 @@ export class CommentsComponent {
   };
 
   //for style
-  reactionsCount: number = 123;
   isShowed: boolean = false;
   isAddShowed: boolean = false;
   type: string = 'reaction';
@@ -29,6 +29,9 @@ export class CommentsComponent {
 
   loadReactions() {
     this.reaction$ = this.reactionService.getReactionsOfPost(this.postId);
+    this.reaction$.subscribe(
+      (elements) => (this.reactionsCount = elements.length)
+    );
     //this.reaction$.subscribe((res) => console.log(res));
   }
 
@@ -57,6 +60,7 @@ export class CommentsComponent {
       next: () => {
         this.reactionDto.text = '';
         this.reactionDto.type = -1;
+        this.isShowed = true;
         this.loadReactions();
       },
     });

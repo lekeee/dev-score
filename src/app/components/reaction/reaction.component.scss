@@ -1,3 +1,6 @@
+.container {
+}
+
 .reaction-div {
   display: flex;
   gap: 0.5em;
@@ -25,7 +28,7 @@
 .bottom-div span {
   font-weight: lighter;
   font-size: 12px;
-  color: var(--gary-color);
+  color: var(--gray-color);
 }
 
 .reply {
@@ -37,14 +40,21 @@
   font-weight: lighter;
   font-size: 12px;
   margin-left: 3em;
+  margin-bottom: 1em;
   cursor: pointer;
 }
 
 .post-comm-div {
+  display: flex;
+  justify-content: space-between;
   margin-left: 2em;
+  padding: 0.5em;
+  border-radius: 10px;
+  border: max(1px, 0.0625rem) solid #2a354b;
 }
 
 .comments-div {
+  margin-top: 1em;
   margin-left: 2em;
 }
 
@@ -52,9 +62,9 @@ input {
   background-color: transparent;
   border: none;
   color: white;
-  width: 90%;
   outline: none;
   font-size: 14px;
+  width: 100%;
 }
 
 .post-comment {

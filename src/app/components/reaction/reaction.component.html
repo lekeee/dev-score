@@ -7,7 +7,7 @@
         *ngIf="!reaction.post?.user?.image"
       />
       <img
-        src="http://localhost:3000/uploads/{{ reaction.post?.user?.image }}"
+        src="http://localhost:3000/uploads/{{ reaction.user?.image }}"
         alt="user-avatar"
         *ngIf="reaction.post?.user?.image"
       />
@@ -41,9 +41,10 @@
     <app-comment
       *ngFor="let comment of comment$ | async"
       [comment]="comment"
+      (onReplyClick)="replyToComment($event)"
     ></app-comment>
   </div>
-  <div class="post-comm-div" *ngIf="replayClicked">
+  <div class="post-comm-div" *ngIf="replyClicked">
     <input
       type="text"
       placeholder="Add a comment..."

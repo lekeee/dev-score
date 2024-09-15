@@ -4,6 +4,7 @@
     <mat-icon [ngClass]="{ rotate: isShowed }">keyboard_arrow_down</mat-icon>
   </div>
   <div
+    #reactions
     class="reactions-div"
     [ngClass]="{ 'reactions-div-flex': isFlex }"
     *ngIf="isShowed"

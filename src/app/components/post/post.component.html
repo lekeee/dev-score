@@ -67,6 +67,10 @@
         >
       </div>
     </div>
-    <app-comments [isFlex]="isFlex" [postId]="post.id!"></app-comments>
+    <app-comments
+      [isFlex]="isFlex"
+      [postId]="post.id!"
+      [reactionsCount]="post.reactionsNumber"
+    ></app-comments>
   </div>
 </div>

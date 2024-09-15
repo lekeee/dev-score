@@ -6,6 +6,7 @@ export interface Post {
   description: string;
   language: string;
   code: string;
+  reactionsNumber: number;
   user?: User;
   createdAt: Date;
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Comment } from '../../core/models/comment';
 import moment from 'moment';
 
@@ -13,8 +13,13 @@ export class CommentComponent implements OnInit {
     createdAt: new Date(),
   };
   postedTime: string = '';
+  @Output() onReplyClick = new EventEmitter<string>();
 
   ngOnInit(): void {
     this.postedTime = moment(this.comment.createdAt).fromNow();
+  }
+
+  replyClicked() {
+    this.onReplyClick.emit(this.comment.user?.username);
   }
 }

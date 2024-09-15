@@ -20,7 +20,7 @@ export class ReactionComponent implements OnInit {
     createdAt: new Date(),
   };
   postedTime: string = '';
-  replayClicked: boolean = false;
+  replyClicked: boolean = false;
   isCommentsShowed: boolean = false;
 
   comment: CommentDto = {
@@ -40,11 +40,12 @@ export class ReactionComponent implements OnInit {
     this.comment$ = this.commentService.getCommentsOfReaction(
       this.reaction.id!
     );
-    this.comment$.subscribe((res) => console.log(res));
+    //this.comment$.subscribe((res) => console.log(res));
   }
 
   onReplyClick() {
-    this.replayClicked = !this.replayClicked;
+    this.comment.text = '';
+    this.replyClicked = !this.replyClicked;
   }
 
   postComment() {
@@ -55,6 +56,7 @@ export class ReactionComponent implements OnInit {
       next: () => {
         this.comment.text = '';
         this.loadComments();
+        this.isCommentsShowed = true;
       },
     });
   }
@@ -62,5 +64,10 @@ export class ReactionComponent implements OnInit {
   showComments() {
     this.isCommentsShowed = true;
     this.loadComments();
+  }
+
+  replyToComment(event: string) {
+    this.replyClicked = true;
+    this.comment.text = '@' + event + ' ';
   }
 }

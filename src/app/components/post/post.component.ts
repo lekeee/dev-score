@@ -13,6 +13,7 @@ export class PostComponent {
     description: '',
     language: '',
     code: '',
+    reactionsNumber: 0,
     user: undefined,
     createdAt: new Date(),
   };

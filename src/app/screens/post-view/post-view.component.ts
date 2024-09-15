@@ -15,6 +15,7 @@ export class PostViewComponent implements OnInit {
     description: '',
     language: '',
     code: '',
+    reactionsNumber: 0,
     user: undefined,
     createdAt: new Date(),
   };

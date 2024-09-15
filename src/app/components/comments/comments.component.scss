@@ -11,6 +11,8 @@
   transition: all 0.4s;
   padding: 0.5em;
   border-radius: 10px;
+  margin-bottom: 0.5em;
+  border-bottom: max(1px, 0.0625rem) solid #2a354b;
 }
 
 .reactions-div {
@@ -19,7 +21,7 @@
   flex-direction: column;
   gap: 1em;
   overflow: auto;
-  margin-bottom: 1em;
+  padding-bottom: 0.5em;
 }
 
 .reactions-div-flex {
@@ -84,7 +86,7 @@
   background-color: transparent;
   border: none;
   color: white;
-  width: 90%;
+  width: 100%;
   outline: none;
   font-size: 14px;
 }

@@ -3,4 +3,5 @@ export class PostDto {
   description: string;
   language: string;
   code: string;
+  reactionsNumber: number;
 }

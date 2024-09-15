@@ -26,6 +26,9 @@ export class Post {
   @Column('text')
   code: string;
 
+  @Column({ default: 0 })
+  reactionsNumber: number;
+
   @ManyToOne(() => User, (user) => user.posts, { eager: true })
   user: User;
 

@@ -30,6 +30,8 @@ export class ReactionsService {
     if (!user) throw new NotFoundException('User not found');
     if (!post) throw new NotFoundException('Post not found');
 
+    this.postService.incrementReactionsNumber(post);
+
     const { postId, ...reactionData } = reactionDto;
 
     const reaction = this.reactionRepository.create({

@@ -35,6 +35,11 @@ export class PostsService {
     return this.postRepository.update(id, postDto);
   }
 
+  async incrementReactionsNumber(post: PostDto) {
+    post.reactionsNumber++;
+    await this.postRepository.save(post);
+  }
+
   async delete(id: number) {
     return this.postRepository.delete(id);
   }

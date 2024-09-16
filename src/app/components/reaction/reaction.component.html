@@ -2,14 +2,14 @@
   <div class="reaction-div">
     <div style="text-align: center">
       <img
-        src="/test-avatar.png"
+        src="/images/test-avatar.png"
         alt="user-avatar"
-        *ngIf="!reaction.post?.user?.image"
+        *ngIf="!reaction.user?.image"
       />
       <img
         src="http://localhost:3000/uploads/{{ reaction.user?.image }}"
         alt="user-avatar"
-        *ngIf="reaction.post?.user?.image"
+        *ngIf="reaction.user?.image"
       />
       <mat-icon
         [ngStyle]="

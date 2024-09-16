@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Notification } from '../../core/types/notifications';
 
 @Component({
   selector: 'app-post-activity',
@@ -6,5 +7,10 @@ import { Component, Input } from '@angular/core';
   styleUrl: './post-activity.component.scss',
 })
 export class PostActivityComponent {
-  @Input() type: number = 0;
+  @Input() notification: Notification = {
+    user: undefined,
+    text: '',
+    date: new Date(),
+    time: '',
+  };
 }

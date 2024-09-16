@@ -1,9 +1,17 @@
 <div class="container">
-  <img src="/test-avatar.png" alt="user-avatar" />
+  <img
+    src="images/test-avatar.png"
+    alt="user-avatar"
+    *ngIf="!notification.user?.image"
+  />
+  <img
+    [src]="['http://localhost:3000/uploads/' + notification.user?.image]"
+    alt="user-avatar"
+    *ngIf="notification.user?.image"
+  />
   <span
-    ><b>architectanddesigsadasdsaadn</b>
-    <span *ngIf="type === 0"> liked your post. </span>
-    <span *ngIf="type === 1"> commented on your post. </span>
-    <span style="font-weight: lighter">1h ago</span>
+    ><b>{{ notification.user?.username }}</b>
+    <span> {{ notification.text }}</span>
+    <span style="font-weight: lighter">{{ notification.time }}</span>
   </span>
 </div>

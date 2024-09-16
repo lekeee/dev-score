@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Post } from '../../core/models/post';
 import { PostService } from '../../core/services/post/post.service';
@@ -8,10 +8,12 @@ import { PostService } from '../../core/services/post/post.service';
   templateUrl: './trending.component.html',
   styleUrl: './trending.component.scss',
 })
-export class TrendingComponent {
+export class TrendingComponent implements OnInit {
   trendingPost$: Observable<Post[]> = of([]);
 
-  constructor(private postService: PostService) {
-    this.trendingPost$ = postService.getTrendingPosts();
+  constructor(private postService: PostService) {}
+
+  ngOnInit(): void {
+    this.trendingPost$ = this.postService.getTrendingPosts();
   }
 }

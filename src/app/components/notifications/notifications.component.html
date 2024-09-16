@@ -1,11 +1,11 @@
-<div class="container">
-  <h3>Notifications</h3>
-  <div class="notify-div">
-    <app-post-activity></app-post-activity>
-    <app-post-activity></app-post-activity>
-    <app-post-activity></app-post-activity>
-    <app-post-activity></app-post-activity>
-    <app-post-activity></app-post-activity>
-    <app-post-activity></app-post-activity>
+<div class="container" *ngIf="isLoggedIn">
+  <div class="blur">
+    <h3>Notifications</h3>
+    <div class="notify-div">
+      <app-post-activity
+        *ngFor="let notification of notifications"
+        [notification]="notification"
+      ></app-post-activity>
+    </div>
   </div>
 </div>

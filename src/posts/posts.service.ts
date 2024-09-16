@@ -20,6 +20,13 @@ export class PostsService {
     return await this.postRepository.findOne({ where: { id: id } });
   }
 
+  async findTrendingPosts() {
+    return await this.postRepository.find({
+      order: { likesNumber: 'DESC' },
+      take: 6,
+    });
+  }
+
   async create(userId: number, postDto: PostDto) {
     const user = await this.userService.findById(userId);
 

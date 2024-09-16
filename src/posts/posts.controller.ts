@@ -25,6 +25,11 @@ export class PostsController {
     return this.postService.getPostsByUser(req.user.userId);
   }
 
+  @Get('trending')
+  getTrendingPosts() {
+    return this.postService.findTrendingPosts();
+  }
+
   @Get()
   getPosts() {
     return this.postService.findAll();

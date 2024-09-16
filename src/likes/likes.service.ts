@@ -33,6 +33,16 @@ export class LikesService {
     return !!like;
   }
 
+  async getNotifications(userId: number) {
+    const user = await this.userService.findById(userId, {
+      relations: ['posts', 'posts.likes'],
+    });
+
+    if (!user) throw new NotFoundException('User not found');
+
+    return user.posts.flatMap((post) => post.likes);
+  }
+
   async create(userId: number, likeDto: LikeDto) {
     const user = await this.userService.findById(userId);
     const post = await this.postService.findById(likeDto.postId);

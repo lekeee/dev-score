@@ -23,6 +23,12 @@ export class CommentsController {
     return this.commentService.getCommentsOfReaction(id);
   }
 
+  @UseGuards(JwtGuard)
+  @Get('notifications')
+  getCommentsOfUserReactons(@Req() req) {
+    return this.commentService.getNotifications(req.user.userId);
+  }
+
   @Get()
   getComments() {
     return this.commentService.findAll();

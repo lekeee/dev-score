@@ -65,4 +65,14 @@ export class ReactionsService {
       where: { post: { id: postId } },
     });
   }
+
+  async getNotifications(userId: number) {
+    const user = await this.userService.findById(userId, {
+      relations: ['posts', 'posts.reactions'],
+    });
+
+    if (!user) throw new NotFoundException('User not found');
+
+    return user.posts.flatMap((post) => post.reactions);
+  }
 }

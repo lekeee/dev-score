@@ -23,6 +23,12 @@ export class LikesController {
     return this.likeService.isPostLikedByUser(req.user.userId, postId);
   }
 
+  @UseGuards(JwtGuard)
+  @Get('notifications')
+  getLikesOfUserPosts(@Req() req) {
+    return this.likeService.getNotifications(req.user.userId);
+  }
+
   @Get()
   getLikes() {
     return this.likeService.findAll();

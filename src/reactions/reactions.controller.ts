@@ -23,6 +23,12 @@ export class ReactionsController {
     return this.reactionService.getReactionsOfPost(id);
   }
 
+  @UseGuards(JwtGuard)
+  @Get('notifications')
+  getReactionsOfUserPosts(@Req() req) {
+    return this.reactionService.getNotifications(req.user.userId);
+  }
+
   @Get()
   getReactions() {
     return this.reactionService.findAll();

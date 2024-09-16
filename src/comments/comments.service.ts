@@ -23,6 +23,16 @@ export class CommentsService {
     return await this.commentRepository.findOne({ where: { id: id } });
   }
 
+  async getNotifications(userId: number) {
+    const user = await this.userService.findById(userId, {
+      relations: ['reactions', 'reactions.comments'],
+    });
+
+    if (!user) throw new NotFoundException('User not found');
+
+    return user.reactions.flatMap((reaction) => reaction.comments);
+  }
+
   async create(userId: number, commentDto: CommentDto) {
     const user = await this.userService.findById(userId);
     const reaction = await this.reactionService.findById(commentDto.reactionId);

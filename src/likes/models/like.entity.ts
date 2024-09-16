@@ -12,7 +12,7 @@ export class Like {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => User, (user) => user.likes)
+  @ManyToOne(() => User, (user) => user.likes, { eager: true })
   user: User;
 
   @ManyToOne(() => Post, (post) => post.likes)

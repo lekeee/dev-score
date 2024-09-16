@@ -12,6 +12,11 @@
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
 }
 
+h3 {
+  margin: 0 0 0.5em 0;
+  border-bottom: max(1px, 0.0625rem) solid #2a354b;
+}
+
 .notify-div {
   display: flex;
   flex-direction: column;

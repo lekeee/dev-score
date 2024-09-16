@@ -27,6 +27,10 @@ export class PostService {
     return this.http.get<Post[]>('/posts/user');
   }
 
+  getTrendingPosts() {
+    return this.http.get<Post[]>('/posts/trending');
+  }
+
   createPost(post: Post) {
     return this.http.post<Post>('/posts', post);
   }

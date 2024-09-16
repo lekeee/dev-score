@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Post } from '../../core/models/post';
 import { LikeService } from '../../core/services/like/like.service';
+import { AuthService } from '../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-post',
@@ -23,12 +24,18 @@ export class PostComponent implements OnChanges {
   isTruncated: boolean = false;
   isLiked = false;
 
-  constructor(private likeService: LikeService) {}
+  constructor(
+    private likeService: LikeService,
+    private authService: AuthService
+  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['post'] && this.post.id) {
-      this.likeService.isPostLikedByUser(this.post.id).subscribe((res) => {
-        this.isLiked = res;
+      this.authService.loggedIn$.subscribe((isLogged) => {
+        if (isLogged)
+          this.likeService.isPostLikedByUser(this.post.id!).subscribe((res) => {
+            this.isLiked = res;
+          });
       });
     }
   }

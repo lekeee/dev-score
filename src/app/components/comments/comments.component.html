@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="show-div" (click)="showReactions()">
+  <div class="show-div" (click)="showReactions()" *ngIf="reactionsCount > 0">
     <span>View all {{ reactionsCount }} reactions</span>
     <mat-icon [ngClass]="{ rotate: isShowed }">keyboard_arrow_down</mat-icon>
   </div>

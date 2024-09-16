@@ -2,39 +2,13 @@
   <h2>Trending now</h2>
   <div class="cards-div">
     <div class="cards-div">
-      <div class="card">
-        <h3>Sorting Algorithm Problems</h3>
-        <div class="lang-div"><span></span>PHP</div>
-        <div class="item-bg"></div>
-      </div>
-
-      <div class="card">
-        <h3>Dynamic Programming Challenges</h3>
-        <div class="lang-div"><span></span>JavaScript</div>
-        <div class="item-bg"></div>
-      </div>
-
-      <div class="card">
-        <h3>Graph Theory Puzzles</h3>
-        <div class="lang-div"><span></span>Python</div>
-        <div class="item-bg"></div>
-      </div>
-
-      <div class="card">
-        <h3>Greedy Algorithm Problems</h3>
-        <div class="lang-div"><span></span>Java</div>
-        <div class="item-bg"></div>
-      </div>
-
-      <div class="card">
-        <h3>Backtracking Exercises</h3>
-        <div class="lang-div"><span></span>C++</div>
-        <div class="item-bg"></div>
-      </div>
-
-      <div class="card">
-        <h3>Divide and Conquer Tasks</h3>
-        <div class="lang-div"><span></span>Ruby</div>
+      <div
+        class="card"
+        [routerLink]="['/post', post.id]"
+        *ngFor="let post of trendingPost$ | async"
+      >
+        <h3>{{ post.title }}</h3>
+        <div class="lang-div"><span></span>{{ post.language }}</div>
         <div class="item-bg"></div>
       </div>
     </div>

@@ -23,6 +23,14 @@ export class PostService {
     return this.http.get<Post>('/posts/' + id);
   }
 
+  getPostByLanguage(language: string) {
+    return this.http.get<Post[]>(`/posts/${encodeURIComponent(language)}`);
+  }
+
+  getPostByTitle(title: string) {
+    return this.http.get<Post[]>(`/posts/search/${encodeURIComponent(title)}`);
+  }
+
   getPostsByUser() {
     return this.http.get<Post[]>('/posts/user');
   }

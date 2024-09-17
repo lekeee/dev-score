@@ -25,10 +25,25 @@
   border-radius: 20px 0 0 20px;
 }
 
+.pre-div {
+  padding: 0.5em;
+  border-bottom: max(1px, 0.0625rem) solid #2a354b;
+  display: flex;
+  justify-content: space-between;
+}
+
 h3 {
   margin: 0;
-  padding: 0.5em 0;
-  border-bottom: max(1px, 0.0625rem) solid #2a354b;
+}
+
+mat-icon {
+  font-family: "Material Icons Outlined", sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+mat-icon:hover {
+  color: var(--main-color-gold);
 }
 
 .notify-div {

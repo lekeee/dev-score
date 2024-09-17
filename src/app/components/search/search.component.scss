@@ -1,6 +1,6 @@
-.container {
+.container form {
   display: flex;
-  position: relative;
+
   gap: 1em;
   width: min(600px, 100vw);
   padding: 1em;
@@ -36,7 +36,7 @@
 }
 
 @media (max-width: 768px) {
-  .container {
+  .container form {
     gap: 0.5em;
   }
 

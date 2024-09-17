@@ -1,6 +1,9 @@
-<div class="container" *ngIf="isLoggedIn">
+<div class="container" *ngIf="isLoggedIn" [@slideInOut]="stateName">
   <div class="blur">
-    <h3>Notifications</h3>
+    <div class="pre-div">
+      <h3>Notifications</h3>
+      <mat-icon (click)="clickedClose()">east</mat-icon>
+    </div>
     <div class="notify-div">
       <app-post-activity
         *ngFor="let notification of notifications"

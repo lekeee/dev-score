@@ -1,9 +1,17 @@
 <div class="container">
-  <div class="search-div">
-    <input type="text" placeholder="Search by title" />
-    <mat-icon>search</mat-icon>
-  </div>
-  <div class="select-div">
-    <app-select-language></app-select-language>
-  </div>
+  <form [formGroup]="searchForm">
+    <div class="search-div">
+      <input
+        type="text"
+        placeholder="Search by title"
+        formControlName="title"
+      />
+      <mat-icon (click)="onSearchClick()">search</mat-icon>
+    </div>
+    <div class="select-div">
+      <app-select-language
+        [control]="searchForm.controls.language"
+      ></app-select-language>
+    </div>
+  </form>
 </div>

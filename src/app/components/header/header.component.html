@@ -55,4 +55,7 @@
   </div>
 </header>
 
-<app-notifications *ngIf="isNotificationsOpen"></app-notifications>
+<app-notifications
+  (notfCloseClick)="isNotificationsOpen = false"
+  [isOpen]="isNotificationsOpen"
+></app-notifications>

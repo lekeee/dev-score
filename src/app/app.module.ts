@@ -39,17 +39,14 @@ import { PostViewComponent } from './screens/post-view/post-view.component';
 import { PostActivityComponent } from './components/post-activity/post-activity.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { ErrorComponent } from './components/error/error.component';
-import {
-  HttpClientModule,
-  provideHttpClient,
-  withInterceptors,
-} from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { InputErrorComponent } from './components/input-error/input-error.component';
 import { httpInterceptor } from './core/interceptors/http.interceptor';
 import { jwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { PopupComponent } from './components/popup/popup.component';
 import { EditComponent } from './screens/edit/edit.component';
 import { ReactionComponent } from './components/reaction/reaction.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -94,6 +91,7 @@ import { ReactionComponent } from './components/reaction/reaction.component';
     FormsModule,
     ReactiveFormsModule,
     HighlightModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     provideClientHydration(),

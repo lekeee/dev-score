@@ -15,5 +15,15 @@ export class PostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.post$ = this.postService.getPosts();
+    //this.post$.subscribe((res) => console.log(res));
+  }
+
+  onLanguageSelect(event: string) {
+    this.post$ = this.postService.getPostByLanguage(event);
+    //this.post$.subscribe((res) => console.log(res));
+  }
+
+  onSearch(event: string) {
+    this.post$ = this.postService.getPostByTitle(event);
   }
 }

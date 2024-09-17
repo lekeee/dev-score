@@ -1,4 +1,7 @@
 <div class="container">
-  <app-search></app-search>
+  <app-search
+    (languageSelected)="onLanguageSelect($event)"
+    (searchClicked)="onSearch($event)"
+  ></app-search>
   <app-post *ngFor="let post of post$ | async" [post]="post"></app-post>
 </div>

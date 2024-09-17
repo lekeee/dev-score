@@ -35,6 +35,16 @@ export class PostsController {
     return this.postService.findAll();
   }
 
+  @Get('search/:title')
+  searchPostsByTitle(@Param('title') title: string) {
+    return this.postService.findByTitle(title);
+  }
+
+  @Get(':language')
+  getPostByLanguage(@Param('language') language: string) {
+    return this.postService.findByLanguage(language);
+  }
+
   @Get(':id')
   getPost(@Param('id', ParseIntPipe) id: number) {
     return this.postService.findById(id);

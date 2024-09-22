@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-user',
@@ -8,19 +9,16 @@ import { Router } from '@angular/router';
   styleUrl: './user.component.scss',
 })
 export class UserComponent {
-  onDashboard: boolean = true;
-  onPosts: boolean = false;
+  showComponent = new BehaviorSubject<string>('dashboard');
 
   constructor(private authService: AuthService, private router: Router) {}
 
   showDashboard() {
-    this.onDashboard = true;
-    this.onPosts = false;
+    this.showComponent.next('dashboard');
   }
 
   showPosts() {
-    this.onDashboard = false;
-    this.onPosts = true;
+    this.showComponent.next('posts');
   }
 
   logutUser() {

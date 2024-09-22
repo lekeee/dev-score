@@ -7,6 +7,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-custom-button',
@@ -35,8 +36,10 @@ export class CustomButtonComponent {
     if (typeof window !== 'undefined') {
       this.checkButtonSize();
 
-      window.addEventListener('resize', () => {
-        this.checkButtonSize();
+      fromEvent(window, 'resize').subscribe(() => this.checkButtonSize());
+
+      fromEvent(this.button.nativeElement, 'click').subscribe(() => {
+        this.onClick();
       });
     }
   }
@@ -45,9 +48,9 @@ export class CustomButtonComponent {
     const buttonWidth = this.button.nativeElement.offsetWidth;
     const isSmall = buttonWidth < 120;
 
-    setTimeout(() => {
+    if (this.isSmall !== isSmall) {
       this.isSmall = isSmall;
       this.cdr.detectChanges();
-    });
+    }
   }
 }

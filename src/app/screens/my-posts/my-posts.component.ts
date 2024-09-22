@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../core/services/post/post.service';
 import { Post } from '../../core/models/post';
 import { Router } from '@angular/router';
-import { Observable, of, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, Observable, of, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-my-posts',
@@ -12,13 +12,14 @@ import { Observable, of, switchMap, tap } from 'rxjs';
 export class MyPostsComponent implements OnInit {
   myPost$: Observable<Post[]> = of([]);
   idToDelete: number = -1;
-  isPopupOpened: boolean = false;
+
+  isPopupOpened = new BehaviorSubject<boolean>(false);
 
   constructor(private postService: PostService, private router: Router) {}
 
   ngOnInit(): void {
     this.myPost$ = this.postService.getPostsByUser();
-    this.myPost$.subscribe((res) => console.log(res));
+    //this.myPost$.subscribe((res) => console.log(res));
   }
 
   showPost(id: number | undefined) {
@@ -32,7 +33,7 @@ export class MyPostsComponent implements OnInit {
         switchMap(() => this.postService.getPostsByUser()),
         tap(() => {
           this.idToDelete = -1;
-          this.isPopupOpened = false;
+          this.isPopupOpened.next(false);
         })
       )
       .subscribe((posts) => {
@@ -42,12 +43,12 @@ export class MyPostsComponent implements OnInit {
 
   openPopup(id: number) {
     this.idToDelete = id;
-    this.isPopupOpened = true;
+    this.isPopupOpened.next(true);
   }
 
   closePopup() {
-    this.isPopupOpened = false;
     this.idToDelete = -1;
+    this.isPopupOpened.next(false);
   }
 
   openEditView(id: number) {

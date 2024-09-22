@@ -3,14 +3,22 @@
     <ul>
       <li
         (click)="showDashboard()"
-        [ngStyle]="onDashboard ? { color: 'var(--main-color-gold)' } : {}"
+        [ngStyle]="
+          showComponent.value === 'dashboard'
+            ? { color: 'var(--main-color-gold)' }
+            : {}
+        "
       >
         <mat-icon class="icon">dashboard</mat-icon>
         <span class="text">Dashboard</span>
       </li>
       <li
         (click)="showPosts()"
-        [ngStyle]="onPosts ? { color: 'var(--main-color-gold)' } : {}"
+        [ngStyle]="
+          showComponent.value === 'posts'
+            ? { color: 'var(--main-color-gold)' }
+            : {}
+        "
       >
         <mat-icon class="icon">list_alt</mat-icon>
         <span class="text">My Posts</span>
@@ -25,7 +33,7 @@
     </div>
   </div>
   <div class="right-div">
-    <app-dashboard *ngIf="onDashboard"></app-dashboard>
-    <app-my-posts *ngIf="onPosts"></app-my-posts>
+    <app-dashboard *ngIf="showComponent.value === 'dashboard'"></app-dashboard>
+    <app-my-posts *ngIf="showComponent.value === 'posts'"></app-my-posts>
   </div>
 </div>

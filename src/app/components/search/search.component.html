@@ -6,7 +6,9 @@
         placeholder="Search by title"
         formControlName="title"
       />
-      <mat-icon (click)="onSearchClick()">search</mat-icon>
+      <div #searchIcon>
+        <mat-icon>search</mat-icon>
+      </div>
     </div>
     <div class="select-div">
       <app-select-language

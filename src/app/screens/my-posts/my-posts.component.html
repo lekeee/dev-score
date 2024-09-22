@@ -18,7 +18,7 @@
   </div>
 </div>
 <app-popup
-  *ngIf="isPopupOpened"
+  *ngIf="isPopupOpened.value"
   (clickedNo)="closePopup()"
   (clickedYes)="deletePost()"
 ></app-popup>

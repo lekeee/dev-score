@@ -1,20 +1,29 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { UserService } from '../../core/services/user/user.service';
 import { User } from '../../core/models/user';
-import { map, Observable, of } from 'rxjs';
+import {
+  map,
+  Observable,
+  of,
+  Subscription,
+  fromEvent,
+  BehaviorSubject,
+} from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
+  isScrolled: boolean = false;
+  isNotificationsOpen = new BehaviorSubject<boolean>(false);
+
   private userId: number = -1;
   private user: Observable<User> = of();
-  isScrolled: boolean = false;
-  isNotificationsOpen: boolean = false;
   public image: string = '';
+  private scrollSubscription!: Subscription;
 
   constructor(
     private authService: AuthService,
@@ -37,21 +46,28 @@ export class HeaderComponent implements OnInit {
               this.image = image;
             },
           });
-      } else this.image = '';
+      } else {
+        this.image = '';
+      }
     });
+    if (typeof window !== 'undefined')
+      this.scrollSubscription = fromEvent(window, 'scroll').subscribe(() => {
+        const scrollPosition =
+          window.scrollY ||
+          document.documentElement.scrollTop ||
+          document.body.scrollTop ||
+          0;
+        this.isScrolled = scrollPosition > 60;
+      });
   }
 
-  @HostListener('window:scroll', [])
-  onScroll() {
-    const scrollPosition =
-      window.scrollY ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop ||
-      0;
-    this.isScrolled = scrollPosition > 60;
+  ngOnDestroy(): void {
+    if (this.scrollSubscription) {
+      this.scrollSubscription.unsubscribe();
+    }
   }
 
   toogleNoitifications() {
-    this.isNotificationsOpen = !this.isNotificationsOpen;
+    this.isNotificationsOpen.next(!this.isNotificationsOpen.value);
   }
 }

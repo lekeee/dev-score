@@ -8,6 +8,9 @@ import {
   of,
   switchMap,
 } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../app.state';
+import { selectAllPosts } from '../../core/store/post/post.selectors';
 
 @Component({
   selector: 'app-posts',
@@ -20,14 +23,10 @@ export class PostsComponent implements OnInit {
   private languageFilter$ = new BehaviorSubject<string>('');
   private titleFilter$ = new BehaviorSubject<string>('');
 
-  constructor(private postService: PostService) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.post$ = combineLatest([this.titleFilter$, this.languageFilter$]).pipe(
-      switchMap(([title, language]) =>
-        this.postService.getPosts(title, language)
-      )
-    );
+    this.post$ = this.store.select(selectAllPosts);
   }
 
   onLanguageSelect(event: string) {

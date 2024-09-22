@@ -56,6 +56,6 @@
 </header>
 
 <app-notifications
-  (notfCloseClick)="isNotificationsOpen = false"
-  [isOpen]="isNotificationsOpen"
+  (notfCloseClick)="isNotificationsOpen.next(false)"
+  [isOpen]="isNotificationsOpen.value"
 ></app-notifications>

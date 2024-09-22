@@ -47,6 +47,11 @@ import { PopupComponent } from './components/popup/popup.component';
 import { EditComponent } from './screens/edit/edit.component';
 import { ReactionComponent } from './components/reaction/reaction.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './app.state';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { PostEffects } from './core/store/post/post.effects';
 
 @NgModule({
   declarations: [
@@ -92,6 +97,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     HighlightModule,
     BrowserAnimationsModule,
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      autoPause: true,
+    }),
+    EffectsModule.forRoot([PostEffects]),
   ],
   providers: [
     provideClientHydration(),

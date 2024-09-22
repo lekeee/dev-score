@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Post } from './models/post.entity';
-import { ILike, Repository } from 'typeorm';
+import { FindOptionsWhere, ILike, Repository } from 'typeorm';
 import { PostDto } from './models/post.dto';
 import { UsersService } from 'src/users/users.service';
 
@@ -12,22 +12,20 @@ export class PostsService {
     private userService: UsersService,
   ) {}
 
-  async findAll() {
-    return await this.postRepository.find({ order: { createdAt: 'DESC' } });
+  async findAll(filter?: { title?: string; language?: string }) {
+    const where: FindOptionsWhere<Post> = {};
+
+    if (filter.language) where.language = filter.language;
+    if (filter.title) where.title = ILike(`%${filter.title}%`);
+
+    return await this.postRepository.find({
+      where,
+      order: { createdAt: 'DESC' },
+    });
   }
 
   async findById(id: number) {
     return await this.postRepository.findOne({ where: { id: id } });
-  }
-
-  async findByLanguage(langauge: string) {
-    return await this.postRepository.find({ where: { language: langauge } });
-  }
-
-  async findByTitle(title: string) {
-    return await this.postRepository.find({
-      where: { title: ILike(`%${title}%`) },
-    });
   }
 
   async findTrendingPosts() {

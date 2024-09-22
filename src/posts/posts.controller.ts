@@ -7,6 +7,7 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  Query,
   Req,
   UseGuards,
 } from '@nestjs/common';
@@ -31,18 +32,12 @@ export class PostsController {
   }
 
   @Get()
-  getPosts() {
-    return this.postService.findAll();
-  }
-
-  @Get('search/:title')
-  searchPostsByTitle(@Param('title') title: string) {
-    return this.postService.findByTitle(title);
-  }
-
-  @Get(':language')
-  getPostByLanguage(@Param('language') language: string) {
-    return this.postService.findByLanguage(language);
+  getPosts(
+    @Query('title') title?: string,
+    @Query('language') language?: string,
+  ) {
+    const filter = { title, language };
+    return this.postService.findAll(filter);
   }
 
   @Get(':id')

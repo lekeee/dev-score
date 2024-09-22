@@ -18,6 +18,7 @@ export class MyPostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.myPost$ = this.postService.getPostsByUser();
+    this.myPost$.subscribe((res) => console.log(res));
   }
 
   showPost(id: number | undefined) {

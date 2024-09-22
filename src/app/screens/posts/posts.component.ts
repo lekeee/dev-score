@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../core/services/post/post.service';
 import { Post } from '../../core/models/post';
-import { Observable, of } from 'rxjs';
+import {
+  BehaviorSubject,
+  combineLatest,
+  Observable,
+  of,
+  switchMap,
+} from 'rxjs';
 
 @Component({
   selector: 'app-posts',
@@ -11,19 +17,24 @@ import { Observable, of } from 'rxjs';
 export class PostsComponent implements OnInit {
   post$: Observable<Post[]> = of([]);
 
+  private languageFilter$ = new BehaviorSubject<string>('');
+  private titleFilter$ = new BehaviorSubject<string>('');
+
   constructor(private postService: PostService) {}
 
   ngOnInit(): void {
-    this.post$ = this.postService.getPosts();
-    //this.post$.subscribe((res) => console.log(res));
+    this.post$ = combineLatest([this.titleFilter$, this.languageFilter$]).pipe(
+      switchMap(([title, language]) =>
+        this.postService.getPosts(title, language)
+      )
+    );
   }
 
   onLanguageSelect(event: string) {
-    this.post$ = this.postService.getPostByLanguage(event);
-    //this.post$.subscribe((res) => console.log(res));
+    this.languageFilter$.next(event);
   }
 
   onSearch(event: string) {
-    this.post$ = this.postService.getPostByTitle(event);
+    this.titleFilter$.next(event);
   }
 }

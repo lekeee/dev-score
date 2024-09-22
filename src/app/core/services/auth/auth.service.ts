@@ -12,11 +12,14 @@ import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 })
 export class AuthService {
   private platformId: Object;
+  private token: string | null = null;
   constructor(
     private http: HttpClient,
     @Inject(PLATFORM_ID) platformId: Object
   ) {
     this.platformId = platformId;
+    if (isPlatformBrowser(this.platformId))
+      this.token = localStorage.getItem(environment.JWT_NAME);
   }
 
   private loggedInSubject = new BehaviorSubject<boolean>(this.isAuth()!!);
@@ -53,10 +56,9 @@ export class AuthService {
   isAuth() {
     if (!isPlatformBrowser(this.platformId)) return;
 
-    const token = this.getAuthToken();
-    if (!token) return false;
+    if (!this.token) return false;
 
-    let decodedToken = jwtDecode(token);
+    let decodedToken = jwtDecode(this.token);
 
     return decodedToken && decodedToken.exp
       ? decodedToken.exp > Date.now() / 1000
@@ -69,12 +71,10 @@ export class AuthService {
   }
 
   getAuthToken() {
-    if (!isPlatformBrowser(this.platformId)) return;
-    return localStorage.getItem(environment.JWT_NAME);
+    return this.token;
   }
 
   getAuthId(): number {
-    const token = this.getAuthToken();
-    return token ? Number(jwtDecode(token!).sub) : -1;
+    return this.token ? Number(jwtDecode(this.token!).sub) : -1;
   }
 }

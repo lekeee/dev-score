@@ -36,7 +36,7 @@ export class PostViewComponent implements OnInit {
       next: (res) => {
         if (res === null) this.router.navigate(['']);
         this.post = res;
-        // console.log(this.post);
+        // console.log(this.id);
       },
       error: (err) => console.log(err),
     });

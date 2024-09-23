@@ -33,7 +33,7 @@ export class SearchComponent implements AfterViewInit {
 
     fromEvent(this.searchIcon.nativeElement, 'click').subscribe(() => {
       let title = this.searchForm.get('title')?.value;
-      if (title) this.searchClicked.emit(title!);
+      if (title != '') this.searchClicked.emit(title!);
     });
   }
 }

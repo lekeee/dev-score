@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PostService } from '../../core/services/post/post.service';
 import { Post } from '../../core/models/post';
 import {
   BehaviorSubject,
@@ -10,7 +9,9 @@ import {
 } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../app.state';
-import { selectAllPosts } from '../../core/store/post/post.selectors';
+import { selectFilteredPosts } from '../../core/store/post/post.selectors';
+import { setFilters } from '../../core/store/post/post.actions';
+import { Filters } from '../../core/types/filters';
 
 @Component({
   selector: 'app-posts',
@@ -26,7 +27,15 @@ export class PostsComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.post$ = this.store.select(selectAllPosts);
+    this.post$ = this.store.select(selectFilteredPosts);
+
+    combineLatest([this.titleFilter$, this.languageFilter$]).subscribe(
+      ([title, language]) => {
+        this.store.dispatch(
+          setFilters({ filters: { title: title, language: language } })
+        );
+      }
+    );
   }
 
   onLanguageSelect(event: string) {

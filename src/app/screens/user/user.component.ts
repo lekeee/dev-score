@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../core/services/auth/auth.service';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
+import { logout } from '../../core/store/auth/auth.actions';
 
 @Component({
   selector: 'app-user',
@@ -11,7 +11,7 @@ import { BehaviorSubject } from 'rxjs';
 export class UserComponent {
   showComponent = new BehaviorSubject<string>('dashboard');
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private store: Store) {}
 
   showDashboard() {
     this.showComponent.next('dashboard');
@@ -22,7 +22,6 @@ export class UserComponent {
   }
 
   logutUser() {
-    this.authService.logout();
-    this.router.navigate(['login']);
+    this.store.dispatch(logout());
   }
 }

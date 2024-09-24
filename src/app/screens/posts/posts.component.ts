@@ -1,17 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../../core/models/post';
-import {
-  BehaviorSubject,
-  combineLatest,
-  Observable,
-  of,
-  switchMap,
-} from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../app.state';
 import { selectFilteredPosts } from '../../core/store/post/post.selectors';
 import { setFilters } from '../../core/store/post/post.actions';
-import { Filters } from '../../core/types/filters';
 
 @Component({
   selector: 'app-posts',
@@ -24,7 +16,7 @@ export class PostsComponent implements OnInit {
   private languageFilter$ = new BehaviorSubject<string>('');
   private titleFilter$ = new BehaviorSubject<string>('');
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.post$ = this.store.select(selectFilteredPosts);

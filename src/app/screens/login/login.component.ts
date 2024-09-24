@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../core/services/auth/auth.service';
+import { Store } from '@ngrx/store';
+import { Observable, of } from 'rxjs';
 import { AuthLogin } from '../../core/dtos/auth-login';
-import { Router } from '@angular/router';
+import { login } from '../../core/store/auth/auth.actions';
+import { selectResponseMessage } from '../../core/store/auth/auth.selectors';
 import { ResponseMessage } from '../../core/types/response-message';
 
 @Component({
@@ -19,20 +21,26 @@ export class LoginComponent {
     ]),
   });
 
-  message: ResponseMessage = { type: '', text: '' };
+  message$: Observable<ResponseMessage> = of();
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private store: Store) {
+    this.message$ = store.select(selectResponseMessage);
+  }
 
   onSubmit() {
     if (this.loginForm.invalid) return;
 
-    this.authService.login(this.loginForm.value as AuthLogin).subscribe({
-      next: (res) => {
-        this.router.navigate(['']);
-      },
-      error: (err) => (
-        (this.message.text = err.message), (this.message.type = 'error')
-      ),
-    });
+    this.store.dispatch(
+      login({ authLogin: this.loginForm.value as AuthLogin })
+    );
+
+    // this.authService.login(this.loginForm.value as AuthLogin).subscribe({
+    //   next: (res) => {
+    //     this.router.navigate(['']);
+    //   },
+    //   error: (err) => (
+    //     (this.message.text = err.message), (this.message.type = 'error')
+    //   ),
+    // });
   }
 }

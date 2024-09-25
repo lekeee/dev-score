@@ -1,11 +1,11 @@
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { AuthLogin } from '../../dtos/auth-login';
-import { environment } from '../../../../environments/environment.development';
 import { jwtDecode } from 'jwt-decode';
-import { isPlatformBrowser } from '@angular/common';
-import { AuthRegister } from '../../dtos/auth-register';
 import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
+import { environment } from '../../../../environments/environment.development';
+import { AuthLogin } from '../../dtos/auth-login';
+import { AuthRegister } from '../../dtos/auth-register';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +21,7 @@ export class AuthService {
     if (isPlatformBrowser(this.platformId))
       this.token = localStorage.getItem(environment.JWT_NAME);
   }
-
+  //obrisati ovaj tok totalno nakon impl stora
   private loggedInSubject = new BehaviorSubject<boolean>(this.isAuth()!!);
   public loggedIn$ = this.loggedInSubject.asObservable();
 
@@ -65,6 +65,14 @@ export class AuthService {
       : false;
   }
 
+  isTokenValid(token: string) {
+    let decodedToken = jwtDecode(token);
+
+    return decodedToken && decodedToken.exp
+      ? decodedToken.exp > Date.now() / 1000
+      : false;
+  }
+
   setLoginStatus() {
     if (this.isAuth()) this.loggedInSubject.next(true);
     else this.loggedInSubject.next(false);
@@ -76,5 +84,9 @@ export class AuthService {
 
   getAuthId(): number {
     return this.token ? Number(jwtDecode(this.token!).sub) : -1;
+  }
+
+  getIdFromToken(token: string) {
+    return Number(jwtDecode(this.token!).sub);
   }
 }

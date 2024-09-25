@@ -33,14 +33,5 @@ export class LoginComponent {
     this.store.dispatch(
       login({ authLogin: this.loginForm.value as AuthLogin })
     );
-
-    // this.authService.login(this.loginForm.value as AuthLogin).subscribe({
-    //   next: (res) => {
-    //     this.router.navigate(['']);
-    //   },
-    //   error: (err) => (
-    //     (this.message.text = err.message), (this.message.type = 'error')
-    //   ),
-    // });
   }
 }

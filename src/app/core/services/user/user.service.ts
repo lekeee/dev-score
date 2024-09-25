@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { jwtDecode } from 'jwt-decode';
 import { User } from '../../models/user';
 
 @Injectable({
@@ -10,6 +11,11 @@ export class UserService {
 
   getUser(id: number) {
     return this.http.get<User>(`/users/${id}`);
+  }
+
+  getUserByToken(token: string) {
+    const id = Number(jwtDecode(token).sub);
+    return this.getUser(id);
   }
 
   updateUser(user: Partial<User>) {

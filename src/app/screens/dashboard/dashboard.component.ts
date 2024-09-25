@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../core/services/user/user.service';
-import { AuthService } from '../../core/services/auth/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { User } from '../../core/models/user';
+import { Store } from '@ngrx/store';
 import { environment } from '../../../environments/environment.development';
+import { User } from '../../core/models/user';
+import { AuthService } from '../../core/services/auth/auth.service';
+import { UserService } from '../../core/services/user/user.service';
+import { selectAuthenticated } from '../../core/store/user/user.selectors';
 import { ResponseMessage } from '../../core/types/response-message';
 
 @Component({
@@ -17,7 +19,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private authService: AuthService
+    private authService: AuthService,
+    private store: Store
   ) {}
 
   dashboardForm = new FormGroup({
@@ -33,19 +36,16 @@ export class DashboardComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.id = this.authService.getAuthId();
-    this.userService.getUser(this.id).subscribe({
-      next: (user: User) => {
-        this.dashboardForm.patchValue({
-          fullname: user.fullname,
-          username: user.username,
-          email: user.email,
-          password: user.password,
-          image: user.image
-            ? `${environment.API_URL}/uploads/${user.image}`
-            : '',
-        });
-      },
+    this.store.select(selectAuthenticated).subscribe((user) => {
+      this.dashboardForm.patchValue({
+        fullname: user?.fullname,
+        username: user?.username,
+        email: user?.email,
+        password: user?.password,
+        image: user?.image
+          ? `${environment.API_URL}/uploads/${user.image}`
+          : '',
+      });
     });
   }
 

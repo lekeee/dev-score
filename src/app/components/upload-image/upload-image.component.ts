@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { UserService } from '../../core/services/user/user.service';
+import { Store } from '@ngrx/store';
+import { updateImage } from '../../core/store/user/user.actions';
 
 @Component({
   selector: 'app-upload-image',
@@ -11,7 +12,7 @@ export class UploadImageComponent {
   @Input() url = new FormControl();
   selectedImage: File | null = null;
 
-  constructor(private userService: UserService) {}
+  constructor(private store: Store) {}
 
   onChange(e: Event) {
     const input = e.target as HTMLInputElement;
@@ -26,9 +27,7 @@ export class UploadImageComponent {
 
   onUpload() {
     if (this.selectedImage) {
-      const formData = new FormData();
-      formData.append('image', this.selectedImage);
-      this.userService.uploadImage(formData).subscribe();
+      this.store.dispatch(updateImage({ image: this.selectedImage }));
     }
   }
 }

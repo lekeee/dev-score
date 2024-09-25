@@ -42,6 +42,7 @@ import { httpInterceptor } from './core/interceptors/http.interceptor';
 import { jwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { AuthEffects } from './core/store/auth/auth.effects';
 import { PostEffects } from './core/store/post/post.effects';
+import { UserEffects } from './core/store/user/user.effects';
 import { CreateComponent } from './screens/create/create.component';
 import { DashboardComponent } from './screens/dashboard/dashboard.component';
 import { EditComponent } from './screens/edit/edit.component';
@@ -102,7 +103,7 @@ import { UserComponent } from './screens/user/user.component';
       maxAge: 25,
       autoPause: true,
     }),
-    EffectsModule.forRoot([PostEffects, AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, PostEffects, UserEffects]),
   ],
   providers: [
     provideClientHydration(),

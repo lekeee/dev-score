@@ -1,15 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AuthService } from '../../core/services/auth/auth.service';
-import { UserService } from '../../core/services/user/user.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { BehaviorSubject, fromEvent, Observable, of, Subscription } from 'rxjs';
 import { User } from '../../core/models/user';
-import {
-  map,
-  Observable,
-  of,
-  Subscription,
-  fromEvent,
-  BehaviorSubject,
-} from 'rxjs';
+import { selectAuthImage } from '../../core/store/user/user.selectors';
 
 @Component({
   selector: 'app-header',
@@ -22,34 +15,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private userId: number = -1;
   private user: Observable<User> = of();
-  public image: string = '';
+  public image: string | undefined = '';
   private scrollSubscription!: Subscription;
 
-  constructor(
-    private authService: AuthService,
-    private userService: UserService
-  ) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.authService.loggedIn$.subscribe((isLogged) => {
-      if (isLogged) {
-        this.userId = this.authService.getAuthId();
-        this.user = this.userService.getUser(this.userId);
-        this.user
-          .pipe(
-            map((user: User) => {
-              return user.image;
-            })
-          )
-          .subscribe({
-            next: (image: string) => {
-              this.image = image;
-            },
-          });
-      } else {
-        this.image = '';
-      }
-    });
+    this.store
+      .select(selectAuthImage)
+      .subscribe((image) => (this.image = image));
+
     if (typeof window !== 'undefined')
       this.scrollSubscription = fromEvent(window, 'scroll').subscribe(() => {
         const scrollPosition =

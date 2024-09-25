@@ -6,6 +6,12 @@ import * as actions from './post.actions';
 
 export interface PostsState extends EntityState<Post> {
   filters: Filters;
+  trendingPosts: EntityState<Post>;
+  myPosts: MyPostsState;
+}
+
+export interface MyPostsState extends EntityState<Post> {
+  selectedPostId: number;
 }
 
 export const adapter = createEntityAdapter<Post>();
@@ -15,6 +21,10 @@ export const initialState: PostsState = adapter.getInitialState({
     title: '',
     language: '',
   },
+  trendingPosts: adapter.getInitialState(),
+  myPosts: adapter.getInitialState({
+    selectedPostId: -1,
+  }),
 });
 
 export const postReducer = createReducer(
@@ -45,5 +55,26 @@ export const postReducer = createReducer(
       return adapter.updateOne({ id, changes: updatedPost }, state);
     }
     return state;
+  }),
+  on(actions.loadTrendingPostsSuccess, (state, { posts }) => {
+    return {
+      ...state,
+      trendingPosts: adapter.addMany(posts, state.trendingPosts),
+    };
+  }),
+  on(actions.loadMyPostsSuccess, (state, { posts }) => {
+    return {
+      ...state,
+      myPosts: adapter.addMany(posts, state.myPosts),
+    };
+  }),
+  on(actions.findMyPost, (state, { id }) => {
+    return {
+      ...state,
+      myPosts: {
+        ...state.myPosts,
+        selectedPostId: id,
+      },
+    };
   })
 );

@@ -51,4 +51,26 @@ export class PostEffects {
       )
     )
   );
+
+  loadTrendingPosts = createEffect(() =>
+    this.action$.pipe(
+      ofType(actions.loadTrendingPosts),
+      switchMap((action) =>
+        this.postService
+          .getTrendingPosts()
+          .pipe(map((posts) => actions.loadTrendingPostsSuccess({ posts })))
+      )
+    )
+  );
+
+  loadMyPosts = createEffect(() =>
+    this.action$.pipe(
+      ofType(actions.loadMyPosts),
+      switchMap((action) =>
+        this.postService
+          .getPostsByUser()
+          .pipe(map((posts) => actions.loadMyPostsSuccess({ posts })))
+      )
+    )
+  );
 }

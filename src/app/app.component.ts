@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from './app.state';
 import { restoreStatus } from './core/store/auth/auth.actions';
-import { loadPosts } from './core/store/post/post.actions';
+import { loadPosts, loadTrendingPosts } from './core/store/post/post.actions';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +16,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(loadPosts());
+    this.store.dispatch(loadTrendingPosts());
+
     this.store.dispatch(restoreStatus());
   }
 }

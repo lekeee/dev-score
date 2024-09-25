@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Post } from '../../core/models/post';
-import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
+import { Post } from '../../core/models/post';
+import {
+  likePost,
+  setFilters,
+  unlikePost,
+} from '../../core/store/post/post.actions';
 import { selectFilteredPosts } from '../../core/store/post/post.selectors';
-import { setFilters } from '../../core/store/post/post.actions';
 
 @Component({
   selector: 'app-posts',
@@ -36,5 +40,18 @@ export class PostsComponent implements OnInit {
 
   onSearch(event: string) {
     this.titleFilter$.next(event);
+  }
+
+  likeAction(type: string, id: number) {
+    switch (type) {
+      case 'like':
+        this.store.dispatch(likePost({ id }));
+        break;
+      case 'unlike':
+        this.store.dispatch(unlikePost({ id }));
+        break;
+      default:
+        console.warn('Unkown action', type);
+    }
   }
 }

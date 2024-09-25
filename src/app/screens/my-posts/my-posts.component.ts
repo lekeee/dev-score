@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { PostService } from '../../core/services/post/post.service';
-import { Post } from '../../core/models/post';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { BehaviorSubject, Observable, of, switchMap, tap } from 'rxjs';
+import { Post } from '../../core/models/post';
+import { PostService } from '../../core/services/post/post.service';
+import { selectMyPosts } from '../../core/store/post/post.selectors';
 
 @Component({
   selector: 'app-my-posts',
@@ -15,10 +17,14 @@ export class MyPostsComponent implements OnInit {
 
   isPopupOpened = new BehaviorSubject<boolean>(false);
 
-  constructor(private postService: PostService, private router: Router) {}
+  constructor(
+    private store: Store,
+    private postService: PostService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.myPost$ = this.postService.getPostsByUser();
+    this.myPost$ = this.store.select(selectMyPosts);
     //this.myPost$.subscribe((res) => console.log(res));
   }
 

@@ -24,3 +24,32 @@ export const selectFilteredPosts = createSelector(
     );
   }
 );
+
+export const trendingPostsState = createSelector(
+  postsFeature,
+  (state) => state.trendingPosts
+);
+
+export const selectTrendingPosts = createSelector(trendingPostsState, (posts) =>
+  posts.ids.map((id) => posts.entities[id]!)
+);
+
+export const myPostsState = createSelector(
+  postsFeature,
+  (state) => state.myPosts
+);
+
+export const selectMyPosts = createSelector(myPostsState, (posts) =>
+  posts.ids.map((id) => posts.entities[id]!)
+);
+
+export const selectMyPostId = createSelector(
+  myPostsState,
+  (state) => state.selectedPostId
+);
+
+export const selectMyPost = createSelector(
+  myPostsState,
+  selectMyPostId,
+  (state, id) => state.entities[id]
+);

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { PostService } from '../../core/services/post/post.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Post } from '../../core/models/post';
+import { findMyPost } from '../../core/store/post/post.actions';
+import { selectMyPost } from '../../core/store/post/post.selectors';
 
 @Component({
   selector: 'app-post-view',
@@ -22,7 +24,7 @@ export class PostViewComponent implements OnInit {
   };
 
   constructor(
-    private postService: PostService,
+    private store: Store,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -32,11 +34,11 @@ export class PostViewComponent implements OnInit {
       this.id = params['id'];
     });
 
-    this.postService.getPost(this.id).subscribe({
+    this.store.dispatch(findMyPost({ id: this.id }));
+    this.store.select(selectMyPost).subscribe({
       next: (res) => {
         if (res === null) this.router.navigate(['']);
-        this.post = res;
-        // console.log(this.id);
+        this.post = res!;
       },
       error: (err) => console.log(err),
     });

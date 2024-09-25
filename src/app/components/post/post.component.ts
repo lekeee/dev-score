@@ -1,9 +1,14 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Store } from '@ngrx/store';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { Post } from '../../core/models/post';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { LikeService } from '../../core/services/like/like.service';
-import { likePost, unlikePost } from '../../core/store/post/post.actions';
 
 @Component({
   selector: 'app-post',
@@ -22,14 +27,14 @@ export class PostComponent implements OnChanges {
     user: undefined,
     createdAt: new Date(),
   };
+  @Output() likeClick = new EventEmitter<string>();
   maxLength = 145;
   isTruncated: boolean = false;
   isLiked!: boolean;
 
   constructor(
     private likeService: LikeService,
-    private authService: AuthService,
-    private store: Store
+    private authService: AuthService
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -51,10 +56,10 @@ export class PostComponent implements OnChanges {
   }
 
   likePostfn() {
-    this.store.dispatch(likePost({ id: this.post.id! }));
+    this.likeClick.emit('like');
   }
 
   unLikePostfn() {
-    this.store.dispatch(unlikePost({ id: this.post.id! }));
+    this.likeClick.emit('unlike');
   }
 }

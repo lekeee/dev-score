@@ -70,6 +70,6 @@ export class AuthService {
   }
 
   getIdFromToken(token: string) {
-    return Number(jwtDecode(this.token!).sub);
+    return Number(jwtDecode(token!).sub);
   }
 }

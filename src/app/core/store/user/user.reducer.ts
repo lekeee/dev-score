@@ -1,13 +1,19 @@
 import { createReducer, on } from '@ngrx/store';
 import { User } from '../../models/user';
+import { ResponseMessage } from '../../types/response-message';
 import * as actions from './user.actions';
 
 export interface UserState {
   authenticated: User | null;
+  message: ResponseMessage;
 }
 
 const initialState: UserState = {
   authenticated: null,
+  message: {
+    text: '',
+    type: '',
+  },
 };
 
 export const userReducer = createReducer(
@@ -32,6 +38,18 @@ export const userReducer = createReducer(
     return {
       ...state,
       authenticated: null,
+    };
+  }),
+  on(actions.updateUserSuccess, (state, { message }) => {
+    return {
+      ...state,
+      message,
+    };
+  }),
+  on(actions.updateUserFailed, (state, { message }) => {
+    return {
+      ...state,
+      message,
     };
   })
 );

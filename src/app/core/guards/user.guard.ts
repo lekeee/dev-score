@@ -1,22 +1,22 @@
 import { inject } from '@angular/core';
-import { CanActivateFn, Router } from '@angular/router';
+import { CanActivateFn } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { map, take } from 'rxjs';
 import { AuthService } from '../services/auth/auth.service';
 import { selectToken } from '../store/auth/auth.selectors';
 
 export const userGuard: CanActivateFn = (route, state) => {
   const auth = inject(AuthService);
-  const router = inject(Router);
   const store = inject(Store);
 
-  store.select(selectToken).subscribe((token) => {
-    if (token && auth.isTokenValid(token)) {
-      router.navigate(['']);
-      return false;
-    } else {
-      return true;
-    }
-  });
-
-  return true;
+  return store.select(selectToken).pipe(
+    take(1),
+    map((token) => {
+      if (token && auth.isTokenValid(token)) {
+        return false;
+      } else {
+        return true;
+      }
+    })
+  );
 };

@@ -1,7 +1,9 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Post } from '../../core/models/post';
-import { LikeService } from '../../core/services/like/like.service';
 import { AuthService } from '../../core/services/auth/auth.service';
+import { LikeService } from '../../core/services/like/like.service';
+import { likePost, unlikePost } from '../../core/store/post/post.actions';
 
 @Component({
   selector: 'app-post',
@@ -22,20 +24,18 @@ export class PostComponent implements OnChanges {
   };
   maxLength = 145;
   isTruncated: boolean = false;
-  isLiked = false;
+  isLiked!: boolean;
 
   constructor(
     private likeService: LikeService,
-    private authService: AuthService
+    private authService: AuthService,
+    private store: Store
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['post'] && this.post.id) {
-      this.authService.loggedIn$.subscribe((isLogged) => {
-        if (isLogged)
-          this.likeService.isPostLikedByUser(this.post.id!).subscribe((res) => {
-            this.isLiked = res;
-          });
+    if (changes['post'] && this.post.id && this.authService.isAuth()) {
+      this.likeService.isPostLikedByUser(this.post.id!).subscribe((res) => {
+        this.isLiked = res;
       });
     }
   }
@@ -50,17 +50,11 @@ export class PostComponent implements OnChanges {
     this.isTruncated = true;
   }
 
-  likePost() {
-    this.likeService.createLike({ postId: this.post.id! }).subscribe(() => {
-      this.isLiked = true;
-      this.post.likesNumber++;
-    });
+  likePostfn() {
+    this.store.dispatch(likePost({ id: this.post.id! }));
   }
 
-  unLikePost() {
-    this.likeService.deleteLike(this.post.id!).subscribe(() => {
-      this.isLiked = false;
-      this.post.likesNumber--;
-    });
+  unLikePostfn() {
+    this.store.dispatch(unlikePost({ id: this.post.id! }));
   }
 }

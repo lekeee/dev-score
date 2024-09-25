@@ -12,3 +12,8 @@ export const selectAuthImage = createSelector(
   selectAuthenticated,
   (authenticated) => authenticated?.image
 );
+
+export const selectResponseMessage = createSelector(
+  userFeature,
+  (state) => state.message
+);

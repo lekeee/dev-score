@@ -13,13 +13,18 @@ export const loadUserSuccess = createAction(
 );
 
 export const updateUser = createAction(
+  '[User] Update user',
+  props<{ updatePayload: Partial<User> }>()
+);
+
+export const updateUserSuccess = createAction(
   '[User] Update User Success',
   props<{ message: ResponseMessage }>()
 );
 
-export const updateUserSuccess = createAction(
-  '[User] Update user',
-  props<{ updatePayload: Partial<User> }>()
+export const updateUserFailed = createAction(
+  '[User] Update User Faileds',
+  props<{ message: ResponseMessage }>()
 );
 
 export const updateImage = createAction(

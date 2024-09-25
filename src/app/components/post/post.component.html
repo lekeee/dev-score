@@ -17,11 +17,11 @@
           <div class="likes-div">
             <span>{{ post.likesNumber }} </span> Likes
           </div>
-          <mat-icon (click)="likePost()" *ngIf="!isLiked"
+          <mat-icon (click)="likePostfn()" *ngIf="!isLiked"
             >favorite_outlined</mat-icon
           >
           <mat-icon
-            (click)="unLikePost()"
+            (click)="unLikePostfn()"
             style="color: var(--negative-reaction)"
             *ngIf="isLiked"
             >favorite</mat-icon
@@ -58,11 +58,11 @@
           <div class="likes-div">
             <span>{{ post.likesNumber }} </span> Likes
           </div>
-          <mat-icon (click)="likePost()" *ngIf="!isLiked"
+          <mat-icon (click)="likePostfn()" *ngIf="!isLiked"
             >favorite_outlined</mat-icon
           >
           <mat-icon
-            (click)="unLikePost()"
+            (click)="unLikePostfn()"
             style="color: var(--negative-reaction)"
             *ngIf="isLiked"
             >favorite</mat-icon

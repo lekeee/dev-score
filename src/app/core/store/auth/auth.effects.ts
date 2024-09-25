@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { catchError, map, of, switchMap, tap } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
 import { loadUser, removeAuthenticated } from '../user/user.actions';
 import * as actions from './auth.actions';
@@ -38,9 +38,11 @@ export class AuthEffects {
   loginSuccess = createEffect(() =>
     this.action$.pipe(
       ofType(actions.loginSuccess),
+      tap(() => {
+        this.router.navigate(['']);
+      }),
       switchMap((action) => {
         const id = this.authService.getIdFromToken(action.token);
-        this.router.navigate(['']);
         return of(loadUser({ id }));
       })
     )
@@ -49,6 +51,9 @@ export class AuthEffects {
   logout = createEffect(() =>
     this.action$.pipe(
       ofType(actions.logout),
+      tap(() => {
+        this.router.navigate(['']);
+      }),
       switchMap(() => {
         this.authService.logout();
         return of(removeAuthenticated());
@@ -64,7 +69,17 @@ export class AuthEffects {
           return of(actions.restoreStatusFailed());
         }
         const token = this.authService.getAuthToken();
-        return of(actions.loginSuccess({ token: token! }));
+        return of(actions.restoreStatusSuccess({ token: token! }));
+      })
+    )
+  );
+
+  restoreSuccess = createEffect(() =>
+    this.action$.pipe(
+      ofType(actions.restoreStatusSuccess),
+      switchMap((action) => {
+        const id = this.authService.getIdFromToken(action.token);
+        return of(loadUser({ id }));
       })
     )
   );

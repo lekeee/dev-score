@@ -3,9 +3,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { environment } from '../../../environments/environment.development';
 import { User } from '../../core/models/user';
-import { AuthService } from '../../core/services/auth/auth.service';
-import { UserService } from '../../core/services/user/user.service';
-import { selectAuthenticated } from '../../core/store/user/user.selectors';
+import { updateUser } from '../../core/store/user/user.actions';
+import {
+  selectAuthenticated,
+  selectResponseMessage,
+} from '../../core/store/user/user.selectors';
 import { ResponseMessage } from '../../core/types/response-message';
 
 @Component({
@@ -17,11 +19,7 @@ export class DashboardComponent implements OnInit {
   message: ResponseMessage = { type: '', text: '' };
   id: number = -1;
 
-  constructor(
-    private userService: UserService,
-    private authService: AuthService,
-    private store: Store
-  ) {}
+  constructor(private store: Store) {}
 
   dashboardForm = new FormGroup({
     image: new FormControl(''),
@@ -37,6 +35,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.store.select(selectAuthenticated).subscribe((user) => {
+      this.id = user?.id!;
       this.dashboardForm.patchValue({
         fullname: user?.fullname,
         username: user?.username,
@@ -47,6 +46,10 @@ export class DashboardComponent implements OnInit {
           : '',
       });
     });
+
+    this.store
+      .select(selectResponseMessage)
+      .subscribe((msg) => (this.message = msg));
   }
 
   onSubmit() {
@@ -58,6 +61,7 @@ export class DashboardComponent implements OnInit {
     ) as FormControl;
 
     const updatePayload: Partial<User> = {};
+    updatePayload.id = this.id;
 
     if (this.dashboardForm.invalid || this.dashboardForm.pristine) return;
 
@@ -73,24 +77,10 @@ export class DashboardComponent implements OnInit {
       else {
         password.setValue('');
         confirmPassword.setValue('');
-        this.message.text = 'Passwords do not match';
-        this.message.type = 'error';
       }
     }
 
     if (Object.keys(updatePayload).length != 0)
-      this.userService.updateUser(updatePayload).subscribe({
-        next: (res) => {
-          password.setValue('');
-          confirmPassword.setValue('');
-          this.dashboardForm.markAsPristine();
-          this.message.text = 'Your data has been successfully updated.';
-          this.message.type = 'success';
-        },
-        error: (err) => {
-          this.message.text = err.error.message;
-          this.message.type = 'error';
-        },
-      });
+      this.store.dispatch(updateUser({ updatePayload }));
   }
 }

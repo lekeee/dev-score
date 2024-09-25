@@ -1,4 +1,11 @@
 import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import {
   Component,
   EventEmitter,
   Input,
@@ -7,18 +14,11 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { map, zip } from 'rxjs';
-import { ReactionService } from '../../core/services/reaction/reaction.service';
-import { LikeService } from '../../core/services/like/like.service';
-import { CommentService } from '../../core/services/comment/comment.service';
-import { Notification } from '../../core/types/notifications';
 import { AuthService } from '../../core/services/auth/auth.service';
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
+import { CommentService } from '../../core/services/comment/comment.service';
+import { LikeService } from '../../core/services/like/like.service';
+import { ReactionService } from '../../core/services/reaction/reaction.service';
+import { Notification } from '../../core/types/notifications';
 
 @Component({
   selector: 'app-notifications',
@@ -65,9 +65,7 @@ export class NotificationsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.loggedIn$.subscribe((isLogged) => {
-      this.isLoggedIn = isLogged;
-    });
+    this.isLoggedIn = this.authService.isAuth() ? true : false;
   }
 
   ngOnChanges(changes: SimpleChanges): void {

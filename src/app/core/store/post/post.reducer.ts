@@ -1,8 +1,8 @@
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
-import { Post } from '../../models/post';
 import { createReducer, on } from '@ngrx/store';
-import * as actions from './post.actions';
+import { Post } from '../../models/post';
 import { Filters } from '../../types/filters';
+import * as actions from './post.actions';
 
 export interface PostsState extends EntityState<Post> {
   filters: Filters;
@@ -27,5 +27,23 @@ export const postReducer = createReducer(
       ...state,
       filters,
     };
+  }),
+  on(actions.likePostSuccess, (state, { id }) => {
+    const post = state.entities[id];
+
+    if (post) {
+      const updatedPost = { ...post, likesNumber: (post.likesNumber || 0) + 1 };
+
+      return adapter.updateOne({ id, changes: updatedPost }, state);
+    }
+    return state;
+  }),
+  on(actions.unlikePostSuccess, (state, { id }) => {
+    const post = state.entities[id];
+    if (post) {
+      const updatedPost = { ...post, likesNumber: (post.likesNumber || 0) - 1 };
+      return adapter.updateOne({ id, changes: updatedPost }, state);
+    }
+    return state;
   })
 );

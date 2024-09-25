@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, switchMap } from 'rxjs';
+import { catchError, map, merge, mergeMap, of, switchMap } from 'rxjs';
 import { UserService } from '../../services/user/user.service';
 import * as actions from './user.actions';
 
@@ -15,6 +15,49 @@ export class UserEffects {
         this.userService
           .getUser(action.id)
           .pipe(map((user) => actions.loadUserSuccess({ user })))
+      )
+    )
+  );
+
+  updateUser = createEffect(() =>
+    this.action$.pipe(
+      ofType(actions.updateUser),
+      switchMap((action) =>
+        this.userService.updateUser(action.updatePayload).pipe(
+          mergeMap((res) => {
+            const keys = Object.keys(action.updatePayload);
+            if (keys.length === 1 && keys[0] === 'id')
+              return of(
+                actions.updateUserFailed({
+                  message: {
+                    text: 'Passwords do not match',
+                    type: 'error',
+                  },
+                })
+              );
+            return merge(
+              of(actions.loadUser({ id: action.updatePayload.id! })),
+              of(
+                actions.updateUserSuccess({
+                  message: {
+                    text: 'Your data has been successfully updated.',
+                    type: 'success',
+                  },
+                })
+              )
+            );
+          }),
+          catchError((err) =>
+            of(
+              actions.updateUserFailed({
+                message: {
+                  text: err.error.message,
+                  type: 'error',
+                },
+              })
+            )
+          )
+        )
       )
     )
   );

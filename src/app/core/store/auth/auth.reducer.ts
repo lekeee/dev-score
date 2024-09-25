@@ -35,5 +35,17 @@ export const authReducer = createReducer(
       ...state,
       token: '',
     };
+  }),
+  on(actions.restoreStatusSuccess, (state, { token }) => {
+    return {
+      ...state,
+      token,
+    };
+  }),
+  on(actions.restoreStatusFailed, (state) => {
+    return {
+      ...state,
+      token: '',
+    };
   })
 );

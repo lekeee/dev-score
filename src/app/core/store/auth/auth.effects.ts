@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, of, switchMap, tap } from 'rxjs';
+import { catchError, map, merge, of, switchMap, tap } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
-import { loadUser, removeAuthenticated } from '../user/user.actions';
+import { resetMyPostsState } from '../post/post.actions';
+import { loadUser, resetUserState } from '../user/user.actions';
 import * as actions from './auth.actions';
 
 @Injectable()
@@ -56,7 +57,7 @@ export class AuthEffects {
       }),
       switchMap(() => {
         this.authService.logout();
-        return of(removeAuthenticated());
+        return merge(of(resetUserState()), of(resetMyPostsState()));
       })
     )
   );

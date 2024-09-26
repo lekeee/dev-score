@@ -76,5 +76,11 @@ export const postReducer = createReducer(
         selectedPostId: id,
       },
     };
+  }),
+  on(actions.resetMyPostsState, (state) => {
+    return {
+      ...state,
+      myPosts: adapter.removeAll({ ...state.myPosts, selectedPostId: -1 }),
+    };
   })
 );

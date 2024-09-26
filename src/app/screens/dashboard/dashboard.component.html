@@ -39,7 +39,10 @@
             [control]="dashboardForm.controls.confirmPassword"
           ></app-text-input>
         </div>
-        <app-error *ngIf="message.text" [message]="message"></app-error>
+        <app-error
+          *ngIf="message && message.text"
+          [message]="message"
+        ></app-error>
         <app-custom-button
           class="turq-fill"
           text="Save"

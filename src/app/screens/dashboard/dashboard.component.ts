@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { Observable, of } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 import { User } from '../../core/models/user';
 import { updateUser } from '../../core/store/user/user.actions';
@@ -18,6 +19,7 @@ import { ResponseMessage } from '../../core/types/response-message';
 export class DashboardComponent implements OnInit {
   message: ResponseMessage = { type: '', text: '' };
   id: number = -1;
+  user$: Observable<User | null> = of();
 
   constructor(private store: Store) {}
 
@@ -34,22 +36,26 @@ export class DashboardComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.store.select(selectAuthenticated).subscribe((user) => {
-      this.id = user?.id!;
-      this.dashboardForm.patchValue({
-        fullname: user?.fullname,
-        username: user?.username,
-        email: user?.email,
-        password: user?.password,
-        image: user?.image
-          ? `${environment.API_URL}/uploads/${user.image}`
-          : '',
-      });
+    this.user$ = this.store.select(selectAuthenticated);
+
+    this.user$.subscribe({
+      next: (user) => {
+        this.id = user?.id!;
+        this.dashboardForm.patchValue({
+          fullname: user?.fullname,
+          username: user?.username,
+          email: user?.email,
+          password: user?.password,
+          image: user?.image
+            ? `${environment.API_URL}/uploads/${user.image}`
+            : '',
+        });
+      },
     });
 
     this.store
       .select(selectResponseMessage)
-      .subscribe((msg) => (this.message = msg));
+      .subscribe((msg) => (this.message = msg!));
   }
 
   onSubmit() {

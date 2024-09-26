@@ -37,4 +37,4 @@ export const updateImageSuccess = createAction(
   props<{ image: string }>()
 );
 
-export const removeAuthenticated = createAction('[User] Remove Authenticated');
+export const resetUserState = createAction('[User] Reset State');

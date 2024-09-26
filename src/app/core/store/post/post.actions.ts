@@ -52,3 +52,5 @@ export const findMyPost = createAction(
   '[Post] Find My Post',
   props<{ id: number }>()
 );
+
+export const resetMyPostsState = createAction('[Post] Reset My Posts');

@@ -17,7 +17,6 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(loadPosts());
     this.store.dispatch(loadTrendingPosts());
-
     this.store.dispatch(restoreStatus());
   }
 }

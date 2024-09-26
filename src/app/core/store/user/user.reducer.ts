@@ -5,7 +5,7 @@ import * as actions from './user.actions';
 
 export interface UserState {
   authenticated: User | null;
-  message: ResponseMessage;
+  message: ResponseMessage | null;
 }
 
 const initialState: UserState = {
@@ -34,10 +34,11 @@ export const userReducer = createReducer(
       },
     };
   }),
-  on(actions.removeAuthenticated, (state) => {
+  on(actions.resetUserState, (state) => {
     return {
       ...state,
       authenticated: null,
+      message: null,
     };
   }),
   on(actions.updateUserSuccess, (state, { message }) => {

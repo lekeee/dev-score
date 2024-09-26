@@ -56,6 +56,18 @@
   cursor: pointer;
 }
 
+.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  width: 100%;
+}
+
+.empty p {
+  font-weight: lighter;
+}
+
 #delete {
   color: var(--negative-reaction);
 }

@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="empty" *ngIf="(myPost$ | async)?.length === 0">
+    <p>You have no posts yet. Start sharing your thoughts!</p>
+  </div>
   <div class="post-div" *ngFor="let post of myPost$ | async">
     <div class="left-div">
       <span class="language-div">

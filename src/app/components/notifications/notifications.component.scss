@@ -55,3 +55,14 @@ mat-icon:hover {
   scrollbar-color: #4a5c73 #2a354b;
   scrollbar-width: thin;
 }
+
+.empty {
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty p {
+  font-weight: lighter;
+}

@@ -1,10 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Like } from './models/like.entity';
 import { PostsService } from 'src/posts/posts.service';
 import { UsersService } from 'src/users/users.service';
-import { LikeDto } from './models/like.dto';
 import { Repository } from 'typeorm';
+import { LikeDto } from './models/like.dto';
+import { Like } from './models/like.entity';
 
 @Injectable()
 export class LikesService {
@@ -40,7 +40,9 @@ export class LikesService {
 
     if (!user) throw new NotFoundException('User not found');
 
-    return user.posts.flatMap((post) => post.likes);
+    return user.posts
+      .flatMap((post) => post.likes)
+      .filter((like) => like.user.id !== userId);
   }
 
   async create(userId: number, likeDto: LikeDto) {

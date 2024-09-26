@@ -1,10 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Reaction } from './models/reaction.entity';
+import { PostsService } from 'src/posts/posts.service';
+import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
 import { ReactionDto } from './models/reaction.dto';
-import { UsersService } from 'src/users/users.service';
-import { PostsService } from 'src/posts/posts.service';
+import { Reaction } from './models/reaction.entity';
 
 @Injectable()
 export class ReactionsService {
@@ -73,6 +73,8 @@ export class ReactionsService {
 
     if (!user) throw new NotFoundException('User not found');
 
-    return user.posts.flatMap((post) => post.reactions);
+    return user.posts
+      .flatMap((post) => post.reactions)
+      .filter((reaction) => reaction.user.id !== userId);
   }
 }

@@ -1,10 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Comment } from './models/comment.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { ReactionsService } from 'src/reactions/reactions.service';
 import { UsersService } from 'src/users/users.service';
+import { Repository } from 'typeorm';
 import { CommentDto } from './models/comment.dto';
+import { Comment } from './models/comment.entity';
 
 @Injectable()
 export class CommentsService {
@@ -30,7 +30,9 @@ export class CommentsService {
 
     if (!user) throw new NotFoundException('User not found');
 
-    return user.reactions.flatMap((reaction) => reaction.comments);
+    return user.reactions
+      .flatMap((reaction) => reaction.comments)
+      .filter((comment) => comment.user.id !== userId);
   }
 
   async create(userId: number, commentDto: CommentDto) {

@@ -1,3 +1,7 @@
 <div class="container">
-  <app-post [isFlex]="true" [post]="post"></app-post>
+  <app-post
+    [isFlex]="true"
+    [post]="post"
+    (likeClick)="likeAction($event)"
+  ></app-post>
 </div>

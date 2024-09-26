@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Post } from '../../core/models/post';
-import { findMyPost } from '../../core/store/post/post.actions';
+import {
+  findMyPost,
+  likePost,
+  unlikePost,
+} from '../../core/store/post/post.actions';
 import { selectPost } from '../../core/store/post/post.selectors';
 
 @Component({
@@ -42,5 +46,18 @@ export class PostViewComponent implements OnInit {
       },
       error: (err) => console.log(err),
     });
+  }
+
+  likeAction(type: string) {
+    switch (type) {
+      case 'like':
+        this.store.dispatch(likePost({ id: this.id }));
+        break;
+      case 'unlike':
+        this.store.dispatch(unlikePost({ id: this.id }));
+        break;
+      default:
+        console.warn('Unkown action', type);
+    }
   }
 }

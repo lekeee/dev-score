@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import { postOwnerGuard } from './core/guards/post-owner.guard';
 import { userGuard } from './core/guards/user.guard';
+import { AboutComponent } from './screens/about/about.component';
 import { CreateComponent } from './screens/create/create.component';
 import { EditComponent } from './screens/edit/edit.component';
 import { HomeComponent } from './screens/home/home.component';
@@ -14,6 +15,7 @@ import { UserComponent } from './screens/user/user.component';
 
 const routes: Routes = [
   { path: 'posts', component: PostsComponent },
+  { path: 'about', component: AboutComponent },
   { path: 'login', component: LoginComponent, canActivate: [userGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [userGuard] },
   { path: 'user', component: UserComponent, canActivate: [authGuard] },

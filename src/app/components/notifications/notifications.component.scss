@@ -1,14 +1,13 @@
 .container {
   width: min(400px, 90vw);
   height: 80vh;
-  background-image: url("/images/notifications-background.svg");
+  // background-image: url("/images/notifications-background.svg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   position: fixed;
   top: 14vh;
   right: 0;
-
   z-index: 100;
   border-radius: 20px 0 0 20px;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);

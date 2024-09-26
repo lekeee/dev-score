@@ -53,6 +53,7 @@ import { PostViewComponent } from './screens/post-view/post-view.component';
 import { PostsComponent } from './screens/posts/posts.component';
 import { RegisterComponent } from './screens/register/register.component';
 import { UserComponent } from './screens/user/user.component';
+import { AboutComponent } from './screens/about/about.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import { UserComponent } from './screens/user/user.component';
     PopupComponent,
     EditComponent,
     ReactionComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

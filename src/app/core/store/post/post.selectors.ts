@@ -48,8 +48,11 @@ export const selectMyPostId = createSelector(
   (state) => state.selectedPostId
 );
 
-export const selectMyPost = createSelector(
+export const selectPost = createSelector(
+  postsFeature,
+  trendingPostsState,
   myPostsState,
   selectMyPostId,
-  (state, id) => state.entities[id]
+  (posts, trendingPosts, myPosts, id) =>
+    posts.entities[id] || trendingPosts.entities[id] || myPosts.entities[id]
 );

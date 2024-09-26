@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Post } from '../../core/models/post';
 import { findMyPost } from '../../core/store/post/post.actions';
-import { selectMyPost } from '../../core/store/post/post.selectors';
+import { selectPost } from '../../core/store/post/post.selectors';
 
 @Component({
   selector: 'app-post-view',
@@ -35,7 +35,7 @@ export class PostViewComponent implements OnInit {
     });
 
     this.store.dispatch(findMyPost({ id: this.id }));
-    this.store.select(selectMyPost).subscribe({
+    this.store.select(selectPost).subscribe({
       next: (res) => {
         if (res === null) this.router.navigate(['']);
         this.post = res!;

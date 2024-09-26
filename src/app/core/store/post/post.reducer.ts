@@ -82,5 +82,25 @@ export const postReducer = createReducer(
       ...state,
       myPosts: adapter.removeAll({ ...state.myPosts, selectedPostId: -1 }),
     };
+  }),
+  on(actions.deletePostSuccess, (state, { id }) => {
+    return adapter.removeOne(id, {
+      ...state,
+      trendingPosts: adapter.removeOne(id, state.trendingPosts),
+      myPosts: adapter.removeOne(id, state.myPosts),
+    });
+  }),
+  on(actions.createPostSuccess, (state, { post }) => {
+    return {
+      ...state,
+      myPosts: adapter.addOne(post, state.myPosts),
+    };
+  }),
+  on(actions.updatePostSuccess, (state, { post }) => {
+    return adapter.updateOne(post, {
+      ...state,
+      trendingPosts: adapter.updateOne(post, state.trendingPosts),
+      myPosts: adapter.updateOne(post, state.myPosts),
+    });
   })
 );

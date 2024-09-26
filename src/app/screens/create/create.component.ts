@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ResponseMessage } from '../../core/types/response-message';
-import { PostService } from '../../core/services/post/post.service';
+import { Store } from '@ngrx/store';
 import { Post } from '../../core/models/post';
-import { Router } from '@angular/router';
+import { createPost } from '../../core/store/post/post.actions';
+import { ResponseMessage } from '../../core/types/response-message';
 
 @Component({
   selector: 'app-create',
@@ -20,20 +20,11 @@ export class CreateComponent {
 
   message: ResponseMessage = { type: '', text: '' };
 
-  constructor(private postService: PostService, private router: Router) {}
+  constructor(private store: Store) {}
 
   onSubmit() {
     if (this.createForm.invalid) return;
 
-    this.postService.createPost(this.createForm.value as Post).subscribe({
-      next: (res) => {
-        this.message.text = 'Your post has been successfully created.';
-        this.message.type = 'success';
-        setTimeout(() => {
-          this.router.navigate([`post/${res.id}`]);
-        }, 1000);
-      },
-      error: (err) => console.log(err),
-    });
+    this.store.dispatch(createPost({ post: this.createForm.value as Post }));
   }
 }

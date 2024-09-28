@@ -14,7 +14,6 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { map, zip } from 'rxjs';
-import { AuthService } from '../../core/services/auth/auth.service';
 import { CommentService } from '../../core/services/comment/comment.service';
 import { LikeService } from '../../core/services/like/like.service';
 import { ReactionService } from '../../core/services/reaction/reaction.service';
@@ -51,10 +50,8 @@ export class NotificationsComponent implements OnInit {
   @Input() isOpen: boolean = false;
   @Output() notfCloseClick = new EventEmitter();
   notifications: Notification[] = [];
-  isLoggedIn: boolean = false;
 
   constructor(
-    private authService: AuthService,
     private reactionsService: ReactionService,
     private likeService: LikeService,
     private commentService: CommentService
@@ -64,9 +61,7 @@ export class NotificationsComponent implements OnInit {
     return this.isOpen ? 'in' : 'out';
   }
 
-  ngOnInit(): void {
-    this.isLoggedIn = this.authService.isAuth() ? true : false;
-  }
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['isOpen'] && this.isOpen) {
@@ -75,8 +70,6 @@ export class NotificationsComponent implements OnInit {
   }
 
   loadNotifications(): void {
-    if (!this.isLoggedIn) return;
-
     zip(
       this.reactionsService.getNotifications(),
       this.likeService.getNotifications(),

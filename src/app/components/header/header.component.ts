@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { BehaviorSubject, fromEvent, Observable, of, Subscription } from 'rxjs';
-import { User } from '../../core/models/user';
+import { BehaviorSubject, fromEvent, Subscription } from 'rxjs';
+import { selectIsLoggedIn } from '../../core/store/auth/auth.selectors';
 import { selectAuthImage } from '../../core/store/user/user.selectors';
 
 @Component({
@@ -12,13 +13,12 @@ import { selectAuthImage } from '../../core/store/user/user.selectors';
 export class HeaderComponent implements OnInit, OnDestroy {
   isScrolled: boolean = false;
   isNotificationsOpen = new BehaviorSubject<boolean>(false);
+  isLoggedIn: boolean = false;
 
-  private userId: number = -1;
-  private user: Observable<User> = of();
   public image: string | undefined = '';
   private scrollSubscription!: Subscription;
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private router: Router) {}
 
   ngOnInit(): void {
     this.store
@@ -34,6 +34,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
           0;
         this.isScrolled = scrollPosition > 60;
       });
+
+    this.store.select(selectIsLoggedIn).subscribe((isLoggedIn) => {
+      this.isLoggedIn = isLoggedIn;
+    });
   }
 
   ngOnDestroy(): void {
@@ -43,6 +47,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   toogleNoitifications() {
-    this.isNotificationsOpen.next(!this.isNotificationsOpen.value);
+    if (this.isLoggedIn)
+      this.isNotificationsOpen.next(!this.isNotificationsOpen.value);
+    else this.router.navigate(['login']);
   }
 }

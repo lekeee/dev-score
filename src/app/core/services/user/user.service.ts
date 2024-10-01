@@ -23,6 +23,6 @@ export class UserService {
   }
 
   uploadImage(formData: FormData) {
-    return this.http.post('/users/upload', formData);
+    return this.http.post<{ image: string }>('/users/upload', formData);
   }
 }

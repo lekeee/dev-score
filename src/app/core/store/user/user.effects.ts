@@ -70,9 +70,7 @@ export class UserEffects {
         formData.append('image', action.image);
         return this.userService
           .uploadImage(formData)
-          .pipe(
-            map(() => actions.updateImageSuccess({ image: action.image.name }))
-          );
+          .pipe(map((res) => actions.updateImageSuccess({ image: res.image })));
       })
     )
   );

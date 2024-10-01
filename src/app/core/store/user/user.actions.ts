@@ -23,7 +23,7 @@ export const updateUserSuccess = createAction(
 );
 
 export const updateUserFailed = createAction(
-  '[User] Update User Faileds',
+  '[User] Update User Failed',
   props<{ message: ResponseMessage }>()
 );
 

@@ -12,20 +12,19 @@ import {
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
-import { UsersService } from './users.service';
-import { UserDto } from './models/user.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { JwtGuard } from 'src/auth/guards/jwt.guard';
-import { extname } from 'path';
-import { diskStorage } from 'multer';
 import * as fs from 'fs';
+import { diskStorage } from 'multer';
+import { extname } from 'path';
+import { JwtGuard } from 'src/auth/guards/jwt.guard';
+import { UserDto } from './models/user.dto';
+import { UsersService } from './users.service';
 
 const storage = diskStorage({
   destination: './uploads',
   filename: (req, file, cb) => {
-    const originalName = file.originalname.split('.')[0];
-    const fileExtName = extname(file.originalname);
-    cb(null, `${originalName}${fileExtName}`);
+    const uniqueImageName = `${Date.now()}${extname(file.originalname)}`;
+    cb(null, `${uniqueImageName}`);
   },
 });
 
@@ -59,9 +58,11 @@ export class UsersController {
       if (fs.existsSync(imagePath)) fs.unlinkSync(imagePath);
     }
 
-    return this.userService.update(req.user.userId, {
-      image: file.originalname,
+    await this.userService.update(req.user.userId, {
+      image: file.filename,
     });
+
+    return { image: file.filename };
   }
 
   @Put()
